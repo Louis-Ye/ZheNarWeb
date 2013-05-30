@@ -1,8 +1,5 @@
 # Django settings for ZheNar project.
 
-DEBUG = False
-TEMPLATE_DEBUG = DEBUG
-
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
