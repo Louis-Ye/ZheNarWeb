@@ -5,7 +5,9 @@
 	<title>{{page_title}}</title>
 	<link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-responsive.min.css">
-	<script type="text/javascript" charset="utf-8" src="./bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./bootstrap/js/bootstrap-modal.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./bootstrap/js/jquery.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./bootstrap/js/bootstrap-transition.js"></script>
 </head>
 <body>
 	<header class="navbar navbar-inverse navbar-fixed-top">
@@ -18,19 +20,26 @@
 						<li><a href="#">事件</a></li>
 						<li><a href="#">地点</a></li>
 					</ul>
-					<div id="LogModal" class="modal hide fade" aria-hidden="true" aria-labelledby="LogLabel" role="dialog" tabindex="-1">
-						<div class="modal-header">
-							
-						</div>
-						<div class="modal-body">
-							
-						</div>
-						<div class="modal-footer">
-							
-						</div>
-					</div>
 					<ul class="nav pull-right">
 						<li><a href="#LogModal"  data-toggle="modal">登录</a></li>
+						<div id="LogModel" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<form class="form-signin">
+								<div class="modal-header">
+									<h2>登录</h2>
+								</div>
+								<div class="modal-body">
+									<input class="input-block-level" type="text" placeholder="邮箱地址">
+									<input class="input-block-level" type="password" placeholder="密码">
+									<label class="checkbox">
+										<input type="checkbox" value="remember-me">
+										Remember me
+									</label>
+								</div>
+								<div class="modal-footer">
+									<button class="btn btn-large btn-primary" type="submit">登录</button>
+								</div>
+							</form>
+						</div>
 						<li><a href="#RegModal"  data-toggle="modal">注册</a></li>
 					</ul>
 				</div>
@@ -38,18 +47,18 @@
 		</div>
 	</header>
 	
-	
-	<div class="container">
-		<form class="form-signin">
-			<h2 class="form-signin-heading">登录</h2>
-			<input class="input-block-level" type="text" placeholder="邮箱地址">
-			<input class="input-block-level" type="password" placeholder="密码">
-			<label class="checkbox">
-				<input type="checkbox" value="remember-me">
-				Remember me
-			</label>
-			<button class="btn btn-large btn-primary" type="submit">Sign in</button>
+	<div class="" style="margin-top:300px">
+		<a class="btn span1 offset0 btn-success" data-toggle="modal" role="button" href="#CreateDevice">Create</a>
+		<div id="CreateDevice" class="modal hide fade" aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" style="display: none;">
+		<div class="modal-header">
+		<div class="modal-body">
+		<form method="post" action="_manage_device.php">
+		<input type="text" name="deviceName" style="height:40px;" placeholder="name">
+		<input type="text" name="description" style="height:80px; width:500px;" placeholder="Description">
 		</form>
+		</div>
+		<div class="modal-footer">
+		</div>
 	</div>
 	
 	
