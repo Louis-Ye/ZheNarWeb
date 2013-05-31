@@ -5,7 +5,8 @@ from django.conf.urls import patterns, include, url
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-	url(r'^$','ZheNar.views.under_construction')
+	url(r'^$','ZheNar.views.under_construction'),
+	url(r'^profiles/', include('profiles.urls', namespace="profiles")),
     # Examples:
     # url(r'^$', 'ZheNar.views.home', name='home'),
     # url(r'^ZheNar/', include('ZheNar.foo.urls')),
