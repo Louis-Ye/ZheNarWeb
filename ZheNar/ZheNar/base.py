@@ -128,8 +128,8 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 
     'profiles',
-    'event',
-    'place',
+    'events',
+    'places',
     'map',
 )
 
