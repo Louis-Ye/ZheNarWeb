@@ -8,4 +8,4 @@ class Profile(models.Model):
 	user = models.OneToOneField(User)
 	studentid = models.CharField(max_length=10, unique=True)
 	name = models.CharField(max_length=255)
-	
+
