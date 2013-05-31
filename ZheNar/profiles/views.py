@@ -6,11 +6,11 @@ from django.views import generic
 
 from profiles.models import Profile
 
-def index(request)
+def index(request):
 	return HttpResponse("Haha~ index~")
 
-def login(request)
+def login(request):
 	return HttpResponse("This is login!")
 
-def register(request)
+def register(request):
 	return HttpResponse("This is register page!")
