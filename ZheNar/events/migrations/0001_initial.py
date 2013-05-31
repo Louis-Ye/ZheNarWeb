@@ -18,6 +18,7 @@ class Migration(SchemaMigration):
         # Adding model 'Event'
         db.create_table(u'events_event', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('flag', self.gf('django.db.models.fields.SmallIntegerField')(default=1)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=255)),
             ('description', self.gf('django.db.models.fields.TextField')(blank=True)),
             ('holder', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['profiles.Profile'])),
@@ -80,6 +81,7 @@ class Migration(SchemaMigration):
             'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             'end_time': ('django.db.models.fields.DateTimeField', [], {}),
             'event_type': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['events.EventType']"}),
+            'flag': ('django.db.models.fields.SmallIntegerField', [], {'default': '1'}),
             'holder': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['profiles.Profile']"}),
             'host_organization': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
