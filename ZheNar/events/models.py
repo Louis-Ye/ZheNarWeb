@@ -36,3 +36,8 @@ class Event(models.Model):
 	
 	class Meta:
 		ordering = ['name']
+		permissions = (
+			('create_map_event', 'Can create map event'),
+			('modify_map_event', 'Can modify map event'),
+			('remove_map_event', 'Can remove map event'),
+		)

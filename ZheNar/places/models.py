@@ -19,3 +19,8 @@ class Place(models.Model):
 
 	class Meta:
 		ordering = ['name']
+		permissions = (
+			('create_map_place', 'Can create map place'),
+			('modify_map_place', 'Can modify map place'),
+			('remove_map_place', 'Can remove map place'),
+		)
