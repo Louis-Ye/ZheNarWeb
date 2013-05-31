@@ -17,7 +17,7 @@ class Event(models.Model):
 	host_organization = models.CharField(max_length = 255, null = True)
 	start_time = models.DateTimeField()
 	end_time = models.DateTimeField()
-	place = models.ManyToManyField(Place)
+	place = models.ForeignKey(Place)
 	event_type = models.ForeignKey(EventType)
 	
 	def __unicode__(self):
