@@ -6,8 +6,8 @@ import datetime
 # Create your models here.
 class Profile(models.Model):
 	user = models.OneToOneField(User)
-	studentid = models.CharField(max_length=10, unique=True)
-	name = models.CharField(max_length=255)
+	studentid = models.CharField(max_length=10, unique=True, blank=True, null=True)
+	name = models.CharField(max_length=255, blank=True, null=True)
 	GENDER_CHOICES = (
         	(1, _('Male')),
         	(2, _('Female')),
