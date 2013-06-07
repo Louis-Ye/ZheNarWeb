@@ -2,14 +2,10 @@
 <html>
 <head>
 	<meta charset="utf-8">
-
-	<title>{{ page_title }}</title>
-	{% load staticfiles %}
-	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}" />
-	<script src="{% static 'bootstrap/js/jquery.js' %}"></script>
-	<script src="{% static 'bootstrap/js/bootstrap-transition.js' %}"></script>
-	<script src="{% static 'bootstrap/js/bootstrap-modal.js' %}"></script>
-	<script src="{% static 'bootstrap/js/bootstrap-collapse.js' %}"></script>
+	<title>{{page_title}}</title>
+	<link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.min.css">
+	<script type="text/javascript" charset="utf-8" src="./bootstrap/js/bootstrap-modal.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./bootstrap/js/jquery.js"></script>
 
 </head>
 <body>
@@ -24,26 +20,15 @@
 						<li><a href="#">地点</a></li>
 					</ul>
 					<ul class="nav pull-right">
-						<li><a href="#LogModal" data-toggle="modal">登录</a></li>
-
-						<li><a href="#RegModal" data-toggle="modal">注册</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	{% block main %}
-	{% endblock %}
-
-	<div id="LogModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<li><a href="#LogModal" role="button" data-toggle="modal">登录</a></li>
+						<div id="LogModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							<form class="form-signin">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
 									<h2>登录</h2>
 								</div>
 								<div class="modal-body">
-									<input class="input-block-level" type="text" placeholder="用户名 or 邮箱地址">
+									<input class="input-block-level" type="text" placeholder="邮箱地址">
 									<input class="input-block-level" type="password" placeholder="密码">
 									<label class="checkbox">
 										<input type="checkbox" value="remember-me">
@@ -55,7 +40,14 @@
 								</div>
 							</form>
 						</div>
-
+						<li><a href="#RegModal"  data-toggle="modal">注册</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
 </body>
 </html>
-

@@ -2,31 +2,47 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		{% load staticfiles %}
-		<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}" />
-		<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap-responsive.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
 		<script type="text/javascript" charset="utf-8" src="{% static 'bootstrap/js/bootstrap-modal.js' %}"></script>
 		<script type="text/javascript" charset="utf-8" src="{% static 'bootstrap/js/jquery.js' %}"></script>
 	</head>
 <body>
   <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="brand" href="#">浙哪儿</a>
-        <div class="nav-collapse collapse">
-          <ul class="nav">
-            <li class="active"><a href="#">主页</a></li>
-            <li><a href="#about">关于</a></li>
-            <li><a href="#contact">联系我们</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
-  </div>
+		<div class="navbar-inner">
+			<div class="container">
+				<div class="brand" href="#"><a href="#">浙哪儿</a></div>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li><a href="#">热点</a></li>
+						<li><a href="#">事件</a></li>
+						<li><a href="#">地点</a></li>
+					</ul>
+					<ul class="nav pull-right">
+						<li><a href="#LogModal" role="button" data-toggle="modal">登录</a></li>
+						<div id="LogModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<form class="form-signin">
+								<div class="modal-header">
+									<h2>登录</h2>
+								</div>
+								<div class="modal-body">
+									<input class="input-block-level" type="text" placeholder="邮箱地址">
+									<input class="input-block-level" type="password" placeholder="密码">
+									<label class="checkbox">
+										<input type="checkbox" value="remember-me">
+										Remember me
+									</label>
+								</div>
+								<div class="modal-footer">
+									<button class="btn btn-large btn-primary" type="submit">登录</button>
+								</div>
+							</form>
+						</div>
+						<li><a href="#RegModal"  data-toggle="modal">注册</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 	
   <div class="container">
     	<div style='height:50px;'>&nbsp</div>

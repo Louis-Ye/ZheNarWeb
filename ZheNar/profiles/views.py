@@ -35,11 +35,12 @@ def _login(request):
 	if upr is None:
 		return HttpResponseRedirect(reverse('profiles:debug', args=("There is no such user", ))) #There is no such user
 	else :
-		if upr.is_active == 0:
-			return HttpResponseRedirect() #This user has not been active
-		if upr.is_superuser == 1:
-			return HttpResponseRedirect() #Super user should not login in this page
-
+		if upr.is_active == 0:					#This user has not been active
+			return HttpResponseRedirect(reverse('profiles:debug', args=("This user has not been active", )))
+		if upr.is_superuser == 1:				#Superuser should not login in this page
+			return HttpResponseRedirect(reverse('profiles:debug', args=("Superuser shouldn't login in this page", )))
+	
+	login(request, upr)		#log in
 	return HttpResponseRedirect(reverse('ZheNar.views.index'))
 
 
