@@ -26,7 +26,7 @@
 					<ul class="nav pull-right">
 						<li><a href="#LogModal" data-toggle="modal">登录</a></li>
 
-						<li><a href="#RegModal" data-toggle="modal">注册</a></li>
+						<li><a href="{% url 'profiles:register'  %}" data-toggle="modal">注册</a></li>
 					</ul>
 				</div>
 			</div>
@@ -37,24 +37,24 @@
 	{% endblock %}
 
 	<div id="LogModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-							<form class="form-signin">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-									<h2>登录</h2>
-								</div>
-								<div class="modal-body">
-									<input class="input-block-level" type="text" placeholder="用户名 or 邮箱地址">
-									<input class="input-block-level" type="password" placeholder="密码">
-									<label class="checkbox">
-										<input type="checkbox" value="remember-me">
-										Remember me
-									</label>
-								</div>
-								<div class="modal-footer">
-									<button class="btn btn-large btn-primary" type="submit">登录</button>
-								</div>
-							</form>
-						</div>
+		<form class="form-signin" action="{% url 'profiles:_login'  %}" method="post">{% csrf_token %}
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+					<h2>登录</h2>
+			</div>
+			<div class="modal-body">
+				<input class="input-block-level" name="account" type="text" placeholder="用户名 or 邮箱地址">
+				<input class="input-block-level" name="password" type="password" placeholder="密码">
+				<label class="checkbox">
+					<input type="checkbox" value="remember-me">
+					Remember me
+				</label>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-large btn-primary" type="submit">登录</button>
+			</div>
+		</form>
+	</div>
 
 </body>
 </html>
