@@ -10,21 +10,30 @@ from datetime import datetime
 
 from profiles.models import Profile
 
-"""
+import re, random
+
+
 def index(request):
-	return HttpResponse("Haha~ index~")
-"""
+	return HttpResponse("index!")
+
+
+def debug(request, info):
+	return HttpResponse("debug information: " + info)
+
 
 def _login(request):
-	account = request.POST['account']
-	password = request.POST['password']
+	if request.POST:
+		account = request.POST['account']
+		password = request.POST['password']
+	else:
+		return HttpResponseRedirect(reverse('ZheNar.views.index'))
 
 	upr = authenticate(username=account, password=password)
 	if upr is None:
 		upr = authenticate(email=account, password=password) #check if user logins with email
 
 	if upr is None:
-		return HttpResponseRedirect() #There is no such user
+		return HttpResponseRedirect(reverse('profiles:debug', args=("There is no such user", ))) #There is no such user
 	else :
 		if upr.is_active == 0:
 			return HttpResponseRedirect() #This user has not been active
@@ -33,36 +42,51 @@ def _login(request):
 
 	return HttpResponseRedirect(reverse('ZheNar.views.index'))
 
+
 def _logout(request):
 	logout(request)
 	return HttpResponseRedirect(reverse('ZheNar.views.index'))
 
+
 def register(request):
-	context = {'someKey': 'someValue'}
+	context = {'random_gender': random.randint(1,2)}
 	return render(request, 'profiles/register.html', context)
 
+
 def _register(request):
-	username = request.POST['username']
-	password = request.POST['password']
-	email = request.POST['email']
-	studentid = request.POST['studentid']
-	name = request.POST['name']
-	gender = request.POST['gender']
-	registerTime = datetime.now()
+	if request.POST:
+		username = request.POST.get('username')
+		email = request.POST.get('email')
+		password = request.POST.get('password')
+		studentid = request.POST.get('studentid')
+		name = request.POST.get('name')
+		gender = request.POST.get('gender')
+		registerTime = datetime.now()
+	else:
+		return HttpResponseRedirect(reverse('ZheNar.views.index'))
+	
+	#return HttpResponse(username + email)
 
-	upr = User.objects.get(username=username)	#check if there is duplicated username
+	try:
+		upr = User.objects.get(username=username)	#check if there is duplicated username
+	except User.DoesNotExist:
+		upr = None
 	if upr is not None:
-		return HttpResponseRedirect()
+		return HttpResponseRedirect(reverse('profiles:debug', args=("duplicated username !", )))
 
-	upr = User.objects.get(email=email)		#check if there is duplicated email
+	try:
+		upr = User.objects.get(email=email)		#check if there is duplicated email
+	except User.DoesNotExist:
+		upr = None
 	if upr is not None:	
-		return HttpResponseRedirect()
+		return HttpResponseRedirect(reverse('profiles:debug', args=("duplicated email !", )))
 	
 	upr = User.objects.create_user(username, email, password)
 	pr = Profile(user=upr, studentid=studentid, name=name, gender=gender, registerTime=registerTime)
 	pr.save()
 
-	return HttpResponseRedirect()
+	return HttpResponseRedirect(reverse('profiles:debug', args=("Successfully register !", )))
+
 
 def settings(request):
 	if request.user.is_authenticated():

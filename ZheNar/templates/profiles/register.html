@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		{% load staticfiles %}
+		<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap-responsive.css' %}" />
+		<script type="text/javascript" charset="utf-8" src="{% static 'bootstrap/js/bootstrap-modal.js' %}"></script>
+		<script type="text/javascript" charset="utf-8" src="{% static 'bootstrap/js/jquery.js' %}"></script>
+	</head>
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="brand" href="#">浙哪儿</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li class="active"><a href="#">主页</a></li>
+            <li><a href="#about">关于</a></li>
+            <li><a href="#contact">联系我们</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
+	
+  <div class="container">
+    	<div style='height:50px;'>&nbsp</div>
+	<form action="{% url 'profiles:_register'  %}" method='post' class='span4'>
+	{% csrf_token %}
+          <h2>注册</h2>
+	  <fieldset>
+	    <legend>必填信息:</legend>
+            <input type="text" name="username" class="input-block-level" placeholder="用户名" />
+	    <input type="text" name="email" class="input-block-level" placeholder="电子邮箱Email" />
+            <input type="password" name="password" class="input-block-level" placeholder="密码" />
+	    <input type="password" name="password_confirm" class="input-block-level" placeholder="确认密码" />
+	  </fieldset>
+
+	  <fieldset>
+	    <legend>选填信息:</legend>
+            <input type="text" name="studentid" class="input-block-level" placeholder="学号" />
+	    <input type="text" name="name" class="input-block-level" placeholder="真实姓名" />
+	    性别： 男 <input type="radio" name="gender" value=1 /> &nbsp 女 <input type="radio" name="gender" value=2 />
+	    <input type="hidden" name="gender" value={{ random_gender }} />
+	  </fieldset>
+	  <div style='height:30px;'>&nbsp</div>
+          <button class="btn btn-large btn-primary" type="submit">注册</button>
+      </form>
+  </div>
+
+</body>
+</html>
