@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>{{ page_title }}</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+	<script src="bootstrap/js/jquery.js"></script>
+	<script src="bootstrap/js/bootstrap-transition.js"></script>
+	<script src="bootstrap/js/bootstrap-modal.js"></script>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+	  html { height: 100% }
+	  body { height: 100%; margin: 0; padding: 0 }
+	  #map-canvas { height: 100% }
+	</style>
+	<script type="text/javascript"
+	  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8UCCAp_euR_73sVdSJw3gaMuFR7Ruqgs&sensor=false">
+	</script>
+	<script type="text/javascript">
+	  function initialize() {
+		var mapOptions = {
+		  center: new google.maps.LatLng(30.303022222222,120.08533333333),
+		  zoom: 17,
+		  mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		var map = new google.maps.Map(document.getElementById("map-canvas"),
+			mapOptions);
+	  }
+	  google.maps.event.addDomListener(window, 'load', initialize);
+	</script>
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<div class="brand" href="#"><a href="#">浙哪儿</a></div>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li><a href="#">热点</a></li>
+						<li><a href="#">事件</a></li>
+						<li><a href="#">地点</a></li>
+					</ul>
+					<ul class="nav pull-right">
+						<li><a href="#LogModal" data-toggle="modal">登录</a></li>
+
+						<li><a href="{% url 'profiles:register'  %}" data-toggle="modal">注册</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="map-canvas"/>
+	{% block main %}
+	{% endblock %}
+
+	<div id="LogModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<form class="form-signin" action="{% url 'profiles:_login'  %}" method="post">
+		{% csrf_token %}
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+					<h2>登录</h2>
+			</div>
+			<div class="modal-body">
+				<input class="input-block-level" name="account" type="text" placeholder="用户名 or 邮箱地址">
+				<input class="input-block-level" name="password" type="password" placeholder="密码">
+				<label class="checkbox">
+					<input type="checkbox" value="remember-me">
+					Remember me
+				</label>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-large btn-primary" type="submit">登录</button>
+			</div>
+		</form>
+	</div>
+
+</body>
+</html>
+
