@@ -5,7 +5,7 @@ from django.contrib import admin
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-	url(r'^$', 'ZheNar.views.under_construction'),
+	url(r'^$', 'ZheNar.views.index'),
 	url(r'^admin/', include(admin.site.urls)),
 	url(r'^profiles/', include('profiles.urls', namespace="profiles")),
 	url(r'^events/', include('events.urls',namespace="events")),
