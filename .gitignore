@@ -33,4 +33,5 @@ nosetests.xml
 # Mr Developer
 .mr.developer.cfg
 .project
-.pydevproject
+.pydevprojeot
+.DS_Store
