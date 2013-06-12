@@ -129,6 +129,7 @@ INSTALLED_APPS = (
 
     'south',
 
+    'api',
     'profiles',
     'events',
     'places',
