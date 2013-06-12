@@ -21,3 +21,6 @@ def event(request):
 
 def user(request):
 	return HttpResponse("user!")
+
+def login_email(request):
+	return HttpResponse("login email!")

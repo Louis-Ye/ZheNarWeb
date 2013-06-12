@@ -92,7 +92,7 @@ def _register(request):
 def settings(request):
 	if request.user.is_authenticated():
 		context = {'someKey': 'someValue'}
-		render(request, "profiles/settings.html", context)
+		return render(request, "profiles/settings.html", context)
 	else :
-		HttpResponseRedirect(reverse('ZheNar.views.index'))
+		return HttpResponseRedirect(reverse('ZheNar.views.index'))
 
