@@ -237,8 +237,9 @@ td:last-child {
   "email": "ye@lyu.yu.edu.cn",
   "gender": "female",
   "student_id": "3130000313"
+  "student_name": "Ye Lyuyu"
 }</pre>
-    <pre title="403" class="error">{"error": "Email 或密码错误。"}</pre>
+    <pre title="403" class="error">{"error": "Email或密码错误。"}</pre>
     <pre title="403" class="error">{"error": "帐户已被注销。"}</pre>
   </td>
   <td align="left">
@@ -269,14 +270,16 @@ td:last-child {
       <li><code class="required">str</code> email</li>
       <li><code class="required">str</code> username</li>
       <li><code class="required">str</code> password</li>
+      <li><code class="optional">str</code> student_name</li>
       <li><code class="optional">str</code> gender</li>
+      <li><code class="optional">str</code> student_id</li>
     </ul>
   </td>
   <td align="left">
     <pre>{"id": 2147483647}</pre>
-    <pre title="403" class="error">{"error": "Email 已被使用。"}</pre>
+    <pre title="403" class="error">{"error": "Email已被使用。"}</pre>
     <pre title="403" class="error">{"error": "用户名已被使用。"}</pre>
-    <pre title="400" class="error">{"error": "Email 格式不正确。"}</pre>
+    <pre title="400" class="error">{"error": "Email格式不正确。"}</pre>
   </td>
   <td align="left">注册。</td>
 </tr>
@@ -427,7 +430,7 @@ td:last-child {
   {
     "id": 1,
     "name": "叶绿宇 BG",
-    "description": "绿少 BG 楼外楼！",
+    "description": "绿少 不BG 楼外楼！",
     "host": "叶绿宇",
     "organization": "",
     "start_time": "2013-05-30T13:00Z",

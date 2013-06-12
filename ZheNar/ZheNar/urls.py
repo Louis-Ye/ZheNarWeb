@@ -7,6 +7,7 @@ from django.contrib import admin
 urlpatterns = patterns('',
 	url(r'^$', 'ZheNar.views.index'),
 	url(r'^admin/', include(admin.site.urls)),
+	url(r'^api/', include('api.urls', namespace="api")),
 	url(r'^profiles/', include('profiles.urls', namespace="profiles")),
 	url(r'^events/', include('events.urls',namespace="events")),
 	url(r'^places/', include('places.urls',namespace="places")),
