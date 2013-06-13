@@ -41,7 +41,7 @@ def _login(request):
 			return HttpResponseRedirect(reverse('profiles:debug', args=("Superuser shouldn't login in this page", )))
 	
 	login(request, upr)		#log in
-	return HttpResponseRedirect(reverse('profiles:debug', args=("Successfully login!", )))
+	return HttpResponseRedirect(reverse('ZheNar.views.index'))
 
 
 def _logout(request):
