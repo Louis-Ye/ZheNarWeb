@@ -110,7 +110,32 @@ def user_login_email(request):
 
 @csrf_exempt
 @require_POST
+def user_edit(request):
+	if not request.user.is_authenticated():
+		return HttpResponse(json.dumps({"error_code": "NotLoggedIn", }), status=403)
+	else:
+		upr = request.user
+		if request.POST['student_name']:
+			upr.name = request.POST['student_name']
+		if request.POST['password']:
+			upr.password = request.POST['password']
+		if request.POST['gender']:
+			pr = Profile.objects.get(user_id=upr.id)
+			pr.gender = request.POST['gender']
+			pr.save()
+		upr.save()
+
+
+@csrf_exempt
+@require_POST
 def user_logout(request):
+	logout(request)
+	return HttpResponse("0")
+
+
+def user_deactive(request):
+	upr = request.user
+	upr.is_active = 0
 	logout(request)
 	return HttpResponse("0")
 	
@@ -125,5 +150,6 @@ def __get_user_info(upr):
 			"student_id" 	: pr.studentid,
 			"student_name"	: pr.name,
 	}
+	return user_info
 
 #-------------------------------------------------------------------------------------------------------------------
