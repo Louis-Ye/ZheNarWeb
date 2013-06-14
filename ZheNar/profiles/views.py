@@ -1,4 +1,5 @@
 # Create your views here.
+# <-* encoding=utf8 *->
 from django.shortcuts import get_object_or_404, render
 from django.template import Context, loader
 from django.http import HttpResponseRedirect, HttpResponse
@@ -26,7 +27,7 @@ def _login(request):
 		account = request.POST['account']
 		password = request.POST['password']
 	else:
-		return HttpResponseRedirect(reverse('ZheNar.views.index'))
+		return HttpResponseRedirect(reverse('index'))
 
 	upr = authenticate(username=account, password=password)
 	if upr is None:
@@ -41,16 +42,16 @@ def _login(request):
 			return HttpResponseRedirect(reverse('profiles:debug', args=("Superuser shouldn't login in this page", )))
 	
 	login(request, upr)		#log in
-	return HttpResponseRedirect(reverse('ZheNar.views.index'))
+	return HttpResponseRedirect(reverse('index'))
 
 
 def _logout(request):
 	logout(request)
-	return HttpResponseRedirect(reverse('ZheNar.views.index'))
+	return HttpResponseRedirect(reverse('index'))
 
 
 def register(request):
-	context = {'random_gender': random.randint(1,2)}
+	context = {'page_title': "浙哪儿注册喽！", }
 	return render(request, 'profiles/register.html', context)
 
 
@@ -61,9 +62,11 @@ def _register(request):
 		password = request.POST.get('password')
 		name = request.POST.get('name')
 		gender = request.POST.get('gender')
+		if not gender:			# If the user does not choose the gender, randomly choose one for him/her
+			gender = random.randint(1, 2)
 		registerTime = datetime.now()
 	else:
-		return HttpResponseRedirect(reverse('ZheNar.views.index'))
+		return HttpResponseRedirect(reverse('index'))
 	
 	#return HttpResponse(username + email)
 
@@ -93,5 +96,5 @@ def settings(request):
 		context = {'someKey': 'someValue'}
 		return render(request, "profiles/settings.html", context)
 	else :
-		return HttpResponseRedirect(reverse('ZheNar.views.index'))
+		return HttpResponseRedirect(reverse('index'))
 
