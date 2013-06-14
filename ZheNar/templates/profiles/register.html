@@ -1,28 +1,39 @@
 {% extends "base.html" %}
+
+{% block css %}
+{% endblock %}
+
+{% block script %}
+{% endblock %}
+
 {% block main %}
 <div class="container">
-	<form action="{% url 'profiles:_register'  %}" method='post' class='span4'>
+	<div name="register_form" class="span6">
+	<form action="{% url 'profiles:_register'  %}" method='post'> 
 	{% csrf_token %}
 		<h2>注册</h2>
 		<fieldset>
 			<legend>必填信息:</legend>
-				<input type="text" name="username" class="input-block-level" placeholder="用户名" />
-			<input type="text" name="email" class="input-block-level" placeholder="电子邮箱Email" />
-				<input type="password" name="password" class="input-block-level" placeholder="密码" />
-			<input type="password" name="password_confirm" class="input-block-level" placeholder="确认密码" />
+			<input type="text" name="username" id="username" class='span4' placeholder="用户名" />
+			<input type="text" name="email" id="email" class="span4" placeholder="电子邮箱Email" />
+			<div id="email_format" class="span1"></div>
+			<input type="password" name="password" id="password" class="span4" placeholder="密码" />
+			<div id="password_validate" class="span1"></div>
+			<input type="password" name="password_confirm" id="password_confirm" class="span4" placeholder="确认密码" /><span class=id="show"></span>
+			<div id="password_same" class="span1"></div>
 		</fieldset>
 		
 		<fieldset>
 		<legend>选填信息:</legend>
-			<input type="text" name="name" class="input-block-level" placeholder="真实姓名" />
+		<input type="text" name="name" class="span4" placeholder="真实姓名" /><br>
 			性别： 男 
 			<input type="radio" name="gender" value=1 /> 
 			&nbsp 女 
 			<input type="radio" name="gender" value=2 />
-			<input type="hidden" name="gender" value={{ random_gender }} />
 		</fieldset>
 	  	<div style='height:30px;'>&nbsp</div>
           <button class="btn btn-large btn-primary" type="submit">注册</button>
 	</form>
+	</div>
 </div>
 {% endblock %}
