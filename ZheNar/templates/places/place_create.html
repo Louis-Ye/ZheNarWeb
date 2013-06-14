@@ -85,11 +85,8 @@
 					
 					<select name="place_type">
 						{% for option in place_options %}
+							<option value="{{ option }}">{{ option }}</option>
 						{% endfor %}
-						<option value="classroom">教室</option>
-						<option value="auditorium">礼堂</option>
-						<option value="gym">体育馆</option>
-						<option value="conference_room">会议室</option>
 					</select>
 					<textarea name="description" class="input-block-level" placeholder="具体描述信息" rows="14" cols="40"></textarea> 
 				</fieldset>
