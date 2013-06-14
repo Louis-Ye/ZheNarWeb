@@ -65,7 +65,7 @@
 {% endblock %}
 
 {% block main %}
-<div class="container" style="padding-top:20px;">
+<div class="container">
 	<div class="container-fluid">
 		<form action="{% url 'places:_create'  %}" method='post'>
 		{% csrf_token %}
