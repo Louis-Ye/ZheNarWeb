@@ -36,6 +36,9 @@ def create(request):
 def _create(request):
 	if request.POST:
 		place_name = request.POST.get('place_name')
-		place_type = request.POST.get('place_type') 
+		place_type = request.POST.get('place_type')
+		latitude = request.POST.get('latitude')
+		longitude = request.POST.get('longitude') 
+		
 	return HttpResponse("This is places creat handling page!")
 	
