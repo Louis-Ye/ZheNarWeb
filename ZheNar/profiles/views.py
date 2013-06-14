@@ -59,7 +59,6 @@ def _register(request):
 		username = request.POST.get('username')
 		email = request.POST.get('email')
 		password = request.POST.get('password')
-		studentid = request.POST.get('studentid')
 		name = request.POST.get('name')
 		gender = request.POST.get('gender')
 		registerTime = datetime.now()
@@ -83,7 +82,7 @@ def _register(request):
 		return HttpResponseRedirect(reverse('profiles:debug', args=("duplicated email !", )))
 	
 	upr = User.objects.create_user(username, email, password)
-	pr = Profile(user=upr, studentid=studentid, name=name, gender=gender, registerTime=registerTime)
+	pr = Profile(user=upr, name=name, gender=gender, registerTime=registerTime)
 	pr.save()
 
 	return HttpResponseRedirect(reverse('profiles:debug', args=("Successfully register !", )))

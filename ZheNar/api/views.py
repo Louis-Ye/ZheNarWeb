@@ -43,7 +43,6 @@ def user_reg(request):
 	username = request.POST.get('username')
 	email = request.POST.get('email')
 	password = request.POST.get('password')
-	studentid = request.POST.get('student_id')
 	name = request.POST.get('student_name')
 	gender = request.POST.get('gender')
 	registerTime = datetime.now()
@@ -70,7 +69,7 @@ def user_reg(request):
 		return HttpResponse(json.dumps({"error": "Email格式不正确", }))
 	
 	upr = User.objects.create_user(username, email, password)
-	pr = Profile(user=upr, studentid=studentid, name=name, gender=gender, registerTime=registerTime)
+	pr = Profile(user=upr, name=name, gender=gender, registerTime=registerTime)
 	pr.save()
 
 	return HttpResponse(json.dumps({"id": upr.id, }))
@@ -147,7 +146,6 @@ def __get_user_info(upr):
 			"username"	: upr.username,
 			"email"		: upr.email,
 			"gender"	: pr.gender,
-			"student_id" 	: pr.studentid,
 			"student_name"	: pr.name,
 	}
 	return user_info
