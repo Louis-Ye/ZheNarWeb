@@ -1,23 +1,25 @@
 {% extends "base.html" %}
 {% block css %}
 <style>
- 	#map-canvas{
+ 	#map_canvas{
 		padding:10px;
 		border:1px solid;
 		margin: 0 auto;
 		border-radius:5px;
 		box-shadow: 2px 2px 2px #888888;
+		height:400px;	
+	}
+	#google_map{
 		height:400px;
 	}
 </style>
 {% endblock %}
 {% block script %}
-<script>
-	src='http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false'>
+<script src='http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false'>
 </script>
 <script>
 	var map;
-	var myCenter=new google.maps.LatLng(39.92,116.46);
+	var myCenter=new google.maps.LatLng(30.3045022222222,120.08633333333);
 	var marker;
 	var infowin;
 
@@ -25,10 +27,10 @@
 	{
 		var mapConfig = {
 			center:myCenter,
-			zoom:5,
-			mapTypeId:google.maps.MapTypeId.ROADMAP
+			zoom:17,
+			mapTypeId:google.maps.MapTypeId.ROADMAP,
 	};
-	map = new google.maps.Map(document.getElementById('googleMap'),mapConfig);
+	map = new google.maps.Map(document.getElementById('google_map'),mapConfig);
 
 	google.maps.event.addListener(map, 'click', function(event) {
 		placeMarker(event.latLng);
@@ -67,24 +69,32 @@
 	<div class="container-fluid">
 		<form action="{% url 'places:_create'  %}" method='post'>
 		{% csrf_token %}
-			<h2 class="offset0">创建地点</h2>
+			<h2>创建地点</h2>
 			<div class="row-fluid">
 				<fieldset class="span8">
 					<legend>地理信息:</legend>
-					<div id="map-canvas" class="spa7"></div>
+					<div id="map_canvas"  >
+						<div id="google_map" class="spa7"></div>
+					</div>
+					<input id='lng' name="longitude" type="hidden" value=''>
+					<input id='lat' name="latitude" type="hidden" value=''>
 				</fieldset>
 				<fieldset class="span4">
 					<legend>具体信息:</legend>
 					<input type="text" name="place_name" class="input-block-level" placeholder="地点名称" />
 					
 					<select>
-						<option>教学楼</option>
-						<option>操场</option>
+						{% for option in place_options %}
+						{% endfor %}
+						<option value="classroom">教室</option>
+						<option value="auditorium">礼堂</option>
+						<option value="gym">体育馆</option>
+						<option value="conference_room">会议室</option>
 					</select>
 					<textarea name="description" class="input-block-level" placeholder="具体描述信息" rows="14" cols="40"></textarea> 
 				</fieldset>
 				<button class="btn btn-large btn-primary span2" type="submit">创建</button>
-				<button class="btn btn-large btn-primary span2" type="">取消</button>
+				<a class="btn btn-large btn-primary span2" href="{% url 'places:index' %}">取消</a>
 			</div>
 		  
 		</form>
