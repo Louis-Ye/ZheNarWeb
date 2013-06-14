@@ -6,7 +6,13 @@
 				<ul class="nav">
 					<li><a href="#" >热点</a></li>
 					<li><a href="#" >事件</a></li>
-					<li><a href="{% url 'places:index' %}" >地点</a></li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">地点</a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+							<li><a href="{% url 'places:index' %}" >地点列表</a></li>
+							<li><a href="{% url 'places:create' %}" >创建地点</a></li>
+						</ul>
+					</li>
 				</ul>
 				<ul class="nav pull-right">
 					<div class="btn-group">

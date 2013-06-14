@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
 from django.template import Template, Context, loader, RequestContext
-from django.shortcuts import render,render_to_response
+from django.shortcuts import render_to_response
 from django.http import HttpResponse
 import datetime
 
@@ -13,7 +14,7 @@ def login_proc(request):
 		return {}
 
 def index(request):
-	c = Context({"page_title": "ZheNar ^o^"})
+	c = Context({"page_title": "浙哪儿欢迎你~"})
 	return render_to_response('ZheNar/index.html',c,context_instance = RequestContext(request,processors=[login_proc]))
 
     
