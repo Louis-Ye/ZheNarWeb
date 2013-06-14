@@ -20,18 +20,20 @@ class Event(models.Model):
 	flag = models.SmallIntegerField(default = 1,choices = CHOICE_SET)
 	name = models.CharField(max_length = 255)
 	description = models.TextField(blank = True)
-	holder = models.ForeignKey(Profile)
+	holder = models.ForeignKey(Profile, related_name='event_holder_set')
 	host_organization = models.CharField(max_length = 255, null = True)
 	start_time = models.DateTimeField()
 	end_time = models.DateTimeField()
 	place = models.ForeignKey(Place)
 	event_type = models.ForeignKey(EventType)
+	follower = models.ManyToManyField(Profile,related_name='event_follower_set')
+	
 	
 	def __unicode__(self):
 		return self.name
 		
 	def event_lasting_time(self):
-		return endTime - startTime 
+		return self.end_time - self.startTime 
 	
 	
 	class Meta:
