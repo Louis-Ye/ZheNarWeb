@@ -1,16 +1,19 @@
-from django.template import Template, Context, loader
-from django.shortcuts import render
+from django.template import Template, Context, loader, RequestContext
+from django.shortcuts import render,render_to_response
 from django.http import HttpResponse
 import datetime
 
-def index(request):
-	context = {"page_title": "ZheNar ^o^"}
-	return render(request, 'ZheNar/index.html', context)
+def login_proc(request):
+	if request.user.is_authenticated():
+		return {
+			"authenticated":True, 
+			"username":request.user,
+			}
+	else:
+		return {}
 
-	"""
-	now = datetime.datetime.now()
-	t = Template("<html><body><h1>The website is now under construction!!</h1>It is now {{ current_date }}.</body></html>")
-	html = t.render(Context({'current_date':now}))
-	return HttpResponse(html)
-	"""
+def index(request):
+	c = Context({"page_title": "ZheNar ^o^"})
+	return render_to_response('ZheNar/index.html',c,context_instance = RequestContext(request,processors=[login_proc]))
+
     

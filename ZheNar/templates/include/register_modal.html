@@ -1,0 +1,33 @@
+	<div id="LogModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<form class="form-signin" action="{% url 'profiles:_login'  %}" method="post">
+		{% csrf_token %}
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+					<h2>登录</h2>
+			</div>
+			<div class="modal-body">
+				<input class="input-block-level" name="account" type="text" placeholder="用户名 or 邮箱地址">
+				<input class="input-block-level" name="password" type="password" placeholder="密码">
+				<label class="checkbox">
+					<input type="checkbox" value="remember-me">
+					Remember me
+				</label>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-large btn-primary" type="submit">登录</button>
+			</div>
+		</form>
+	</div>
+	
+	<div id="infoModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		{% csrf_token %}
+		<div class="modal-header">
+			<h2>提醒</h2>
+		</div>
+		<div class="modal-body">
+			<p>你还没有登录呢！</p>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">确定</button>
+		</div>
+	</div>
