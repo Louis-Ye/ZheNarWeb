@@ -9,9 +9,6 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap-responsive.css' %}" />
 	<script src="{% static 'bootstrap/js/jquery.js' %}"></script>
 	<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-	<script src="{% static 'bootstrap/js/bootstrap-transition.js' %}"></script>
-	<script src="{% static 'bootstrap/js/bootstrap-modal.js' %}"></script>
-	<script src="{% static 'bootstrap/js/bootstrap-collapse.js' %}"></script>
 	{% block css %}
 	{% endblock %}
 	{% block script %}
@@ -28,7 +25,7 @@
 	{% endblock %}
 	
 	{% if not authenticated %}
-		{% include 'include/register_modal.html' %}
+		{% include 'include/login_modal.html' %}
 	{% endif %}
 
 </body>
