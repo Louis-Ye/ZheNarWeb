@@ -1,1 +1,21 @@
 {% extends "base.html" %}
+{% block main %}
+<div class="container" style="padding:40px">
+	<div class="container-fluid">
+		<ul class="thumbnails">
+		{% for place in places %}
+			{% if place.status == 2 %}
+				<li class="span3" style="margin:50px">
+					<div class="thumbnail">
+						<img src="http://maps.googleapis.com/maps/api/staticmap?center={{place.latitude}},{{place.longitude}}&zoom=16&size=300x300&sensor=false&markers=color:{{place.place_type.color}}%7Clabel:S%7C{{place.latitude}},{{place.longitude}}">
+						<h3>{{ place.name}}</h3>
+						<h5>{{place.place_type.name}}</h5>
+						<p>{{place.description}}</p>
+					</div>
+				</li>
+			{% endif %}
+		{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endblock %}

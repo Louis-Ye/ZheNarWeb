@@ -17,7 +17,7 @@ class Event(models.Model):
 	(3,"Rejected"),
 	)
 	
-	flag = models.SmallIntegerField(default = 1,choices = CHOICE_SET)
+	status = models.SmallIntegerField(default = 1,choices = CHOICE_SET)
 	name = models.CharField(max_length = 255)
 	description = models.TextField(blank = True)
 	holder = models.ForeignKey(Profile, related_name='event_holder_set')

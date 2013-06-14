@@ -3,7 +3,8 @@ from django.template import Template, Context, loader, RequestContext
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
-
+from datetime import datetime
+from places.models import PlaceType,Place
 from profiles.models import Profile
 
 def login_proc(request):
@@ -15,12 +16,15 @@ def login_proc(request):
 	else:
 		return {}
 	
-	
+def debug(request, info):
+	return HttpResponse("debug information: " + info)
 
 def index(request):
 	if request.user.is_authenticated():
-		c = Context({"page_title": "ZJU地点"})
-		#通过使用render_to_response来将一些页面的必要信息加入模板中
+		place_list = Place.objects.all()
+		c = Context({"page_title": "ZJU地点",
+					 "places": place_list,
+					 })
 		return render_to_response('places/place_index.html',c,context_instance = RequestContext(request,processors=[login_proc]))
 	else:
 		return HttpResponseRedirect(reverse('ZheNar.views.index'))
@@ -28,17 +32,27 @@ def index(request):
 	
 def create(request):
 	if request.user.is_authenticated():
-		c = Context({"page_title": "ZJU地点"})
+		m_place_type = PlaceType.objects.all()
+		c = Context({"page_title": "ZJU地点",
+					"place_options":m_place_type,
+					})
 		return render_to_response('places/place_create.html',c,context_instance = RequestContext(request,processors=[login_proc]))
 	else:
 		return HttpResponseRedirect(reverse('ZheNar.views.index'))
 	
 def _create(request):
 	if request.POST:
-		place_name = request.POST.get('place_name')
-		place_type = request.POST.get('place_type')
-		latitude = request.POST.get('latitude')
-		longitude = request.POST.get('longitude') 
+		m_place_name = request.POST.get('place_name')
+		m_place_type_name = request.POST.get('place_type')
+		m_latitude = request.POST.get('latitude')
+		m_longitude = request.POST.get('longitude') 
+		m_description = request.POST.get('description')
+	else:
+		return HttpResponseRedirect(reverse('ZheNar.views.index'))
+	
+	m_place_type = PlaceType.objects.get(name = m_place_type_name)
+	place = Place(name = m_place_name,description = m_description, place_type = m_place_type,latitude = m_latitude, longitude = m_longitude,create_time = datetime.now())
+	place.save()
 		
-	return HttpResponse("This is places creat handling page!")
+	return HttpResponseRedirect(reverse('places:index'))
 	
