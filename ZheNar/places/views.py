@@ -23,6 +23,7 @@ def debug(request, info):
 def index(request):
 	if request.user.is_authenticated():
 		place_list = Place.objects.all()
+			
 		c = Context({"page_title": "ZJU地点",
 					 "places": place_list,
 					 })
