@@ -14,7 +14,7 @@ class PlaceType(models.Model):
 	(3,"Rejected"),
 	)
 	status = models.SmallIntegerField(default = 1,choices = STATUS_SET)
-	name = models.CharField(unique=True,max_length = 255,blank=False)
+	name = models.CharField(max_length = 255,blank=False)
 	icon = models.ForeignKey(Icon)
 	#color: (optional) specifies a color either as a 24-bit (example: color=0xFFFFCC) 
 	#or 32-bit hexadecimal value (example: color=0xFFFFCCFF), 

@@ -74,18 +74,11 @@ def _type_create(request):
 	if request.POST:
 		m_type_name = request.POST.get("place_type")
 		m_type_icon = request.POST.get("place_icon")
-	elif m_type_name is None:
-		type_icon_list = Icon.objects.all()
-		error_list.append("You must fill the blanks")
-		c = Context({"page_title": "ZJU地点-创建地点类型",
-				"icon_list":type_icon_list,
-				"error_list":error_list,
-		})
-		return render_to_response(reverse('places:index'),c,context_instance = RequestContext(request,processors=[login_proc]))
-	try:
-		m_icon = Icon.objects.get(name = m_type_icon)
-	except ObjectDoesNotExist:
-		error_list.append("We don't have this kind of Type")
+	else:
+		return HttpResponseRedirect(reverse('places:index'))
+		
+
+	m_icon = Icon.objects.get(name = m_type_icon)
 	m_place_type = PlaceType(name = m_type_name, icon = m_icon)
 	m_place_type.save()
 	return HttpResponseRedirect(reverse('places:index'))
@@ -93,7 +86,7 @@ def _type_create(request):
 """ 用于插入icon用，已插入则无需再用
 def insert(request):
 	list = []
-	f = open('static/map_icon/icons/icon_list.txt','r')
+	f = open('static/map_icon/icon_list.txt','r')
 	for line in f:
 		list += line.splitlines()
 	for item in list:
