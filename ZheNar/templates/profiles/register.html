@@ -1,28 +1,52 @@
 {% extends "base.html" %}
+
+{% block css %}
+{% endblock %}
+
+{% block script %}
+{% endblock %}
+
 {% block main %}
 <div class="container" style="padding:40px">
-	<form action="{% url 'profiles:_register'  %}" method='post' class='span4'>
-	{% csrf_token %}
+	<div class="span6">
+	<div name="register_form" class="span7">
+	<form action="{% url 'profiles:_register'  %}" method='post'>  {% csrf_token %}
 		<h2>注册</h2>
 		<fieldset>
 			<legend>必填信息:</legend>
-				<input type="text" name="username" class="input-block-level" placeholder="用户名" />
-			<input type="text" name="email" class="input-block-level" placeholder="电子邮箱Email" />
-				<input type="password" name="password" class="input-block-level" placeholder="密码" />
-			<input type="password" name="password_confirm" class="input-block-level" placeholder="确认密码" />
+			<div class="span4">
+				<input type="text" name="username" id="username" placeholder="用户名" />
+			</div>
+			<div class="span4">
+				<input type="text" name="email" id="email" placeholder="电子邮箱Email" />
+			</div>
+			<div id="email_format" class="span2">&nbsp</div>
+
+			<div class="span4">
+				<input type="password" name="password" id="password" placeholder="密码" />
+			</div>
+			<div id="password_validate" class="span2">&nbsp</div>
+			<div class="span4">
+				<input type="password" name="password_confirm" id="password_confirm" placeholder="确认密码" />
+			</div>
+			<div id="password_same" class="span2">&nbsp</div>
 		</fieldset>
 		
 		<fieldset>
-		<legend>选填信息:</legend>
-			<input type="text" name="name" class="input-block-level" placeholder="真实姓名" />
-			性别： 男 
-			<input type="radio" name="gender" value=1 /> 
-			&nbsp 女 
-			<input type="radio" name="gender" value=2 />
-			<input type="hidden" name="gender" value={{ random_gender }} />
+			<legend>选填信息:</legend>
+			<div class="span4">
+				<input type="text" name="name" placeholder="真实姓名" />
+			</div>
+			<div class="span4">
+				性别： 男 
+				<input type="radio" name="gender" value=1 /> 
+				&nbsp 女 
+				<input type="radio" name="gender" value=2 />
+			</div>
 		</fieldset>
 	  	<div style='height:30px;'>&nbsp</div>
-          <button class="btn btn-large btn-primary" type="submit">注册</button>
+        	<button class="btn btn-large btn-primary" type="submit">注册</button>
 	</form>
+	</div>
 </div>
 {% endblock %}

@@ -61,9 +61,11 @@ def _register(request):
 		email = request.POST.get('email')
 		password = request.POST.get('password')
 		name = request.POST.get('name')
-		gender = request.POST.get('gender')
-		if not gender:			# If the user does not choose the gender, randomly choose one for him/her
-			gender = random.randint(1, 2)
+		gender = 0
+		if request.POST.get('gender') == 1:
+			gender = 1
+		elif request.POST.get('gender') == 2:
+			gender = 2
 		registerTime = datetime.now()
 	else:
 		return HttpResponseRedirect(reverse('index'))
