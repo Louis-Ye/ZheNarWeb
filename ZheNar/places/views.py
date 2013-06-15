@@ -90,7 +90,7 @@ def _type_create(request):
 	m_place_type.save()
 	return HttpResponseRedirect(reverse('places:index'))
 	
-""" 用于插入icon用，已插入则无需再用
+# 用于插入icon用，已插入则无需再用
 def insert(request):
 	list = []
 	f = open('static/map_icon/icons/icon_list.txt','r')
@@ -100,4 +100,3 @@ def insert(request):
 		icon = Icon(name= item)
 		icon.save()
 	return HttpResponseRedirect(reverse('places:index'))
-"""

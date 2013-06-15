@@ -34,12 +34,12 @@ def _login(request):
 		upr = authenticate(email=account, password=password) #check if user logins with email
 
 	if upr is None:
-		return HttpResponseRedirect(reverse('profiles:debug', args=("There is no such user", ))) #There is no such user
+		return render(request,"error/error_popup.html",__login_proc(request,{'error_list':{"Wrong account or password"}}))
 	else :
 		if upr.is_active == 0:					#This user has not been active
-			return HttpResponseRedirect(reverse('profiles:debug', args=("This user has not been active", )))
+			return render(request,"error/error_popup.html",__login_proc(request,{'error_list':{"This user have been disactivated"}}))
 		if upr.is_superuser == 1:				#Superuser should not login in this page
-			return HttpResponseRedirect(reverse('profiles:debug', args=("Superuser shouldn't login in this page", )))
+			return render(request,"error/error_popup.html",__login_proc(request,{'error_list':{"Superuse should not login in this page"}}))
 	
 	login(request, upr)		#log in
 	return HttpResponseRedirect(reverse('index'))
@@ -52,7 +52,7 @@ def _logout(request):
 
 def register(request):
 	context = {'page_title': "浙哪儿注册喽！", }
-	return render(request, 'profiles/register.html', context)
+	return render(request, 'profiles/register.html', __login_proc(request, context))
 
 
 def _register(request):
@@ -70,6 +70,7 @@ def _register(request):
 	else:
 		return HttpResponseRedirect(reverse('index'))
 	
+	
 	#return HttpResponse(username + email)
 
 	try:
@@ -77,26 +78,44 @@ def _register(request):
 	except User.DoesNotExist:
 		upr = None
 	if upr is not None:
-		return HttpResponseRedirect(reverse('profiles:debug', args=("duplicated username !", )))
+		return render(request, "error/error_popup.html", __login_proc(request, {'error_list': {"duplicated username"}}))
 
 	try:
 		upr = User.objects.get(email=email)		#check if there is duplicated email
 	except User.DoesNotExist:
 		upr = None
 	if upr is not None:	
-		return HttpResponseRedirect(reverse('profiles:debug', args=("duplicated email !", )))
+		return render(request, "error/error_popup.html", __login_proc(request, {'error_list': {"dupicated email!"}}))
 	
-	upr = User.objects.create_user(username, email, password)
-	pr = Profile(user=upr, name=name, gender=gender, registerTime=registerTime)
-	pr.save()
+	form = {}
+	if __judge_form(form):
+		upr = User.objects.create_user(username, email, password)
+		pr = Profile(user=upr, name=name, gender=gender, registerTime=registerTime)
+		pr.save()
+		login(request, upr)
+	else:
+		return render(request, "error/error_popup.html", __login_proc(request, {'error_list': {"something wrong with your form"}}))
+	
+	return HttpResponseRedirect(reverse('index'));
 
-	return HttpResponseRedirect(reverse('profiles:debug', args=("Successfully register !", )))
+
+def __judge_form(form):
+	return True
 
 
 def settings(request):
 	if request.user.is_authenticated():
-		context = {'someKey': 'someValue'}
+		context = {'page_title': '浙哪儿设置'}
 		return render(request, "profiles/settings.html", context)
 	else :
 		return HttpResponseRedirect(reverse('index'))
+
+
+def __login_proc(request, lst):
+	if request.user.is_authenticated():
+		lst['authenticated'] = True;
+		lst['username'] = request.user.username
+		return lst
+	return lst
+
 

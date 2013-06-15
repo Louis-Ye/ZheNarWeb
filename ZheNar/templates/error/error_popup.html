@@ -1,4 +1,7 @@
-<div class="container">
+{% extends "base.html" %}
+
+{% block main %}
+<div class="container" style="padding: 50px;">
 	<div class="alert alert-block alert-error fade in">
 		<button type="button" class="close" data-dismiss="alert">×</button>
 		<h4 class="alert-heading">Oh snap! You got an error!</h4>
@@ -9,3 +12,4 @@
 		</ul>
 	</div>
 </div>
+{% endblock %}
