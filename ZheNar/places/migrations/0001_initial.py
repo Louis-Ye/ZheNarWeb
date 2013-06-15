@@ -11,8 +11,9 @@ class Migration(SchemaMigration):
         # Adding model 'PlaceType'
         db.create_table(u'places_placetype', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('color', self.gf('django.db.models.fields.SmallIntegerField')(default=9)),
+            ('status', self.gf('django.db.models.fields.SmallIntegerField')(default=1)),
+            ('name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=255)),
+            ('icon', self.gf('django.db.models.fields.CharField')(max_length=20)),
         ))
         db.send_create_signal(u'places', ['PlaceType'])
 
@@ -52,9 +53,10 @@ class Migration(SchemaMigration):
         },
         u'places.placetype': {
             'Meta': {'object_name': 'PlaceType'},
-            'color': ('django.db.models.fields.SmallIntegerField', [], {'default': '9'}),
+            'icon': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '255'})
+            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '255'}),
+            'status': ('django.db.models.fields.SmallIntegerField', [], {'default': '1'})
         }
     }
 

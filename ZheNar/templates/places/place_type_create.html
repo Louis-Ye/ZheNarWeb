@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block css %}
+<style>
+	.the-icons{
+		margin-left: 0;
+		list-style: none;
+	}
+	.srollspy{
+		position: relative;
+		margin: 15px 0;
+		padding: 39px 19px 14px;
+		background-color: #fff;
+		border: 1px solid #ddd;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+		overflow: scroll;
+		height:300px;
+	}
+</style>
+{% endblock %}
+{% block script %}
+{% endblock %}
+{% block main %}
+<div class="container" style="padding:40px;">
+	<div class="span12" style="margin:40px">
+		<form action="{% url 'places:_type_create' %}" method="post">
+		{% csrf_token %}
+			<fieldset class="row span3">
+				<h3>创建地点类型</h3>
+				<input type="text" name="place_type" class="input-block-level" placeholder="地点类型" />
+				<select name="place_icon">
+					{% for icon in icon_list %}
+						<option value="{{ icon.name }}">{{ icon }}</option>
+					{% endfor %}
+				</select>
+				<button class="btn btn-large btn-primary" type="submit">创建</button>
+			</fieldset>
+		</form>
+		<div class="row span10">
+			<div id="heading">
+				<h3>地点图标</h3>
+			</div>
+			<div class="srollspy span10" data-spy="scroll" data-target="#heading" data-offset="0">
+				<ul class="the-icons span10">
+				{% for icon in icon_list %}
+					<li class="span3"><img src="/static/map_icon/icons/{{icon.name}}" style="height:37px;">
+					{{icon}}
+					</li>
+				{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

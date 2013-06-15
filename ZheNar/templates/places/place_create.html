@@ -86,7 +86,9 @@
 					<input type="text" name="place_name" class="input-block-level" placeholder="地点名称" />
 					<select name="place_type">
 						{% for option in place_options %}
-							<option value="{{ option }}">{{ option }}</option>
+							{% if option.status == 2 %}
+								<option value="{{ option }}">{{ option }}</option>
+							{% endif %}
 						{% endfor %}
 					</select>
 					<textarea name="description" class="input-block-level" placeholder="具体描述信息" rows="14" cols="40"></textarea> 

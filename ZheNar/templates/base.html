@@ -20,7 +20,9 @@
 	{% else %}
 		{% include 'include/nav_authenticated.html' %}
 	{% endif %}
-
+	{% if error_list  %}
+		{% include 'include/error_popup.html' %}
+	{% endif %}
 	{% block main %}
 	{% endblock %}
 	
