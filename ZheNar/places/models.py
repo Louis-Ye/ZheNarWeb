@@ -5,7 +5,7 @@ class Icon(models.Model):
 	name = models.CharField(unique=True,max_length=255)
 	
 	def __unicode__(self):
-		return self.name.strip('.png')
+		return self.name[:-4]
 	
 class PlaceType(models.Model):
 	STATUS_SET = (

@@ -40,36 +40,55 @@
 	}
 
 	function placeMarker(location) {
+		var icon_base = "http://google-maps-icons.googlecode.com/files/";
 		if(marker){
 			marker.setMap(null);
 		}
-
+		var icon_name = $("#type_option :selected").val();
+		var my_icon = $("#"+icon_name).val();
 		marker = new google.maps.Marker({
 			position: location,
 			map: map,
+			icon: icon_base + my_icon + ".png",
 			title: 'My Device Location'
 		});
-		infowin = new google.maps.InfoWindow({
-			content: 'Your Device\'s Location:<br>'+'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
-		});
-		infowin.open(map,marker);
 
-		google.maps.event.addListener(marker, 'click', function() {
-			infowin.open(map, this);
-		});
-
-		 document.getElementById('lng').value = location.lng();
-		 document.getElementById('lat').value = location.lat();
+		document.getElementById('lng').value = location.lng();
+		document.getElementById('lat').value = location.lat();
 	}
 
 	google.maps.event.addDomListener(window, 'load', initialize);
 </script>
+<script>
+	function check_form(){
+		var lng = $("#lng").val()
+		var lat = $("#lat").val();
+		var place_name = $("#pname").val();
+		var place_type = $("#type_option :selected").val();
+		var desc = $("#desc").val();
+		if(lng && lat && place_name && place_type && desc)
+		{
+			return true;
+		}
+		$(".alert").removeClass("out");
+		$(".alert").addClass("in");
+		return false;
+	}
+	function close_alert(){
+		$(".alert").removeClass("in");
+		$(".alert").addClass("out");
+	}
+</script>
 {% endblock %}
-
 {% block main %}
 <div class="container" style="padding:40px">
+	<div class="alert alert-block alert-error fade out" data-alert="alert">
+		<button class="close" type="button" onclick="close_alert();">×</button>
+		<strong>错误</strong>
+		请确保表单填写完毕，并且已在地图上设置过位置标记，再次提交
+	</div>
 	<div class="container-fluid">
-		<form action="{% url 'places:_create'  %}" method='post'>
+		<form action="{% url 'places:_create'  %}" method='post' onsubmit='return check_form();'>
 		{% csrf_token %}
 			<h2>创建地点</h2>
 			<div class="row-fluid">
@@ -83,15 +102,20 @@
 				</fieldset>
 				<fieldset class="span4">
 					<legend>具体信息:</legend>
-					<input type="text" name="place_name" class="input-block-level" placeholder="地点名称" />
-					<select name="place_type">
+					<input id="pname" type="text" name="place_name" class="input-block-level" placeholder="地点名称" />
+					<select id="type_option" name="place_type">
 						{% for option in place_options %}
 							{% if option.status == 2 %}
 								<option value="{{ option }}">{{ option }}</option>
 							{% endif %}
 						{% endfor %}
 					</select>
-					<textarea name="description" class="input-block-level" placeholder="具体描述信息" rows="14" cols="40"></textarea> 
+					{% for option in place_options %}
+						{% if option.status == 2 %}
+							<input id='{{option}}' type="hidden" value='{{option.icon}}'>
+						{% endif %}
+					{% endfor %}
+					<textarea id="desc" name="description" class="input-block-level" placeholder="具体描述信息" rows="14" cols="40"></textarea> 
 				</fieldset>
 				<button class="btn btn-large btn-primary span2" type="submit">创建</button>
 				<a class="btn btn-large btn-primary span2" href="{% url 'places:index' %}">取消</a>

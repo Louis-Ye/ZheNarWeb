@@ -6,7 +6,6 @@ from django.shortcuts import render_to_response
 from datetime import datetime
 from places.models import PlaceType,Place,Icon
 from profiles.models import Profile
-from django.core.exceptions import ObjectDoesNotExist
 
 
 def login_proc(request):
@@ -51,12 +50,16 @@ def _create(request):
 		m_description = request.POST.get('description')
 	else:
 		return HttpResponseRedirect(reverse('index'))
-	
-	m_place_type = PlaceType.objects.get(name = m_place_type_name)
-	place = Place(name = m_place_name,description = m_description, place_type = m_place_type,latitude = m_latitude, longitude = m_longitude,create_time = datetime.now())
-	place.save()
 		
-	return HttpResponseRedirect(reverse('places:index'))
+	try:
+		place = Place.objects.get(name = m_place_name,latitude = m_latitude, longitude = m_longitude,description = m_description)
+	except Place.DoesNotExist:
+		m_place_type = PlaceType.objects.get(name = m_place_type_name)
+		place = Place(name = m_place_name,description = m_description, place_type = m_place_type,latitude = m_latitude, longitude = m_longitude,create_time = datetime.now())
+		place.save()
+		return HttpResponseRedirect(reverse('places:index'))
+	
+	return HttpResponseRedirect(reverse('index'))
 	
 	
 def type_create(request):
@@ -77,11 +80,15 @@ def _type_create(request):
 	else:
 		return HttpResponseRedirect(reverse('places:index'))
 		
-
-	m_icon = Icon.objects.get(name = m_type_icon)
-	m_place_type = PlaceType(name = m_type_name, icon = m_icon)
-	m_place_type.save()
-	return HttpResponseRedirect(reverse('places:index'))
+	try:
+		m_place_type = PlaceType.objects.get(name = m_type_name,status = 2)
+	except PlaceType.DoesNotExist:
+		m_icon = Icon.objects.get(name = m_type_icon)
+		m_place_type = PlaceType(name = m_type_name, icon = m_icon)
+		m_place_type.save()
+		return HttpResponseRedirect(reverse('places:index'))
+	
+	return HttpResponseRedirect(reverse('index'))
 	
 """ 用于插入icon用，已插入则无需再用
 def insert(request):
