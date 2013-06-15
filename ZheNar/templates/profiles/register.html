@@ -4,40 +4,113 @@
 {% endblock %}
 
 {% block script %}
+<script>
+
+	function checkForm() {
+	    return checkUsernameLen() && checkEmailFormat() && checkPasswordFormat() && checkPasswordSame();
+	}
+
+	function checkUsernameLen() {
+	    var username = document.getElementById("username").value;
+	    var len = username.length;
+	    if (len < 20 && len > 0) {
+	        document.getElementById("username_len").innerHTML="<h5 style='color:green'>OK</h5>";
+	        return true;
+	    }
+	    else if (len == 0) {
+	        document.getElementById("username_len").innerHTML="<h5 style='color:red'>不能为空!</h5>";
+		return false;
+	    }
+	    else {
+	        document.getElementById("username_len").innerHTML="<h5 style='color:red'>长度必须小于20字符!</h5>";
+	        return false;
+	    }
+	}
+
+	function checkEmailFormat() {
+	    var em = document.getElementById("email").value;
+	    var reg = /^[\w\-\+\._]+@[\w\-\+\._]+\.[\w\-\+\._]+$/;
+	    if (reg.test(em)) {
+	        document.getElementById("email_format").innerHTML="<h5 style='color:green'>OK</h5>";
+	        return true;
+	    }
+	    else {
+	        document.getElementById("email_format").innerHTML="<h5 style='color:red'>邮件格式不正确!</h5>";
+	        return false;
+	    }
+	}
+
+	function checkPasswordFormat() {
+	    var password = document.getElementById("password").value;
+	    var len = password.length;
+	    var reg = /^[a-zA-Z0-9]+$/;
+	    if (reg.test(password)) {
+		if (len < 20 && len >= 5) {
+	            document.getElementById("password_format").innerHTML="<h5 style='color:green'>OK</h5>";
+	            return true;
+	    	}
+		else {
+		    document.getElementById("password_format").innerHTML="<h5 style='color:red'>长度必须小于20字符!</h5>";
+	            return false;
+		}
+	    }
+	    else {
+	        document.getElementById("password_format").innerHTML="<h5 style='color:red'>只能使用字母或数字！</h5>";
+                return false;
+	    }
+	}
+
+	function checkPasswordSame() {
+	    var pswd_cf = document.getElementById("password_confirm").value;
+	    var pswd = document.getElementById("password").value;
+	    if ( pswd_cf == pswd ) {
+	        document.getElementById("password_same").innerHTML="<h5 style='color:green'>OK</h5>";
+	        return true;
+	    }
+	    else {
+	        document.getElementById("password_same").innerHTML="<h5 style='color:red'>两次密码不一致!</h5>";
+	        return false;
+	    }
+	}
+
+</script>
+
 {% endblock %}
 
 {% block main %}
 <div class="container" style="padding:40px">
 	<div class="span6">
-	<div name="register_form" class="span7">
-	<form action="{% url 'profiles:_register'  %}" method='post'>  {% csrf_token %}
+	<div name="register_form" class="span6">
+	<form action="{% url 'profiles:_register'  %}" method='post' onsubmit="return checkForm()" >  {% csrf_token %}
 		<h2>注册</h2>
 		<fieldset>
 			<legend>必填信息:</legend>
-			<div class="span4">
-				<input type="text" name="username" id="username" placeholder="用户名" />
+			<div class="span3">
+			  <input type="text" name="username" id="username" style="width:280px;" onChange="checkUsernameLen()" placeholder="用户名" />
 			</div>
-			<div class="span4">
-				<input type="text" name="email" id="email" placeholder="电子邮箱Email" />
-			</div>
-			<div id="email_format" class="span2">&nbsp</div>
+			<div id="username_len" class="span2" >&nbsp</div>
 
-			<div class="span4">
-				<input type="password" name="password" id="password" placeholder="密码" />
+			<div class="span3">
+			  <input type="text" name="email" id="email" style="width:280px;" onChange="checkEmailFormat()" placeholder="电子邮箱Email" />
 			</div>
-			<div id="password_validate" class="span2">&nbsp</div>
-			<div class="span4">
-				<input type="password" name="password_confirm" id="password_confirm" placeholder="确认密码" />
+			<div id="email_format" class="span2" >&nbsp</div>
+
+			<div class="span3">
+			  <input type="password" name="password" id="password" style="width:280px;" onChange="checkPasswordFormat()" placeholder="密码" />
+			</div>
+			<div id="password_format" class="span2">&nbsp</div>
+			<div class="span3">
+			  <input type="password" name="password_confirm" id="password_confirm" style="width:280px;" onChange="checkPasswordSame()" placeholder="确认密码" />
 			</div>
 			<div id="password_same" class="span2">&nbsp</div>
 		</fieldset>
 		
 		<fieldset>
 			<legend>选填信息:</legend>
-			<div class="span4">
-				<input type="text" name="name" placeholder="真实姓名" />
+			<div class="span3">
+			  <input type="text" name="name" style="width:280px;" placeholder="真实姓名" />
 			</div>
-			<div class="span4">
+			<div class="span3">
 				性别： 男 
 				<input type="radio" name="gender" value=1 /> 
 				&nbsp 女 
