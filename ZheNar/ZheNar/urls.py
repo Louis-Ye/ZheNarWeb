@@ -6,7 +6,6 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 	url(r'^$', 'ZheNar.views.index',name = 'index'),
-	url(r'^\((?P<xx>[\-0-9]+\.[0-9]+), (?P<yy>[\-0-9]+\.[0-9]+)$', 'ZheNar.views.getCordinate', name='getCordinate'),
 	url(r'^admin/', include(admin.site.urls)),
 	url(r'^api/', include('api.urls', namespace="api")),
 	url(r'^profiles/', include('profiles.urls', namespace="profiles")),

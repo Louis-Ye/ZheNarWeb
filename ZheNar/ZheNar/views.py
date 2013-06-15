@@ -22,7 +22,4 @@ def index(request):
 				 "places":place_list,})
 	return render_to_response('ZheNar/index.html',c,context_instance = RequestContext(request,processors=[login_proc]))
 
-def getCordinate(request, xx, yy):
-	return HttpResponse("info: " + xx + "##" + yy)
-
     

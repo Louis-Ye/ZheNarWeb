@@ -14,8 +14,7 @@
 		var myCenter = new google.maps.LatLng(30.3045022222222,120.08633333333);
 		var icon_base = "http://google-maps-icons.googlecode.com/files/";
 		var map;
-		var marker;
-		var lat,lng;
+		var marker = new Array();
 	  	function initialize() {
 		  	var opt = { minZoom: 16, maxZoom: 18 };
 			var mapOptions = {
@@ -27,24 +26,31 @@
 				mapOptions);
 			map.setOptions(opt);
 			
-			google.maps.event.addListenerOnce(map, 'tilesloaded', addMarkers);
+			var lat = new Array();
+			var lng = new Array();
+			var position = new Array();
+			var myicon = new Array();
+			var count = 1;
+			{% for place in places %}
+				count++;
+			 	lat[{{forloop.counter}}] = {{place.latitude}};
+			 	lng[{{forloop.counter}}] = {{place.longitude}};
+			 	myicon[{{forloop.counter}}]= '{{place.place_type.icon.name}}';
+			{% endfor %}
+			for(i = 1; i <= count ; i++)
+			{
+				position[i] = new google.maps.LatLng(lat[i],lng[i])
+				marker[i] = new google.maps.Marker({
+				 		position: position[i],
+				 		map: map,
+				 		icon: icon_base + myicon[i],
+				 		title: 'My Location'
+				 	});	
+			}
+			
 
 	 	}
-	/* 	function addMarkers()
-	 	{
-		 	{% for place in places %}
-		 		lat = {{place.latitude}};
-		 		lng = {{place.longitude}};
-		 		location = new google.maps.LatLng(lat,lng);
-		 		myicon = {{place.place_type.icon.name}};
-		 		marker = new google.maps.Marker({
-		 			position: location,
-		 			map: map,
-		 			icon: icon_base + my_icon,
-		 			title: {{place.name}}
-		 		});
-		 	{% endfor %}
-	 	}*/
+
 		google.maps.event.addDomListener(window, 'load', initialize);
 	</script>
 {% endblock %}
