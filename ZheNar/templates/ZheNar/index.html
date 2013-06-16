@@ -14,12 +14,13 @@
 		var myCenter = new google.maps.LatLng(30.3045022222222,120.08633333333);
 		var icon_base = "http://google-maps-icons.googlecode.com/files/";
 		var map;
-		var marker = new Array();
+		var markers = new Array();
+		var infowins = new Array();
 	  	function initialize() {
-		  	var opt = { minZoom: 16, maxZoom: 18 };
+		  	var opt = { minZoom: 15, maxZoom: 18 };
 			var mapOptions = {
 			  center: myCenter,
-			  zoom: 17,
+			  zoom: 16,
 			  mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
 			map = new google.maps.Map(document.getElementById("map_canvas"),
@@ -30,23 +31,33 @@
 			var lng = new Array();
 			var position = new Array();
 			var myicon = new Array();
+			var content = new Array();
 			var count = 1;
 			{% for place in places %}
 				count++;
 			 	lat[{{forloop.counter}}] = {{place.latitude}};
 			 	lng[{{forloop.counter}}] = {{place.longitude}};
-			 	myicon[{{forloop.counter}}]= '{{place.place_type.icon.name}}';
+			 	myicon[{{forloop.counter}}] = '{{place.place_type.icon.name}}';
+			 	content[{{forloop.counter}}] = "<h4>{{place.name}}</h4><p>{{place.description}}</p>";
 			{% endfor %}
 			for(i = 1; i <= count ; i++)
 			{
 				position[i] = new google.maps.LatLng(lat[i],lng[i])
-				marker[i] = new google.maps.Marker({
+				markers[i] = new google.maps.Marker({
 				 		position: position[i],
 				 		map: map,
 				 		icon: icon_base + myicon[i],
 				 		title: 'My Location'
-				 	});	
+				 	});
+				infowins[i] = new google.maps.InfoWindow({
+				 			content: content[i]
+				 	  	});
+				infowins[i].open(map,markers[i]);	  	
+				//google.maps.event.addListener(markers[i], 'click', function() {
+				//	infowins[i].open(map, markers[i]);
+				//});
 			}
+			
 			
 
 	 	}
