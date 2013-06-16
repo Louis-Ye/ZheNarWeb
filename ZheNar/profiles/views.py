@@ -92,7 +92,8 @@ def _register(request):
 		upr = User.objects.create_user(username, email, password)
 		pr = Profile(user=upr, name=name, gender=gender, registerTime=registerTime)
 		pr.save()
-		login(request, upr)
+		userpr = authenticate(username=username, password=password)
+		login(request, userpr)
 	else:
 		return render(request, "error/error_popup.html", __login_proc(request, {'error_list': {"something wrong with your form"}}))
 	

@@ -45,12 +45,12 @@
 	    var len = password.length;
 	    var reg = /^[a-zA-Z0-9]+$/;
 	    if (reg.test(password)) {
-		if (len < 20 && len >= 5) {
+		if (len < 20 && len >= 6) {
 	            document.getElementById("password_format").innerHTML="<h5 style='color:green'>OK</h5>";
 	            return true;
 	    	}
 		else {
-		    document.getElementById("password_format").innerHTML="<h5 style='color:red'>长度必须小于20字符!</h5>";
+		    document.getElementById("password_format").innerHTML="<h5 style='color:red'>长度必须在6至20个字符之间!</h5>";
 	            return false;
 		}
 	    }
