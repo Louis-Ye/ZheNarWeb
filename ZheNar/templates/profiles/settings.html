@@ -1,34 +1,95 @@
 {% extends "base.html" %}
 
+{% block script %}
+<script>
+	function checkForm() {
+		return checkPasswordFormat() && checkPasswordSame();
+	}
+
+	function checkPasswordFormat() {
+	    if (document.getElementById("change_password0").checked) return true;
+
+	    var password = document.getElementById("password").value;
+	    var len = password.length;
+	    var reg = /^[a-zA-Z0-9]+$/;
+	    if (reg.test(password)) {
+		if (len < 20 && len >= 6) {
+	            document.getElementById("password_format").innerHTML="<h5 style='color:green'>OK</h5>";
+	            return true;
+	    	}
+		else {
+		    document.getElementById("password_format").innerHTML="<h5 style='color:red'>必须在6至20个字符之间!</h5>";
+	            return false;
+		}
+	    }
+	    else {
+	        document.getElementById("password_format").innerHTML="<h5 style='color:red'>只能使用字母或数字！</h5>";
+                return false;
+	    }
+	}
+
+	function checkPasswordSame() {
+	    if (document.getElementById("change_password0").checked) return true;
+
+	    var pswd_cf = document.getElementById("password_confirm").value;
+	    var pswd = document.getElementById("password").value;
+	    if ( pswd_cf == pswd ) {
+	        document.getElementById("password_same").innerHTML="<h5 style='color:green'>OK</h5>";
+	        return true;
+	    }
+	    else {
+	        document.getElementById("password_same").innerHTML="<h5 style='color:red'>两次密码不一致!</h5>";
+	        return false;
+	    }
+	}
+
+	function chpswd1() {
+		document.getElementById("password_ori").disabled = false;
+		document.getElementById("password").disabled = false;
+		document.getElementById("password_confirm").disabled = false;
+	}
+	function chpswd0() {
+		document.getElementById("password_ori").disabled = true;
+		document.getElementById("password").disabled = true;
+		document.getElementById("password_confirm").disabled = true;
+	}
+
+</script>
+{% endblock %}
+
+
 {% block main %}
 <div class="container" style="padding:40px">
 	<div class="span6">
 	<div name="register_form" class="span6">
-	<form action="{% url 'profiles:_register'  %}" method='post' onsubmit="return checkForm()" >  {% csrf_token %}
+	<form action="{% url 'profiles:_settings'  %}" method='post' onsubmit="return checkForm()" >  {% csrf_token %}
 		<h2>个人设置</h2>
 		<fieldset>
 			<legend>必要信息:</legend>
 			<div class="span3">
-			  <input type="text" name="username" id="username" style="width:280px;" onChange="checkUsernameLen()" placeholder="用户名" />
+				<input type="text" name="username" id="username" style="width:280px;" placeholder="用户名" value="{{ pr.user.username }}" disabled/>
 			</div>
 			<div id="username_len" class="span2" >&nbsp</div>
 
 			<div class="span3">
-			  <input type="text" name="email" id="email" style="width:280px;" onChange="checkEmailFormat()" placeholder="电子邮箱Email" />
+			  <input type="text" name="email" id="email" style="width:280px;" placeholder="电子邮箱Email" value="{{ pr.user.email }}" disabled />
 			</div>
 			<div id="email_format" class="span2" >&nbsp</div>
 
 			<div class="span3">
 				是否需要修改密码？&nbsp
-				是 <input type="radio" name="change_password" id="change_password" value="1" />&nbsp
-				否 <input type="radio" name="change_password" id="change_password" value="2" />
+				是 <input type="radio" name="change_password" id="change_password1" onClick="chpswd1()" value=1 />
+				否 <input type="radio" name="change_password" id="change_password0" onClick="chpswd0()" value=0 checked />
 			</div>
 			<div class="span3">
-			  <input type="password" name="password" id="password" style="width:280px;" onChange="checkPasswordFormat()" placeholder="密码" />
+			  <input type="password" name="password_ori" id="password_ori" style="width:280px;" placeholder="原密码" disabled/>
+			</div>
+			<div class="span3">
+			  <input type="password" name="password" id="password" style="width:280px;" onChange="checkPasswordFormat()" placeholder="密码" disabled/>
 			</div>
 			<div id="password_format" class="span2">&nbsp</div>
 			<div class="span3">
-			  <input type="password" name="password_confirm" id="password_confirm" style="width:280px;" onChange="checkPasswordSame()" placeholder="确认密码" />
+			  <input type="password" name="password_confirm" id="password_confirm" style="width:280px;" onChange="checkPasswordSame()" placeholder="确认密码" disabled/>
 			</div>
 			<div id="password_same" class="span2">&nbsp</div>
 		</fieldset>
@@ -36,18 +97,26 @@
 		<fieldset>
 			<legend>选填信息:</legend>
 			<div class="span3">
-			  <input type="text" name="name" style="width:280px;" placeholder="真实姓名" />
+			  <input type="text" name="name" style="width:280px;" placeholder="真实姓名" value="{{ pr.name }}"/>
 			</div>
 			<div class="span3">
 				性别： 男 
-				<input type="radio" name="gender" value=1 /> 
+				<input type="radio" name="gender" value=1 {{ check1 }}/> 
 				&nbsp 女 
-				<input type="radio" name="gender" value=2 />
+				<input type="radio" name="gender" value=2 {{ check2 }}/>
 			</div>
 		</fieldset>
 	  	<div style='height:30px;'>&nbsp</div>
-        	<button class="btn btn-large btn-primary" type="submit">保存</button>
+        	<button class="btn btn-large btn-primary span2" type="submit">保存</button>
+		<div class="span2">
+			{% if back_info != None %}
+				<h3 style="color: green;">{{ back_info }}</h3>
+			{% endif %}
+		</div>
 	</form>
+		
 	</div>
+	<div>
+	
 </div>
 {% endblock %}

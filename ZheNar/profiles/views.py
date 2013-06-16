@@ -34,12 +34,12 @@ def _login(request):
 		upr = authenticate(email=account, password=password) #check if user logins with email
 
 	if upr is None:
-		return render(request,"error/error_popup.html",__login_proc(request,{'error_list':{"Wrong account or password"}}))
+		return __goErrorPage(request, ["Wrong account or password", ])
 	else :
 		if upr.is_active == 0:					#This user has not been active
-			return render(request,"error/error_popup.html",__login_proc(request,{'error_list':{"This user have been disactivated"}}))
+			return __goErrorPage(request, ["This user have been disactivated", ])
 		if upr.is_superuser == 1:				#Superuser should not login in this page
-			return render(request,"error/error_popup.html",__login_proc(request,{'error_list':{"Superuse should not login in this page"}}))
+			return __goErrorPage(request, ["Superuse should not login in this page", ])
 	
 	login(request, upr)		#log in
 	return HttpResponseRedirect(reverse('index'))
@@ -62,9 +62,9 @@ def _register(request):
 		password = request.POST.get('password')
 		name = request.POST.get('name')
 		gender = 0
-		if request.POST.get('gender') == 1:
+		if request.POST.get('gender') == "1":
 			gender = 1
-		elif request.POST.get('gender') == 2:
+		elif request.POST.get('gender') == "2":
 			gender = 2
 		registerTime = datetime.now()
 	else:
@@ -78,14 +78,14 @@ def _register(request):
 	except User.DoesNotExist:
 		upr = None
 	if upr is not None:
-		return render(request, "error/error_popup.html", __login_proc(request, {'error_list': {"duplicated username"}}))
+		return __goErrorPage(request, ["duplicated username", ])
 
 	try:
 		upr = User.objects.get(email=email)		#check if there is duplicated email
 	except User.DoesNotExist:
 		upr = None
 	if upr is not None:	
-		return render(request, "error/error_popup.html", __login_proc(request, {'error_list': {"dupicated email!"}}))
+		return __goErrorPage(request, ["dupicated email!", ])
 	
 	form = {}
 	if __judge_form(form):
@@ -95,21 +95,66 @@ def _register(request):
 		userpr = authenticate(username=username, password=password)
 		login(request, userpr)
 	else:
-		return render(request, "error/error_popup.html", __login_proc(request, {'error_list': {"something wrong with your form"}}))
+		return __goErrorPage(request, ["something wrong with your form", ])
 	
 	return HttpResponseRedirect(reverse('index'));
 
 
-def __judge_form(form):
-	return True
-
-
 def settings(request):
 	if request.user.is_authenticated():
-		context = {'page_title': '浙哪儿设置'}
-		return render(request, "profiles/settings.html", context)
+		pr = Profile.objects.get(user_id=request.user.id);
+		check1 = "";
+		check2 = "";
+		if pr.gender == 1:
+			check1 = "checked"
+		if pr.gender == 2:
+			check2 = "checked"
+		back_info = request.session.get('back_info')
+		context = {
+			'page_title': '浙哪儿设置',
+			'pr': pr,
+			'check1': check1,
+			'check2': check2,
+			'back_info': back_info,
+		}
+		request.session['back_info'] = None
+		
+		return render(request, "profiles/settings.html", __login_proc(request, context))
 	else :
 		return HttpResponseRedirect(reverse('index'))
+
+def _settings(request):
+	if request.user.is_authenticated() and request.POST:
+		username = request.user.username
+		email = request.user.email
+		change_password = request.POST.get('change_password')
+		if change_password: 
+			password = request.POST.get('password')
+			ori_password = request.POST.get('password_ori')
+		name = request.POST.get('name')
+		gender = request.POST.get('gender')
+	else:
+		return HttpResponseRedirect(reverse('index'))
+
+	form = {}
+	if __judge_form(form):
+		upr = request.user
+		if change_password == "1":
+			upr = authenticate(username=username, password=ori_password) #check if ori_password match the user name
+			if upr is None:
+				return __goErrorPage(request, ["your original password is not right", ])
+			upr.set_password(password)
+			upr.save()
+		pr = Profile.objects.get(user_id = upr.id)
+		pr.name = name
+		pr.gender = gender
+		pr.save()
+	else:
+		return __goErrorPage(request, ["something wrong with your form", ])
+
+	
+	request.session['back_info'] = "保存成功！"
+	return HttpResponseRedirect(reverse('profiles:settings'))
 
 
 def __login_proc(request, lst):
@@ -119,4 +164,11 @@ def __login_proc(request, lst):
 		return lst
 	return lst
 
+
+def __judge_form(form):
+	return True
+
+
+def __goErrorPage(request, error_list):
+	return render(request, "error/error_popup.html", __login_proc(request, {'error_list': error_list}))
 

@@ -10,6 +10,6 @@ urlpatterns = patterns('',
 	url(r'^register/$', views.register, name='register'),
 	url(r'^_register/$', views._register, name='_register'),
 	url(r'^settings/$', views.settings, name='settings'),
-	
+	url(r'^_settings/$', views._settings, name='_settings'),
 )
 
