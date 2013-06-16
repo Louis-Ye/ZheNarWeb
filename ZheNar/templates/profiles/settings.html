@@ -1,6 +1,53 @@
 {% extends "base.html" %}
+
 {% block main %}
-<div class = "container"style="padding:40px">
-	<h1>setting ! you have already logged in !</h1>
+<div class="container" style="padding:40px">
+	<div class="span6">
+	<div name="register_form" class="span6">
+	<form action="{% url 'profiles:_register'  %}" method='post' onsubmit="return checkForm()" >  {% csrf_token %}
+		<h2>个人设置</h2>
+		<fieldset>
+			<legend>必要信息:</legend>
+			<div class="span3">
+			  <input type="text" name="username" id="username" style="width:280px;" onChange="checkUsernameLen()" placeholder="用户名" />
+			</div>
+			<div id="username_len" class="span2" >&nbsp</div>
+
+			<div class="span3">
+			  <input type="text" name="email" id="email" style="width:280px;" onChange="checkEmailFormat()" placeholder="电子邮箱Email" />
+			</div>
+			<div id="email_format" class="span2" >&nbsp</div>
+
+			<div class="span3">
+				是否需要修改密码？&nbsp
+				是 <input type="radio" name="change_password" id="change_password" value="1" />&nbsp
+				否 <input type="radio" name="change_password" id="change_password" value="2" />
+			</div>
+			<div class="span3">
+			  <input type="password" name="password" id="password" style="width:280px;" onChange="checkPasswordFormat()" placeholder="密码" />
+			</div>
+			<div id="password_format" class="span2">&nbsp</div>
+			<div class="span3">
+			  <input type="password" name="password_confirm" id="password_confirm" style="width:280px;" onChange="checkPasswordSame()" placeholder="确认密码" />
+			</div>
+			<div id="password_same" class="span2">&nbsp</div>
+		</fieldset>
+		
+		<fieldset>
+			<legend>选填信息:</legend>
+			<div class="span3">
+			  <input type="text" name="name" style="width:280px;" placeholder="真实姓名" />
+			</div>
+			<div class="span3">
+				性别： 男 
+				<input type="radio" name="gender" value=1 /> 
+				&nbsp 女 
+				<input type="radio" name="gender" value=2 />
+			</div>
+		</fieldset>
+	  	<div style='height:30px;'>&nbsp</div>
+        	<button class="btn btn-large btn-primary" type="submit">保存</button>
+	</form>
+	</div>
 </div>
 {% endblock %}
