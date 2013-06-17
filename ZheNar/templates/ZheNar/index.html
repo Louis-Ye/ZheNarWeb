@@ -14,8 +14,7 @@
 		var myCenter = new google.maps.LatLng(30.3045022222222,120.08633333333);
 		var icon_base = "http://google-maps-icons.googlecode.com/files/";
 		var map;
-		var markers = new Array();
-		var infowins = new Array();
+		var markers = [];
 	  	function initialize() {
 		  	var opt = { minZoom: 15, maxZoom: 18 };
 			var mapOptions = {
@@ -32,36 +31,40 @@
 			var position = new Array();
 			var myicon = new Array();
 			var content = new Array();
-			var count = 1;
+			var count = 0;
+			var marker;
+			var infowin;
 			{% for place in places %}
-				count++;
-			 	lat[{{forloop.counter}}] = {{place.latitude}};
-			 	lng[{{forloop.counter}}] = {{place.longitude}};
-			 	myicon[{{forloop.counter}}] = '{{place.place_type.icon.name}}';
-			 	content[{{forloop.counter}}] = "<h4>{{place.name}}</h4><p>{{place.description}}</p>";
+			 	lat[count] = {{place.latitude}};
+			 	lng[count] = {{place.longitude}};
+			 	myicon[count] = '{{place.place_type.icon.name}}';
+			 	content[count] = "<h4>{{place.name}}</h4><div style='overflow:scroll;max-height:100px;'><p>{{place.description}}</p></div>";
+			 	count++;
 			{% endfor %}
-			for(i = 1; i <= count ; i++)
+			for(i = 0; i < count ; i++)
 			{
 				position[i] = new google.maps.LatLng(lat[i],lng[i])
-				markers[i] = new google.maps.Marker({
+				marker = new google.maps.Marker({
 				 		position: position[i],
 				 		map: map,
 				 		icon: icon_base + myicon[i],
-				 		title: 'My Location'
+				 		title: 'marker No.'+i,
+				 		html: content[i]
 				 	});
-				//infowins[i] = new google.maps.InfoWindow({
-				//			content: content[i]
-				// 	  	});
-				//infowins[i].open(map,markers[i]);	  	
-				//google.maps.event.addListener(markers[i], 'click', function() {
-				//	infowins[i].open(map, markers[i]);
-				//});
+				infowin = new google.maps.InfoWindow({
+							content: 'Wating for adding...',
+							maxWidth: 50
+				 	  	});
+				 	  	
+				google.maps.event.addListener(marker, 'click', function() {
+						infowin.setContent(this.html);
+						infowin.open(map, this);
+				});
+				markers.push(marker);
 			}
-			
-			
-
 	 	}
 
+		
 		google.maps.event.addDomListener(window, 'load', initialize);
 	</script>
 {% endblock %}
