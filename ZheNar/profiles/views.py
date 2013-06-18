@@ -74,9 +74,6 @@ def _register(request):
 	else:
 		return HttpResponseRedirect(reverse('index'))
 	
-	
-	#return HttpResponse(username + email)
-
 	try:
 		upr = User.objects.get(username=username)	#check if there is duplicated username
 	except User.DoesNotExist:
