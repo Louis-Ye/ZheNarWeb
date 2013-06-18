@@ -1,3 +1,4 @@
+from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from profiles.models import Profile
 from places.models import Place
@@ -12,9 +13,9 @@ class EventType(models.Model):
 
 class Event(models.Model):
 	CHOICE_SET = (
-	(1,"Pending"),
-	(2,"Accepted"),
-	(3,"Rejected"),
+	(1,_("Pending")),
+	(2,_("Accepted")),
+	(3,_("Rejected")),
 	)
 	
 	status = models.SmallIntegerField(default = 1,choices = CHOICE_SET)

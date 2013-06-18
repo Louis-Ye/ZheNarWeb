@@ -31,8 +31,11 @@ def _login(request):
 
 	upr = authenticate(username=account, password=password)
 	if upr is None:
-		upr = User.objects.get(email=account)
-		upr = authenticate(username=upr.username, password=password) #check if user logins with email
+		try:
+			upr = User.objects.get(email=account)
+			upr = authenticate(username=upr.username, password=password) #check if user logins with email
+		except User.DoesNotExist:
+			return __goErrorPage(request, ["Wrong account or password", ])
 
 	if upr is None:
 		return __goErrorPage(request, ["Wrong account or password", ])
