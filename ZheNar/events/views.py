@@ -20,7 +20,7 @@ def create(request):
 	context = {
 			'page_title': "创建事件喽",
 	}
-	return render(request, "events/event_index.html", __login_proc(request, context))
+	return render(request, "events/event_create.html", __login_proc(request, context))
 	
 
 def _create(request):
@@ -34,6 +34,15 @@ def _create(request):
 	end_time = request.POST.get("end_time")
 	place = request.POST.get("place_id")
 	event_type = request.POST.get("event_type_id")
+
+
+def type_create(request):
+	return render(request, "events/event_type_create.html", __login_proc(request, context))
+
+
+def _type_create(request):
+	return HttpResponse("_type_create")
+
 
 def __login_proc(request, lst):
 	if request.user.is_authenticated():
