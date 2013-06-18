@@ -1,1 +1,17 @@
 {% extends "base.html" %}
+{% block main %}
+<div class="container" style="padding:40px">
+	<div class="container-fluid">
+		{% for event in event_list %}
+		<div class="row media">
+			<a class="pull-left" href="#">
+				<img class="media-object" data-src="holder.js/64x64">
+			</a>
+			<div class="media-body">
+				<h4 class="media">{{event.name}}</h4>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}
