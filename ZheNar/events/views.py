@@ -37,6 +37,9 @@ def _create(request):
 
 
 def type_create(request):
+	context = {
+			'page_title': "浙哪儿事件类型创建", 
+	}
 	return render(request, "events/event_type_create.html", __login_proc(request, context))
 
 
