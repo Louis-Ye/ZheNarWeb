@@ -17,3 +17,5 @@ class Profile(models.Model):
                                               null=True)
 	registerTime = models.DateTimeField(blank = True, null = True)
 
+	def __unicode__(self):
+		return self.user.username

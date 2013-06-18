@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block css %}
+<style>
+	.the-icons{
+		margin-left: 0;
+		list-style: none;
+	}
+	.srollspy{
+		position: relative;
+		margin: 15px 0;
+		padding: 39px 19px 14px;
+		background-color: #fff;
+		border: 1px solid #ddd;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+		overflow: scroll;
+		height:300px;
+	}
+</style>
+{% endblock %}
+{% block script %}
+<script>
+	function check_form(){
+		if($("#ptype").val())
+		{
+			return true;
+		}
+		$(".alert").removeClass("out");
+		$(".alert").addClass("in");
+		return false;
+	}
+	function close_alert(){
+		$(".alert").removeClass("in");
+		$(".alert").addClass("out");
+	}
+</script>
+{% endblock %}
+{% block main %}
+<div class="container" style="padding:40px;">
+	<div class="alert alert-block alert-error fade out" data-alert="alert">
+		<button class="close" type="button" onclick="close_alert();">×</button>
+		<strong>错误</strong>
+		请确保表单填写完毕，再次提交
+	</div>
+	<div class="span12">
+		<form action="{% url 'places:_type_create' %}" method="post" onsubmit="return check_form();">
+		{% csrf_token %}
+			<fieldset class="row span5">
+				<h3>创建事件类型</h3>
+				<div class="row">
+					<div class="span3">
+						<input id="ptype" type="text" name="place_type" class="input-block-level" placeholder="事件类型" />
+					</div>
+				</div>
+				<div class="span5" style="margin-left:0px;">
+					<select name="place_icon">
+						{% for icon in icon_list %}
+							<option value="{{ icon.name }}">{{ icon }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<button id="create" class="btn btn-large btn-primary" type="submit">创建</button>
+			</fieldset>
+		</form>
+		<div class="row span10">
+			<div id="heading">
+				<h3>事件图标</h3>
+			</div>
+			<div class="srollspy span10" data-spy="scroll" data-target="#heading" data-offset="0">
+				<ul class="the-icons span10">
+				{% for icon in icon_list %}
+					<li class="span3"><img src="/static/map_icon/icons/{{icon.name}}" style="height:37px;">
+					{{icon}}
+					</li>
+				{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
