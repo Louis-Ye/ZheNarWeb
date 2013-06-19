@@ -3,9 +3,23 @@ from django.db import models
 from profiles.models import Profile
 from places.models import Place
 
+class Icon(models.Model):
+	name = models.CharField(unique=True,max_length=255)
+	
+	def __unicode__(self):
+		return self.name[:-4]
+
 # Create your models here.
 class EventType(models.Model):
-	name = models.CharField(max_length = 255)
+	#name = models.CharField(max_length = 255)
+	STATUS_SET = (
+	(1,"Pending"),
+	(2,"Accepted"),
+	(3,"Rejected"),
+	)
+	status = models.SmallIntegerField(default = 1,choices = STATUS_SET)
+	name = models.CharField(max_length = 255,blank=False)
+	icon = models.ForeignKey(Icon)
 
 	def __unicode__(self):
 		return self.name

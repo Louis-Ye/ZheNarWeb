@@ -44,17 +44,17 @@
 		请确保表单填写完毕，再次提交
 	</div>
 	<div class="span12">
-		<form action="{% url 'places:_type_create' %}" method="post" onsubmit="return check_form();">
+		<form action="{% url 'events:_type_create' %}" method="post" onsubmit="return check_form();">
 		{% csrf_token %}
 			<fieldset class="row span5">
 				<h3>创建事件类型</h3>
 				<div class="row">
 					<div class="span3">
-						<input id="ptype" type="text" name="place_type" class="input-block-level" placeholder="事件类型" />
+						<input id="ptype" type="text" name="event_type" class="input-block-level" placeholder="事件类型" />
 					</div>
 				</div>
 				<div class="span5" style="margin-left:0px;">
-					<select name="place_icon">
+					<select name="event_icon">
 						{% for icon in icon_list %}
 							<option value="{{ icon.name }}">{{ icon }}</option>
 						{% endfor %}
@@ -65,7 +65,7 @@
 		</form>
 		<div class="row span10">
 			<div id="heading">
-				<h3>事件图标</h3>
+				<h3>事件类型图标</h3>
 			</div>
 			<div class="srollspy span10" data-spy="scroll" data-target="#heading" data-offset="0">
 				<ul class="the-icons span10">

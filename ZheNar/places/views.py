@@ -94,7 +94,7 @@ def _type_create(request):
 """ 用于插入icon用，已插入则无需再用
 def insert(request):
 	list = []
-	f = open('static/map_icon/icon_list.txt','r')
+	f = open('static/map_icon/icons/icon_list.txt','r')
 	for line in f:
 		list += line.splitlines()
 	for item in list:

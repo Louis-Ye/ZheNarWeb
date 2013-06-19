@@ -157,6 +157,14 @@ def _settings(request):
 	request.session['back_info'] = "保存成功！"
 	return HttpResponseRedirect(reverse('profiles:settings'))
 
+	
+def syncSuperUser(request):
+	superuser_list = User.objects.filter(is_superuser = 1)
+	for item in superuser_list:
+		pr = Profile(user = item, name=item.username)
+		pr.save()
+	return HttpResponseRedirect(reverse('index'))
+
 
 def __login_proc(request, lst):
 	if request.user.is_authenticated():

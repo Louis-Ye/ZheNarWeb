@@ -5,72 +5,8 @@
 
 {% block script %}
 <script>
-
 	function checkForm() {
-	    return checkUsernameLen() && checkEmailFormat() && checkPasswordFormat() && checkPasswordSame();
-	}
-
-	function checkUsernameLen() {
-	    var username = document.getElementById("username").value;
-	    var len = username.length;
-	    if (len < 20 && len > 0) {
-	        document.getElementById("username_len").innerHTML="<h5 style='color:green'>OK</h5>";
-	        return true;
-	    }
-	    else if (len == 0) {
-	        document.getElementById("username_len").innerHTML="<h5 style='color:red'>不能为空!</h5>";
-		return false;
-	    }
-	    else {
-	        document.getElementById("username_len").innerHTML="<h5 style='color:red'>长度必须小于20字符!</h5>";
-	        return false;
-	    }
-	}
-
-	function checkEmailFormat() {
-	    var em = document.getElementById("email").value;
-	    var reg = /^[\w\-\+\._]+@[\w\-\+\._]+\.[\w\-\+\._]+$/;
-	    if (reg.test(em)) {
-	        document.getElementById("email_format").innerHTML="<h5 style='color:green'>OK</h5>";
-	        return true;
-	    }
-	    else {
-	        document.getElementById("email_format").innerHTML="<h5 style='color:red'>邮件格式不正确!</h5>";
-	        return false;
-	    }
-	}
-
-	function checkPasswordFormat() {
-	    var password = document.getElementById("password").value;
-	    var len = password.length;
-	    var reg = /^[a-zA-Z0-9]+$/;
-	    if (reg.test(password)) {
-		if (len < 20 && len >= 6) {
-	            document.getElementById("password_format").innerHTML="<h5 style='color:green'>OK</h5>";
-	            return true;
-	    	}
-		else {
-		    document.getElementById("password_format").innerHTML="<h5 style='color:red'>长度必须在6至20个字符之间!</h5>";
-	            return false;
-		}
-	    }
-	    else {
-	        document.getElementById("password_format").innerHTML="<h5 style='color:red'>只能使用字母或数字！</h5>";
-                return false;
-	    }
-	}
-
-	function checkPasswordSame() {
-	    var pswd_cf = document.getElementById("password_confirm").value;
-	    var pswd = document.getElementById("password").value;
-	    if ( pswd_cf == pswd ) {
-	        document.getElementById("password_same").innerHTML="<h5 style='color:green'>OK</h5>";
-	        return true;
-	    }
-	    else {
-	        document.getElementById("password_same").innerHTML="<h5 style='color:red'>两次密码不一致!</h5>";
-	        return false;
-	    }
+		return true;
 	}
 
 </script>
@@ -86,28 +22,41 @@
 		<fieldset>
 			<legend>事件信息</legend>
 			<div class="span3">
-			  <input type="text" name="name" id="name" style="width:280px;" onChange="checkUsernameLen()" placeholder="事件名" />
+			  <input type="text" name="name" id="name" style="width:280px;" placeholder="事件名" />
 			</div>
 			<div id="" class="span2" >&nbsp</div>
 
 			<div class="span3">
-			  <input type="text" name="description" id="description" style="width:280px;" onChange="checkEmailFormat()" placeholder="事件描述" />
+			  <input type="text" name="description" id="description" style="width:280px;" placeholder="事件描述" />
 			</div>
 			<div id="" class="span2" >&nbsp</div>
 
 			<div class="span3">
-			  <input type="text" name="host_organization" id="host_organization" style="width:280px;" onChange="checkPasswordFormat()" placeholder="举办组织" />
+			  <input type="text" name="host_organization" id="host_organization" style="width:280px;" placeholder="举办组织" />
 			</div>
 			<div id="" class="span2">&nbsp</div>
 			<div class="span3">
-			  <input type="text" name="start_time" id="start_time" style="width:280px;" onChange="checkPasswordSame()" placeholder="开始时间" />
+			  <input type="text" name="start_time" id="start_time" style="width:280px;" placeholder="开始时间" />
 			</div>
 			<div id="" class="span2">&nbsp</div>
 			<div class="span3">
-			  <input type="text" name="end_time" id="end_time" style="width:280px;" onChange="checkPasswordSame()" placeholder="结束时间" />
+			  <input type="text" name="end_time" id="end_time" style="width:280px;" placeholder="结束时间" />
 		  	</div>
 			<div class="span3">
-			  <input type="text" name="eventtype" id="eventtype" style="width:280px;" onChange="checkPasswordSame()" placeholder="事件类型ID" />
+			事件举办地点
+			<select name="place_id">
+				{% for item in place_list %}
+				<option value="{{ item.id }}" >{{item.name}}</option>
+				{% endfor %}
+			</select>
+		  	</div>
+			<div class="span3">
+			事件类型
+			<select name="event_type_id">
+				{% for item in event_type_list %}
+				<option value="{{ item.id }}" >{{item.name}}</option>
+				{% endfor %}
+			</select>
 		  	</div>
 		</fieldset>
 		

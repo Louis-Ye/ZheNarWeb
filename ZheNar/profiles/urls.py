@@ -11,5 +11,6 @@ urlpatterns = patterns('',
 	url(r'^_register/$', views._register, name='_register'),
 	url(r'^settings/$', views.settings, name='settings'),
 	url(r'^_settings/$', views._settings, name='_settings'),
+	url(r'^syncSuperUser/$', views.syncSuperUser, name='syncSuperUser'),#for sync the superuser into profile
 )
 
