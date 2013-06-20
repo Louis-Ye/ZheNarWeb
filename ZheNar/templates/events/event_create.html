@@ -17,7 +17,7 @@
 <div class="container" style="padding:40px">
 	<div class="span6">
 	<div name="register_form" class="span6">
-	<form action="{% url 'profiles:_register'  %}" method='post' onsubmit="return checkForm()" >  {% csrf_token %}
+	<form action="{% url 'events:_create'  %}" method='post' onsubmit="return checkForm()" >  {% csrf_token %}
 		<h2>事件创建</h2>
 		<fieldset>
 			<legend>事件信息</legend>

@@ -12,8 +12,10 @@ from events.models import Event, EventType, Icon
 from places.models import Place
 
 def index(request):
+	event_list = Event.objects.filter(status=2)
 	context = {
 			'page_title': "浙Nar儿的事件",
+			'event_list': event_list,
 	}
 	return render(request, "events/event_index.html", __login_proc(request, context))
 
@@ -38,26 +40,28 @@ def _create(request):
 	description = request.POST.get("description")
 	holder_id = request.user.id
 	host_organization = request.POST.get("host_organization")
-	start_time = request.POST.get("start_time")
-	end_time = request.POST.get("end_time")
+	start_time = datetime.now()#request.POST.get("start_time")
+	end_time = datetime.now() #request.POST.get("end_time")
 	place_id = request.POST.get("place_id")
 	event_type_id = request.POST.get("event_type_id")
 	
 	try:
 		obj_place = Place.objects.get(pk=place_id, status = 2)
 	except Place.DoesNotExist:
-		__goErrorPage(request, ['There is no such place', ])
+		return __goErrorPage(request, ['There is no such place', ])
 	try:
 		obj_place = EventType.objects.get(pk=event_type_id, status = 2)
 	except EventType.DoesNotExist:
-		__goErrorPage(request, ['There is no such event type', ])
+		return __goErrorPage(request, ['There is no such event type', ])
 	
 	form={}
 	if __judge_form(form):
 		event = Event(name=name, description=description, holder_id=holder_id, host_organization=host_organization, start_time=start_time, end_time=end_time, place_id=place_id, event_type_id=event_type_id)
 		event.save()
 	else:
-		__goErrorPage(request, ['Something wrong with your form', ])
+		return __goErrorPage(request, ['Something wrong with your form', ])
+
+	return HttpResponseRedirect(reverse("events:index"))
 
 
 def type_create(request):
