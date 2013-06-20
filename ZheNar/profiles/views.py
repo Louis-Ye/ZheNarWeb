@@ -73,7 +73,7 @@ def _register(request):
 		registerTime = datetime.now()
 	else:
 		return HttpResponseRedirect(reverse('index'))
-	
+
 	try:
 		upr = User.objects.get(username=username)	#check if there is duplicated username
 	except User.DoesNotExist:

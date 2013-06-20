@@ -35,12 +35,12 @@ class Event(models.Model):
 	status = models.SmallIntegerField(default = 1,choices = CHOICE_SET)
 	name = models.CharField(max_length = 255)
 	description = models.TextField(blank = True)
-	holder = models.ForeignKey(Profile, related_name='event_holder_set')
+	holder = models.ForeignKey(Profile, related_name='event_holder_set')#
 	host_organization = models.CharField(max_length = 255, null = True)
 	start_time = models.DateTimeField()
 	end_time = models.DateTimeField()
-	place = models.ForeignKey(Place)
-	event_type = models.ForeignKey(EventType)
+	place = models.ForeignKey(Place)#
+	event_type = models.ForeignKey(EventType)#
 	follower = models.ManyToManyField(Profile,related_name='event_follower_set')
 	
 	

@@ -1,5 +1,6 @@
 from django.db import models
 from profiles.models import Profile
+from django.contrib.auth.models import User
 # Create your models here.
 class Icon(models.Model):
 	name = models.CharField(unique=True,max_length=255)
@@ -32,7 +33,7 @@ class Place(models.Model):
 	)
 	status = models.SmallIntegerField(default = 1,choices = CHOICE_SET)
 	name = models.CharField(max_length = 255)
-	creater = models.ForeignKey(Profile)
+	creater = models.ForeignKey(User)
 	description = models.TextField(blank = True)
 	place_type = models.ForeignKey(PlaceType)
 	latitude = models.FloatField()

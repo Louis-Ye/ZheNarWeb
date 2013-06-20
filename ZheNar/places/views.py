@@ -3,6 +3,7 @@ from django.template import Template, Context, loader, RequestContext
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
+from django.contrib.auth.models import User
 from datetime import datetime
 from places.models import PlaceType,Place,Icon
 from profiles.models import Profile
@@ -49,14 +50,20 @@ def _create(request):
 		m_latitude = request.POST.get('latitude')
 		m_longitude = request.POST.get('longitude') 
 		m_description = request.POST.get('description')
+		m_creater_id = request.user.id
 	else:
 		return HttpResponseRedirect(reverse('index'))
 		
 	try:
 		place = Place.objects.get(name = m_place_name,latitude = m_latitude, longitude = m_longitude,description = m_description)
 	except Place.DoesNotExist:
+		try:
+			m_creater = User.objects.get(pk=m_creater_id)
+		except User.DoesNotExist:
+			return HttpResponseRedirect(reverse('index'))
+
 		m_place_type = PlaceType.objects.get(name = m_place_type_name)
-		place = Place(name = m_place_name,description = m_description, place_type = m_place_type,latitude = m_latitude, longitude = m_longitude,create_time = datetime.now())
+		place = Place(creater = m_creater, name = m_place_name,description = m_description, place_type = m_place_type,latitude = m_latitude, longitude = m_longitude,create_time = datetime.now())
 		place.save()
 		return HttpResponseRedirect(reverse('places:index'))
 	
