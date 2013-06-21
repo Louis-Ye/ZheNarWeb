@@ -18,8 +18,11 @@ def login_proc(request):
 
 def index(request):
 	place_list = Place.objects.filter(status = 2)
+	event_list_query = Place.objects.filter(status = 2)
+	event_list = [event for event in event_list_query if not event.if_event_was_expired()]
 	c = Context({"page_title": "浙哪儿欢迎你~",
-				 "places":place_list,})
+				 "places":place_list,
+				 "events":event_list,})
 	return render_to_response('ZheNar/index.html',c,context_instance = RequestContext(request,processors=[login_proc]))
 
     
