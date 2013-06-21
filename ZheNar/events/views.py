@@ -13,7 +13,8 @@ from events.models import Event, EventType, Icon
 from places.models import Place
 
 def index(request):
-	event_list = Event.objects.filter(status=2)
+	event_list_query = Event.objects.filter(status=2)
+	event_list = [event for event in event_list_query if not event.if_event_was_expired()]
 	context = {
 			'page_title': "浙Nar儿的事件",
 			'event_list': event_list,
