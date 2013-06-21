@@ -5,7 +5,7 @@ from django.template import Context, loader
 from django.http import HttpResponseRedirect, HttpResponse
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_POST, require_GET
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.core.urlresolvers import reverse
@@ -16,6 +16,7 @@ from datetime import datetime
 import json
 
 from profiles.models import Profile
+from places.models import Place
 
 def index(request):
 	return HttpResponse("index!")
@@ -150,4 +151,34 @@ def __get_user_info(upr):
 	}
 	return user_info
 
-#-------------------------------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------------##------------------------------ Places
+
+@csrf_exempt
+@require_GET
+def place(request):
+	if not request.user.is_authenticated():
+		return HttpResponse(json.dumps({"error_code": "NotLoggedIn", }), status=403)
+	else:
+		try:
+			Place_list = Place.objects.filter(status = "Accepted")
+		except Place.DoesNotExist:
+			return HttpResponse(json.dumps({"error": "地点列表为空", }))
+		
+		place_info = {}
+		for item in Place_list:
+			place_info[item.id] = __get_place_info(item)
+		
+		return HttpResponse(json.dumps(place_info), mimetype='application/json')
+			
+def __get_place_info(item):
+	place_info = {
+		"name"			:	item.name,
+		"description" 	:	item.description,
+		"latitude"		:	item.latitude,
+		"longitude"		:	item.longitude,
+		"type"			:	item.place_type,
+	}
+	return place_info
+			
+def place_type(request):
+	return HttpResponse("Hello")

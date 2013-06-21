@@ -3,8 +3,9 @@ from django.conf.urls import patterns, url
 from api import views
 
 urlpatterns = patterns('',
-	url(r'^$',			views.index, name='index'),
+	url(r'^$',				views.index, name='index'),
 	url(r'^place/$',		views.place, name='place'),
+	url(r'^place/type$',	views.place_type,name='place_type'),
 	url(r'^event/$',		views.event, name='event'),
 	url(r'^user/$',			views.user, name='user'),
 	url(r'^user/reg/$',		views.user_reg, name='user_reg'),
