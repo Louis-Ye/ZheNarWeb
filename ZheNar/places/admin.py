@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.contrib import admin
 from places.models import PlaceType, Place, Icon
 
@@ -7,10 +8,34 @@ class PlaceAdmin(admin.ModelAdmin):
 	list_filter = ('create_time',)
 	ordering = ('-create_time',)
 	fields = ('description','place_type','status','creater',)
+	
+	actions = ['make_accepted','make_rejected']
+	
+	def make_rejected(self, request, queryset):
+		queryset.update(status = '3')
+	
+	make_rejected.short_description = '拒绝选择的请求'
+	
+	def make_accepted(self, request, queryset):
+		queryset.update(status = '2')
+	
+	make_accepted.short_description = '接受选择的请求'
 
 class PlaceTypeAdmin(admin.ModelAdmin):
 	list_display = ('name','icon','status',)
 	search_fields = ('name','icon',)
+	
+	actions = ['make_accepted','make_rejected']
+	
+	def make_rejected(self, request, queryset):
+		queryset.update(status = '3')
+	
+	make_rejected.short_description = '拒绝选择的请求'
+	
+	def make_accepted(self, request, queryset):
+		queryset.update(status = '2')
+	
+	make_accepted.short_description = '接受选择的请求'
 	
 class IconAdmin(admin.ModelAdmin):
 	list_display = ('name',)

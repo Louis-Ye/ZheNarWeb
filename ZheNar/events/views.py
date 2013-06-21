@@ -7,6 +7,7 @@ from django.views import generic
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from datetime import datetime
+import time
 
 from events.models import Event, EventType, Icon
 from places.models import Place
@@ -40,8 +41,10 @@ def _create(request):
 	description = request.POST.get("description")
 	holder_id = request.user.id
 	host_organization = request.POST.get("host_organization")
-	start_time = datetime.now()#request.POST.get("start_time")
-	end_time = datetime.now() #request.POST.get("end_time")
+	start_time_string = request.POST.get("start_time")
+	start_time = datetime.strptime(start_time_string,"%m/%d/%Y %H:%M:%S")
+	end_time_string = request.POST.get("end_time")
+	end_time = datetime.strptime(end_time_string,"%m/%d/%Y %H:%M:%S")
 	place_id = request.POST.get("place_id")
 	event_type_id = request.POST.get("event_type_id")
 	
@@ -111,7 +114,7 @@ def __goErrorPage(request, error_list):
 	return render(request, "error/error_popup.html", __login_proc(request, {'error_list': error_list}))
 	
 
-""" 用于插入icon用，已插入则无需再用
+# 用于插入icon用，已插入则无需再用
 def insert(request):
 	list = []
 	f = open('static/map_icon/icons/icon_list.txt','r')
@@ -121,5 +124,5 @@ def insert(request):
 		icon = Icon(name= item)
 		icon.save()
 	return HttpResponseRedirect(reverse('places:index'))
-"""
+
 

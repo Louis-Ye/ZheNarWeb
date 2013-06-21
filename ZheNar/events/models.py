@@ -1,7 +1,9 @@
+# -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from profiles.models import Profile
 from places.models import Place
+from django.utils import timezone
 
 class Icon(models.Model):
 	name = models.CharField(unique=True,max_length=255)
@@ -37,19 +39,21 @@ class Event(models.Model):
 	description = models.TextField(blank = True)
 	holder = models.ForeignKey(Profile, related_name='event_holder_set')#
 	host_organization = models.CharField(max_length = 255, null = True)
-	start_time = models.DateTimeField()
-	end_time = models.DateTimeField()
-	place = models.ForeignKey(Place)#
-	event_type = models.ForeignKey(EventType)#
+	start_time = models.DateTimeField('Time that activities started')
+	end_time = models.DateTimeField('Time that activities ended')
+	place = models.ForeignKey(Place)
+	event_type = models.ForeignKey(EventType)
 	follower = models.ManyToManyField(Profile,related_name='event_follower_set')
 	
 	
 	def __unicode__(self):
 		return self.name
 		
-	def event_lasting_time(self):
-		return self.end_time - self.startTime 
-	
+	def if_event_was_expired(self):
+		return self.end_time < timezone.now()
+
+	if_event_was_expired.boolean = True
+	if_event_was_expired.short_description = "Expired?"
 	
 	class Meta:
 		ordering = ['name']

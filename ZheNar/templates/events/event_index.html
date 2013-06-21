@@ -1,17 +1,35 @@
 {% extends "base.html" %}
+{% block css %}
+<style>
+img.media-object{
+	height:100px;
+	width:100px;
+}
+</style>
+{% endblock %}
+{% block script %}
+{% endblock %}
 {% block main %}
 <div class="container" style="padding:50px">
-	<div class="container-fluid">
+	<div class="container-fluid" style="margin-top:40px">
 		{% for event in event_list %}
 		<div class="row media">
 			<a class="pull-left" href="#">
-				<img class="media-object" data-src="holder.js/64x64">
+				<img class="media-object img-polaroid" src="/static/image/default_event_image.png">
 			</a>
 			<div class="media-body">
-				<h4 class="media-heading">{{event.name}}</h4>
-				<div class="media">
-					{{ event.description }}
-				</div>
+				<table class="table table-hover">
+					<tr style="height:">
+						<td><h4 class="media-heading">{{event.name}}</h4></td>
+						<td><h5 class="media-heading">开始时间:</h5>{{event.start_time}}</td>
+						<td><h5 class="media-heading">结束时间:</h5>{{event.end_time}}</td>
+						<td><h5 class="media-heading">组织:</h5>{{event.host_organization}}</td>
+						<td><h5 class="media-heading">地点:</h5>{{event.place}}</td>
+					</tr>
+					<div class="media">
+						<a class="btn btn-info pull-right" style="margin:10px 0 10px 0;" href="#">更多信息</a>
+					</div>
+				</table>
 			</div>
 		</div>
 		{% endfor %}

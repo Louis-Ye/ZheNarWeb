@@ -42,8 +42,8 @@ def _login(request):
 	else :
 		if upr.is_active == 0:					#This user has not been active
 			return __goErrorPage(request, ["This user have been disactivated", ])
-		if upr.is_superuser == 1:				#Superuser should not login in this page
-			return __goErrorPage(request, ["Superuse should not login in this page", ])
+		#if upr.is_superuser == 1:				#Superuser should not login in this page
+		#	return __goErrorPage(request, ["Superuser should not login in this page", ])
 	
 	login(request, upr)		#log in
 	return HttpResponseRedirect(reverse('index'))

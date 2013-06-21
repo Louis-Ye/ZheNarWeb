@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 
 {% block css %}
+<style>
+	.well{
+		padding:0px;
+	}
+	.input-append{
+		margin:5px 10px 5px;
+	}
+</style>
 {% endblock %}
 
 {% block script %}
@@ -8,7 +16,14 @@
 	function checkForm() {
 		return true;
 	}
-
+	$(function() {
+		$('#datetimepicker1').datetimepicker({
+			language: 'pt-BR',
+		});
+		$('#datetimepicker2').datetimepicker({
+			language: 'pt-BR',
+		});
+	});
 </script>
 
 {% endblock %}
@@ -24,24 +39,26 @@
 			<div class="span3">
 			  <input type="text" name="name" id="name" style="width:280px;" placeholder="事件名" />
 			</div>
-			<div id="" class="span2" >&nbsp</div>
-
-			<div class="span3">
-			  <input type="text" name="description" id="description" style="width:280px;" placeholder="事件描述" />
-			</div>
-			<div id="" class="span2" >&nbsp</div>
 
 			<div class="span3">
 			  <input type="text" name="host_organization" id="host_organization" style="width:280px;" placeholder="举办组织" />
 			</div>
-			<div id="" class="span2">&nbsp</div>
-			<div class="span3">
-			  <input type="text" name="start_time" id="start_time" style="width:280px;" placeholder="开始时间" />
+			<div id="datetimepicker1" class="span3 input-append" style="margin-left:30px;">
+				<input id="start_time" name="start_time" placeholder="开始时间" data-format="MM/dd/yyyy hh:mm:ss" type="text"></input>
+				<span class="add-on">
+				<i data-time-icon="icon-time" data-date-icon="icon-calendar">
+				</i>
+				</span>
 			</div>
-			<div id="" class="span2">&nbsp</div>
-			<div class="span3">
-			  <input type="text" name="end_time" id="end_time" style="width:280px;" placeholder="结束时间" />
-		  	</div>
+			<div id="datetimepicker2" class="span3 input-append" style="margin-left:30px;">
+				<input id="end_time" name="end_time" placeholder="结束时间" data-format="MM/dd/yyyy hh:mm:ss" type="text"></input>
+				<span class="add-on">
+				<i data-time-icon="icon-time" data-date-icon="icon-calendar">
+				</i>
+				</span>
+			</div>
+		
+		  	
 			<div class="span3">
 			事件举办地点
 			<select name="place_id">
@@ -52,16 +69,18 @@
 		  	</div>
 			<div class="span3">
 			事件类型
-			<select name="event_type_id">
-				{% for item in event_type_list %}
-				<option value="{{ item.id }}" >{{item.name}}</option>
-				{% endfor %}
-			</select>
+				<select name="event_type_id">
+					{% for item in event_type_list %}
+					<option value="{{ item.id }}" >{{item.name}}</option>
+					{% endfor %}
+				</select>
+		  	</div>
+		  	<div class="span3">
+		  		<input type="text" name="description" id="description" style="width:280px;" placeholder="事件描述" />
 		  	</div>
 		</fieldset>
 		
-	  	<div style='height:30px;'>&nbsp</div>
-        	<button class="btn btn-large btn-primary span2" type="submit">提交</button>
+        <button class="btn btn-large btn-primary span2" type="submit">提交</button>
 	</form>
 	</div>
 </div>
