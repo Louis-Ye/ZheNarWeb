@@ -7,7 +7,6 @@ class PlaceAdmin(admin.ModelAdmin):
 	search_fields = ('name','creater',)
 	list_filter = ('create_time',)
 	ordering = ('-create_time',)
-	fields = ('description','place_type','status','creater',)
 	
 	actions = ['make_accepted','make_rejected']
 	

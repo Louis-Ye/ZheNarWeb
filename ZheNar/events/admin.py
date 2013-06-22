@@ -7,7 +7,6 @@ class EventAdmin(admin.ModelAdmin):
 	search_fields = ('name','host_organization')
 	list_filter = ('end_time',)
 	ordering = ('-end_time',)
-	fields = ('description','event_type','status','holder',)
 	actions = ['make_accepted','make_rejected']
 	
 	def make_rejected(self, request, queryset):
