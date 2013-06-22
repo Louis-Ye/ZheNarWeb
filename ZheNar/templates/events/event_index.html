@@ -5,6 +5,9 @@ img.media-object{
 	height:100px;
 	width:100px;
 }
+.image-list{
+	margin-top: 15px;
+}
 </style>
 {% endblock %}
 {% block script %}
@@ -18,6 +21,14 @@ img.media-object{
 				<img class="media-object img-polaroid" src="/static/image/default_event_image.png">
 			</a>
 			<div class="media-body">
+				<div class="image-list pull-left">
+					<img src="/static/map_icon/icons/{{event.event_type.icon.name}}">
+					<img src="/static/map_icon/icons/{{event.place.place_type.icon.name}}">
+				</div>
+				<div class="media pull-right">
+					<a class="btn btn-info" style="margin:10px 0 10px 0;" href="#">更多信息</a>
+					<a class="btn btn-info" style="margin:10px 0 10px 0;" href="#"><strong>+1</strong></a>
+				</div>
 				<table class="table table-hover">
 					<tr style="height:">
 						<td><h4 class="media-heading">{{event.name}}</h4></td>
@@ -26,10 +37,6 @@ img.media-object{
 						<td><h5 class="media-heading">组织:</h5>{{event.host_organization}}</td>
 						<td><h5 class="media-heading">地点:</h5>{{event.place}}</td>
 					</tr>
-					<div class="media pull-right">
-						<a class="btn btn-info" style="margin:10px 0 10px 0;" href="#">更多信息</a>
-						<a class="btn btn-info" style="margin:10px 0 10px 0;" href="#"><strong>+1</strong></a>
-					</div>
 				</table>
 			</div>
 		</div>

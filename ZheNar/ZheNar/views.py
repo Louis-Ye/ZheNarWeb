@@ -5,6 +5,7 @@ from django.http import HttpResponse
 #from django.contrib.gis.maps.google.gmap import GoogleMap
 #from django.contrib.gis.maps.google.overlays import GMarker, GEvent
 from places.models import Place
+from events.models import Event
 import datetime
 
 def login_proc(request):
@@ -18,7 +19,7 @@ def login_proc(request):
 
 def index(request):
 	place_list = Place.objects.filter(status = 2)
-	event_list_query = Place.objects.filter(status = 2)
+	event_list_query = Event.objects.filter(status = 2)
 	event_list = [event for event in event_list_query if not event.if_event_was_expired()]
 	c = Context({"page_title": "浙哪儿欢迎你~",
 				 "places":place_list,

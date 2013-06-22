@@ -115,7 +115,7 @@ def __goErrorPage(request, error_list):
 	return render(request, "error/error_popup.html", __login_proc(request, {'error_list': error_list}))
 	
 
-# 用于插入icon用，已插入则无需再用
+# 用于插入icon&place_type用，已插入则无需再用
 def insert(request):
 	list = []
 	f = open('static/map_icon/icons/icon_list.txt','r')
@@ -124,6 +124,8 @@ def insert(request):
 	for item in list:
 		icon = Icon(name= item)
 		icon.save()
-	return HttpResponseRedirect(reverse('places:index'))
+	
+
+	return HttpResponseRedirect(reverse('events:index'))
 
 
