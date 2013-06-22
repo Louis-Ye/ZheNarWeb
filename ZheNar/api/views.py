@@ -149,19 +149,16 @@ def __get_user_info(upr):
 @csrf_exempt
 @require_GET
 def place(request):
-	if not request.user.is_authenticated():
-		return HttpResponse(json.dumps({"error_code": "用户尚未登录", }), status=403)
-	else:
-		try:
-			place_list = Place.objects.filter(status = 2)
-		except Place.DoesNotExist:
-			return HttpResponse(json.dumps({"error": "地点列表为空", }))
-		
-		place_info = {}
-		for item in place_list:
-			place_info[item.id] = __get_place_info(item)
-		
-		return HttpResponse(json.dumps(place_info), mimetype='application/json')
+	try:
+		place_list = Place.objects.filter(status = 2)
+	except Place.DoesNotExist:
+		return HttpResponse(json.dumps({"error": "地点列表为空", }))
+	
+	place_info = {}
+	for item in place_list:
+		place_info[item.id] = __get_place_info(item)
+	
+	return HttpResponse(json.dumps(place_info), mimetype='application/json')
 			
 def __get_place_info(item):
 	place_info = {
@@ -177,20 +174,17 @@ def __get_place_info(item):
 @csrf_exempt
 @require_GET			
 def place_type(request):
-	if not request.user.is_authenticated():
-		return HttpResponse(json.dumps({"error_code": "用户尚未登录", }), status=403)
-	else:
-		try:
-			place_type_list = PlaceType.objects.filter(status = 2)
-		except PlaceType.DoesNotExist:
-			return HttpResponse(json.dumps({"error": "地点类型列表为空", }))
-			
-		place_type_info = []
+	try:
+		place_type_list = PlaceType.objects.filter(status = 2)
+	except PlaceType.DoesNotExist:
+		return HttpResponse(json.dumps({"error": "地点类型列表为空", }))
 		
-		for item in place_type_list:
-			place_type_info.append(__get_place_type_info(item))
-			
-		return HttpResponse(json.dumps(place_type_info), mimetype='application/json') 
+	place_type_info = []
+	
+	for item in place_type_list:
+		place_type_info.append(__get_place_type_info(item))
+		
+	return HttpResponse(json.dumps(place_type_info), mimetype='application/json') 
 		
 def __get_place_type_info(item):
 	place_type_info = {
@@ -204,20 +198,17 @@ def __get_place_type_info(item):
 @csrf_exempt
 @require_GET
 def event(request):
-	if not request.user.is_authenticated():
-		return HttpResponse(json.dumps({"error_code": "用户尚未登录", }), status=403)
-	else:
-		try:
-			event_list_query = Event.objects.filter(status = 2)
-			event_list = [event for event in event_list_query if not event.if_event_was_expired()]
-		except Event.DoesNotExist:
-			return HttpResponse(json.dumps({"error": "事件列表为空", }))
+	try:
+		event_list_query = Event.objects.filter(status = 2)
+		event_list = [event for event in event_list_query if not event.if_event_was_expired()]
+	except Event.DoesNotExist:
+		return HttpResponse(json.dumps({"error": "事件列表为空", }))
 
-		event_info = []
-		for item in event_list:
-			event_info.append(__get_event_info(item))
+	event_info = []
+	for item in event_list:
+		event_info.append(__get_event_info(item))
 
-		return HttpResponse(json.dumps(event_info), mimetype='application/json')
+	return HttpResponse(json.dumps(event_info), mimetype='application/json')
 
 def __get_event_info(item):
 	event_info = {
@@ -238,20 +229,17 @@ def __get_event_info(item):
 @csrf_exempt
 @require_GET			
 def event_type(request):
-	if not request.user.is_authenticated():
-		return HttpResponse(json.dumps({"error_code": "用户尚未登录", }), status=403)
-	else:
-		try:
-			event_type_list = EventType.objects.filter(status = 2)
-		except EventType.DoesNotExist:
-			return HttpResponse(json.dumps({"error": "事件类型列表为空", }))
+	try:
+		event_type_list = EventType.objects.filter(status = 2)
+	except EventType.DoesNotExist:
+		return HttpResponse(json.dumps({"error": "事件类型列表为空", }))
 
-		event_type_info = []
+	event_type_info = []
 
-		for item in event_type_list:
-			event_type_info.append(__get_event_type_info(item))
+	for item in event_type_list:
+		event_type_info.append(__get_event_type_info(item))
 
-		return HttpResponse(json.dumps(event_type_info), mimetype='application/json') 
+	return HttpResponse(json.dumps(event_type_info), mimetype='application/json') 
 
 def __get_event_type_info(item):
 	event_type_info = {
