@@ -224,10 +224,10 @@ def __get_event_info(item):
 		"id"			:	item.id,
 		"name"			:	item.name,
 		"description" 	:	item.description,
-		"host"			:	item.holder,
+		"host"			:	item.holder.name,
 		"organization"	:	item.host_organization,
-		"start_time"	:	item.start_time,
-		"end_time"		:	item.end_time,
+		"start_time"	:	item.start_time.isoformat(),
+		"end_time"		:	item.end_time.isoformat(),
 		"place_id"		:	item.place.id,
 		"address"		:	item.address,
 		"follower_count":	100,	#暂时木有，等待添加#item.count_follower()
