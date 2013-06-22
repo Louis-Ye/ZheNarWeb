@@ -118,8 +118,7 @@
 					<textarea id="desc" name="description" class="input-block-level" placeholder="具体描述信息" rows="14" cols="40"></textarea> 
 				</fieldset>
 				<button class="btn btn-large btn-primary span2" type="submit">创建</button>
-				<a class="btn btn-large btn-primary span2" href="{% url 'places:index' %}">取消</a>
-			</div>
+				<button class="btn btn-large btn-primary span2" onclick="location.href='{% url 'places:index' %}'">取消</button>
 		  
 		</form>
 	</div>
