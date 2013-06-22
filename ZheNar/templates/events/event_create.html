@@ -26,7 +26,8 @@
 		var start = $("#start_time").val();
 		var end = $("#end_time").val();
 		var desc = $("#description").val();
-		if(org && start && end && desc)
+		var addr = $("#address").val();
+		if(org && start && end && desc && addr)
 		{
 			return true;
 		}
@@ -56,6 +57,7 @@
 				<div class="span4 pull-left">
 					<input type="text" name="name" id="name" style="width:280px;" placeholder="事件名" />
 					<input type="text" name="host_organization" id="host_organization" style="width:280px;" placeholder="举办组织" />
+					<input type="text" name="address" id="address" style="width:280px;" placeholder="具体地点" />
 					<div id="datetimepicker1" class="span3 input-append">
 						<input id="start_time" name="start_time" placeholder="开始时间" data-format="MM/dd/yyyy hh:mm:ss" type="text"></input>
 						<span class="add-on">
@@ -88,10 +90,10 @@
 				  	</div>
 				</div>
 			  	<div class="span8 pull-right" style="margin-left:0px">
-			  		<textarea name="description" id="description" class="input-block-level" placeholder="具体描述信息" rows="14" cols="40"></textarea> 
+			  		<textarea name="description" id="description" class="input-block-level" placeholder="具体描述信息" rows="16" cols="40"></textarea> 
 			  	</div>
 			</fieldset>
-	        <button class="btn btn-large btn-primary span2" type="submit">提交</button>
+	        <button class="btn btn-large btn-primary span2 offset4" type="submit">提交</button>
 	        <button class="btn btn-large btn-primary span2" onclick="location.href='{% url 'events:index' %}'">取消</button>
 		</form>
 	</div>

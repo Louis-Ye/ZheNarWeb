@@ -61,27 +61,60 @@
 			var zoomLevel = map.getZoom();
 			for(i = 0; i < count ; i++)
 			{
-				position[i] = new google.maps.LatLng(lat[i],lng[i])
-				marker = new google.maps.Marker({
-					 	position: position[i],
-					 	map: map,
-					 	icon: icon_base + myicon[i],
-					 	title: 'marker No.'+i,
-					 	html: content[i]
-					});
-				infowin = new google.maps.InfoWindow({
-							content: 'Wating for adding...',
-							maxWidth: 200
+				if( zoom_level[i] <= zoomLevel)
+				{
+					position[i] = new google.maps.LatLng(lat[i],lng[i])
+					marker = new google.maps.Marker({
+					 		position: position[i],
+					 		map: map,
+					 		icon: icon_base + myicon[i],
+					 		title: 'marker No.'+i,
+					 		html: content[i]
 					 	});
-					 	
-				google.maps.event.addListener(marker, 'click', function() {
-						infowin.setContent(this.html);
-						infowin.open(map, this);
-				});
-				markers[i] = marker;
+					infowin = new google.maps.InfoWindow({
+								content: 'Wating for adding...',
+								maxWidth: 200
+					 	  	});
+					 	  	
+					google.maps.event.addListener(marker, 'click', function() {
+							infowin.setContent(this.html);
+							infowin.open(map, this);
+					});
+					markers[i] = marker;
+				}
 			}
 			
-
+			google.maps.event.addListener(map, 'zoom_changed', function() {
+			  var zoomLevel = map.getZoom();
+			  for(i = 0; i < count; i ++)
+			  {
+				  if( zoom_level[i] <= zoomLevel)
+				  {
+						position[i] = new google.maps.LatLng(lat[i],lng[i])
+						marker = new google.maps.Marker({
+								position: position[i],
+								map: map,
+								icon: icon_base + myicon[i],
+								title: 'marker No.'+i,
+								html: content[i]
+							});
+						infowin = new google.maps.InfoWindow({
+									content: 'Wating for adding...',
+									maxWidth: 200
+								});
+								
+						google.maps.event.addListener(marker, 'click', function() {
+								infowin.setContent(this.html);
+								infowin.open(map, this);
+						});
+						markers[i] = marker;
+				  }
+				  else
+				  {
+					  markers[i].setMap(null);
+				  }
+			  }
+			});
 	 	}
 
 		

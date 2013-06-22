@@ -32,7 +32,6 @@ class Place(models.Model):
 	(3,"Rejected"),
 	)
 	ZOOM_SET = (
-	(15,"Super Level"),
 	(16,"Large Level"),
 	(17,"Middle Level"),
 	(18,"Bottom Level"),

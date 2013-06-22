@@ -48,6 +48,7 @@ def _create(request):
 	end_time = datetime.strptime(end_time_string,"%m/%d/%Y %H:%M:%S")
 	place_id = request.POST.get("place_id")
 	event_type_id = request.POST.get("event_type_id")
+	address = request.POST.get("address")
 	
 	try:
 		obj_place = Place.objects.get(pk=place_id, status = 2)
@@ -60,7 +61,7 @@ def _create(request):
 	
 	form={}
 	if __judge_form(form):
-		event = Event(name=name, description=description, holder_id=holder_id, host_organization=host_organization, start_time=start_time, end_time=end_time, place_id=place_id, event_type_id=event_type_id)
+		event = Event(name=name, description=description, holder_id=holder_id, host_organization=host_organization, start_time=start_time, end_time=end_time, place_id=place_id, event_type_id=event_type_id, address = address)
 		event.save()
 	else:
 		return __goErrorPage(request, ['Something wrong with your form', ])
