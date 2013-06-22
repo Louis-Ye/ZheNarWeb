@@ -44,7 +44,7 @@ class Event(models.Model):
 	place = models.ForeignKey(Place)
 	event_type = models.ForeignKey(EventType)
 	follower = models.ManyToManyField(Profile,related_name='event_follower_set')
-	
+	address = models.CharField(max_length = 255,default = 'Not mentioned')
 	
 	def __unicode__(self):
 		return self.name

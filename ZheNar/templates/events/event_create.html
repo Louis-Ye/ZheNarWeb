@@ -6,16 +6,13 @@
 		padding:0px;
 	}
 	.input-append{
-		margin:5px 10px 5px;
+		margin:10px 0px 10px 0px;
 	}
 </style>
 {% endblock %}
 
 {% block script %}
 <script>
-	function checkForm() {
-		return true;
-	}
 	$(function() {
 		$('#datetimepicker1').datetimepicker({
 			language: 'pt-BR',
@@ -24,64 +21,78 @@
 			language: 'pt-BR',
 		});
 	});
+	function check_form(){
+		var org = $("#host_organization").val()
+		var start = $("#start_time").val();
+		var end = $("#end_time").val();
+		var desc = $("#description").val();
+		if(org && start && end && desc)
+		{
+			return true;
+		}
+		$(".alert").removeClass("out");
+		$(".alert").addClass("in");
+		return false;
+	}
+	function close_alert(){
+		$(".alert").removeClass("in");
+		$(".alert").addClass("out");
+	}
 </script>
-
 {% endblock %}
 
 {% block main %}
 <div class="container" style="padding:40px">
-	<div class="span6">
-	<div name="register_form" class="span6">
-	<form action="{% url 'events:_create'  %}" method='post' onsubmit="return checkForm()" >  {% csrf_token %}
-		<h2>事件创建</h2>
-		<fieldset>
-			<legend>事件信息</legend>
-			<div class="span3">
-			  <input type="text" name="name" id="name" style="width:280px;" placeholder="事件名" />
-			</div>
-
-			<div class="span3">
-			  <input type="text" name="host_organization" id="host_organization" style="width:280px;" placeholder="举办组织" />
-			</div>
-			<div id="datetimepicker1" class="span3 input-append" style="margin-left:30px;">
-				<input id="start_time" name="start_time" placeholder="开始时间" data-format="MM/dd/yyyy hh:mm:ss" type="text"></input>
-				<span class="add-on">
-				<i data-time-icon="icon-time" data-date-icon="icon-calendar">
-				</i>
-				</span>
-			</div>
-			<div id="datetimepicker2" class="span3 input-append" style="margin-left:30px;">
-				<input id="end_time" name="end_time" placeholder="结束时间" data-format="MM/dd/yyyy hh:mm:ss" type="text"></input>
-				<span class="add-on">
-				<i data-time-icon="icon-time" data-date-icon="icon-calendar">
-				</i>
-				</span>
-			</div>
-		
-		  	
-			<div class="span3">
-			事件举办地点
-			<select name="place_id">
-				{% for item in place_list %}
-				<option value="{{ item.id }}" >{{item.name}}</option>
-				{% endfor %}
-			</select>
-		  	</div>
-			<div class="span3">
-			事件类型
-				<select name="event_type_id">
-					{% for item in event_type_list %}
-					<option value="{{ item.id }}" >{{item.name}}</option>
-					{% endfor %}
-				</select>
-		  	</div>
-		  	<div class="span3">
-		  		<input type="text" name="description" id="description" style="width:280px;" placeholder="事件描述" />
-		  	</div>
-		</fieldset>
-		
-        <button class="btn btn-large btn-primary span2" type="submit">提交</button>
-	</form>
+	<div class="alert alert-block alert-error fade out" data-alert="alert">
+		<button class="close" type="button" onclick="close_alert();">×</button>
+		<strong>错误</strong>
+		请确保表单填写完毕，并且已在地图上设置过位置标记，再次提交
+	</div>
+	<div name="register_form" class="span12">
+		<form action="{% url 'events:_create'  %}" method='post' onsubmit="return check_form();" >  {% csrf_token %}
+			<h2>事件创建</h2>
+			<fieldset>
+				<legend>事件信息</legend>
+				<div class="span4 pull-left">
+					<input type="text" name="name" id="name" style="width:280px;" placeholder="事件名" />
+					<input type="text" name="host_organization" id="host_organization" style="width:280px;" placeholder="举办组织" />
+					<div id="datetimepicker1" class="span3 input-append">
+						<input id="start_time" name="start_time" placeholder="开始时间" data-format="MM/dd/yyyy hh:mm:ss" type="text"></input>
+						<span class="add-on">
+						<i data-time-icon="icon-time" data-date-icon="icon-calendar">
+						</i>
+						</span>
+					</div>
+					<div id="datetimepicker2" class="span3 input-append">
+						<input id="end_time" name="end_time" placeholder="结束时间" data-format="MM/dd/yyyy hh:mm:ss" type="text"></input>
+						<span class="add-on">
+						<i data-time-icon="icon-time" data-date-icon="icon-calendar">
+						</i>
+						</span>
+					</div>
+					<div class="span3" style="margin-left:0px">
+					事件举办地点
+					<select name="place_id">
+						{% for item in place_list %}
+						<option value="{{ item.id }}" >{{item.name}}</option>
+						{% endfor %}
+					</select>
+				  	</div>
+					<div class="span3" style="margin-left:0px">
+					事件类型
+						<select name="event_type_id">
+							{% for item in event_type_list %}
+							<option value="{{ item.id }}" >{{item.name}}</option>
+							{% endfor %}
+						</select>
+				  	</div>
+				</div>
+			  	<div class="span8 pull-right" style="margin-left:0px">
+			  		<textarea name="description" id="description" class="input-block-level" placeholder="具体描述信息" rows="14" cols="40"></textarea> 
+			  	</div>
+			</fieldset>
+	        <button class="btn btn-large btn-primary span2" type="submit">提交</button>
+		</form>
 	</div>
 </div>
 {% endblock %}
