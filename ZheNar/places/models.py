@@ -10,10 +10,9 @@ class Icon(models.Model):
 	
 class PlaceType(models.Model):
 	STATUS_SET = (
-	(15,"Super Level"),
-	(16,"Large Level"),
-	(17,"Middle Level"),
-	(18,"Bottom Level"),
+	(1,"Pending"),
+	(2,"Accepted"),
+	(3,"Rejected"),
 	)
 	status = models.SmallIntegerField(default = 1,choices = STATUS_SET)
 	name = models.CharField(max_length = 255,blank=False)
@@ -33,10 +32,12 @@ class Place(models.Model):
 	(3,"Rejected"),
 	)
 	ZOOM_SET = (
-	(1,"Pending"),
-	(2,"Accepted"),
-	(3,"Rejected"),
+	(15,"Super Level"),
+	(16,"Large Level"),
+	(17,"Middle Level"),
+	(18,"Bottom Level"),
 	)
+
 	status = models.SmallIntegerField(default = 1,choices = CHOICE_SET)
 	name = models.CharField(max_length = 255)
 	creater = models.ForeignKey(User)
