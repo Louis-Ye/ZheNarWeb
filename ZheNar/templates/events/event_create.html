@@ -72,22 +72,14 @@
 						</i>
 						</span>
 					</div>
-					<div class="span3" style="margin-left:0px">
-					事件举办地点
-					<select name="place_id">
-						{% for item in place_list %}
-						<option value="{{ item.id }}" >{{item.name}}</option>
-						{% endfor %}
-					</select>
-				  	</div>
-					<div class="span3" style="margin-left:0px">
-					事件类型
+					<div class="span3" style="margin:12px 0px 0px 0px;">
+						事件类型
 						<select name="event_type_id">
 							{% for item in event_type_list %}
 							<option value="{{ item.id }}" >{{item.name}}</option>
 							{% endfor %}
 						</select>
-				  	</div>
+					</div>
 				</div>
 			  	<div class="span8 pull-right" style="margin-left:0px">
 	<div class="fileupload fileupload-new span3" data-provides="fileupload">
@@ -96,7 +88,20 @@
 	    <span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" name="event_pic" id="event_pic"/></span>
 	    <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
 	  </div>
+	  <div class="span3">&nbsp</div>
+
+	<div class="span3" style="margin-left:0px">
+		事件举办地点
+		<select name="place_id">
+			{% for item in place_list %}
+			<option value="{{ item.id }}" >{{item.name}}</option>
+			{% endfor %}
+		</select>
+	  	</div>
+		<div class="span3" style="margin-left:0px">
+  	</div>
 	</div>
+
 					
 			  		<textarea name="description" id="description" class="span5" placeholder="具体描述信息" rows="16" cols="40"></textarea> 
 			  	</div>
