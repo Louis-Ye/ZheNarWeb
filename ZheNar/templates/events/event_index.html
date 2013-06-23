@@ -11,6 +11,51 @@ img.media-object{
 </style>
 {% endblock %}
 {% block script %}
+<script>
+	$(document).ready(function()
+	{
+		function getCookie(name) {
+			var cookieValue = null;
+			if (document.cookie && document.cookie != '') {
+				var cookies = document.cookie.split(';');
+				for (var i = 0; i < cookies.length; i++) {
+					var cookie = jQuery.trim(cookies[i]);
+					// Does this cookie string begin with the name we want?
+					if (cookie.substring(0, name.length + 1) == (name + '=')) {
+						cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+						break;
+					}
+				}
+			}
+			return cookieValue;
+		}
+		var csrftoken = getCookie('csrftoken');
+		function csrfSafeMethod(method) {
+			// these HTTP methods do not require CSRF protection
+			return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+		}
+		$.ajaxSetup({
+			crossDomain: false, // obviates need for sameOrigin test
+			beforeSend: function(xhr, settings) {
+				if (!csrfSafeMethod(settings.type)) {
+					xhr.setRequestHeader("X-CSRFToken", csrftoken);
+				}
+			}
+		});
+		$("a.btn-info").click(function()
+		{
+			m_event_id = $(this).attr("id");
+			$.ajax({
+				url:"{% url 'events:_follow'%}",
+				type:"POST",
+				data:{ clicked_id:m_event_id},
+				success:function(){
+					
+				}
+			})
+		});
+	});
+</script>
 {% endblock %}
 {% block main %}
 <div class="container" style="padding:50px">
@@ -27,7 +72,7 @@ img.media-object{
 				</div>
 				<div class="media pull-right">
 					<a class="btn btn-info" style="margin:10px 0 10px 0;" href="#">更多信息</a>
-					<a class="btn btn-info" style="margin:10px 0 10px 0;" href="#"><strong>+1</strong></a>
+					<a id="{{event.id}}" class="btn btn-info" style="margin:10px 0 10px 0;"><strong>+1</strong></a>
 				</div>
 				<table class="table table-hover">
 					<tr style="height:">

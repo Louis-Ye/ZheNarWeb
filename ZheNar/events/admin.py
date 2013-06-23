@@ -3,7 +3,7 @@ from django.contrib import admin
 from events.models import EventType, Event, Icon
 
 class EventAdmin(admin.ModelAdmin):
-	list_display = ('name','description','status','end_time','holder','host_organization','if_event_was_expired')
+	list_display = ('name','description','status','end_time','holder','host_organization','if_event_was_expired','follower_count')
 	search_fields = ('name','host_organization')
 	list_filter = ('end_time',)
 	ordering = ('-end_time',)

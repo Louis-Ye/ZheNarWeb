@@ -48,7 +48,10 @@ class Event(models.Model):
 	
 	def __unicode__(self):
 		return self.name
-		
+	
+	def follower_count(self):
+		return self.follower.count()
+	
 	def if_event_was_expired(self):
 		return self.end_time < timezone.now()
 

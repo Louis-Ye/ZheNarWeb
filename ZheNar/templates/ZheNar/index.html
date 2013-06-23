@@ -40,7 +40,6 @@
 			{% for place in places %}
 			 	lat[count] = {{place.latitude}};
 			 	lng[count] = {{place.longitude}};
-			 	zoom_level[count] = {{place.zoom_level}};
 			 	myicon[count] = '{{place.place_type.icon.name}}';
 			 	content[count] = "<h4>{{place.name}}</h4><div style='overflow:scroll;max-height:300px;'><ul>";
 			 	{% for event in events %}
@@ -58,7 +57,6 @@
 			 	}
 			 	count++;
 			{% endfor %}
-			var zoomLevel = map.getZoom();
 			for(i = 0; i < count ; i++)
 			{
 				position[i] = new google.maps.LatLng(lat[i],lng[i])

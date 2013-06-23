@@ -8,5 +8,6 @@ urlpatterns = patterns('',
 	url(r'^_create/$',views._create,name='_create'),
 	url(r'^type_create/$',views.type_create,name='type_create'),
 	url(r'^_type_create/$',views._type_create,name='_type_create'),
+	url(r'^_follow$',views._follow,name='_follow'),
 	url(r'^insert/$',views.insert,name="insert"), #insert the icon
 )

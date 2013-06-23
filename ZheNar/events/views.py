@@ -2,6 +2,8 @@
 from django.shortcuts import get_object_or_404, render
 from django.template import Context, loader
 from django.http import HttpResponseRedirect, HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 from django.core.urlresolvers import reverse
 from django.views import generic
 from django.contrib.auth.models import User
@@ -20,6 +22,17 @@ def index(request):
 			'event_list': event_list,
 	}
 	return render(request, "events/event_index.html", __login_proc(request, context))
+
+@csrf_exempt
+@require_POST
+def _follow(request):
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect(reverse("index"))
+	event_id = request.POST.get("clicked_id")
+	m_event = Event.objects.filter(pk = event_id)
+
+	m_event.follower.add(request.user)
+	return HttpResponse(json.dumps({"id": m_event.id, }))
 
 
 def create(request):
