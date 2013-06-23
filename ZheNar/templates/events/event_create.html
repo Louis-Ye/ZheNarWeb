@@ -3,6 +3,7 @@
 {% block css %}
 {% load staticfiles %}
 <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap-fileupload.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'DatePicker/css/bootstrap-datetimepicker.min.css' %}" />
 <style>
 	.well{
 		padding:0px;
@@ -14,6 +15,7 @@
 {% endblock %}
 
 {% block script %}
+<script type="text/javascript" charset="utf-8" src="{% static 'DatePicker/js/bootstrap-datetimepicker.min.js' %}"></script>
 <script src="{% static 'bootstrap/js/bootstrap-fileupload.js' %}"></script>
 <script>
 	$(function() {
