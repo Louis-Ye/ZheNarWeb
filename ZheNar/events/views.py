@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import get_object_or_404, render
-from django.template import Context, loader
+from django.shortcuts import get_object_or_404, render_to_response
+from django.template import Context, loader, RequestContext
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views import generic
@@ -15,6 +15,16 @@ import json
 from events.models import Event, EventType, Icon
 from places.models import Place
 
+def login_proc(request):
+	if request.user.is_authenticated():
+		return {
+			"authenticated":True, 
+			"username":request.user,
+			}
+	else:
+		return {}
+
+
 def index(request):
 	event_list_query = Event.objects.filter(status=2)
 	event_list = [event for event in event_list_query if not event.if_event_was_expired()]
@@ -26,12 +36,12 @@ def index(request):
 			if man == user:
 				followed_event.append(event)
 
-	context = {
+	c = {
 			'page_title': "浙Nar儿的事件",
 			'event_list': event_list,
 			'followed_event_list': followed_event,
 	}
-	return render(request, "events/event_index.html", __login_proc(request, context))
+	return render_to_response("events/event_index.html",c,context_instance = RequestContext(request,processors=[login_proc]))
 
 def _follow(request):
 	event_id = request.POST.get("clicked_id")
@@ -47,17 +57,28 @@ def _unfollow(request):
 	m_event.follower.remove(Profile.objects.get(id = request.user.id))
 	return HttpResponse(json.dumps({"status":"succeed", }))
 
+def detail(request,event_id):
+	try:
+		m_event = Event.objects.get(pk = event_id)
+	except Event.DoesNotExist:
+		return __goErrorPage(request, ['There is no such event', ])
+	
+	c = Context({"page_title": "浙Nar儿的事件详情",
+	"event": m_event,
+	})
+	return render_to_response('events/event_detail.html',c,context_instance = RequestContext(request,processors=[login_proc]))
+
 def create(request):
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect(reverse("index"))
 	place_list = Place.objects.filter(status = 2)
 	event_type_list = EventType.objects.filter(status = 2)
-	context = {
+	c = {
 			'page_title': "创建事件喽",
 			'place_list': place_list,
 			'event_type_list': event_type_list,
 	}
-	return render(request, "events/event_create.html", __login_proc(request, context))
+	return render_to_response("events/event_create.html",c,context_instance = RequestContext(request,processors=[login_proc]))
 	
 
 def _create(request):
@@ -106,11 +127,11 @@ def handle_uploaded_pic(f, _id):
 def type_create(request):
 	if request.user.is_authenticated():
 		type_icon_list = Icon.objects.all()
-		context = {
+		c = {
 				'page_title': "浙哪儿事件类型创建", 
 				'icon_list': type_icon_list,
 		}
-		return render(request, "events/event_type_create.html", __login_proc(request, context))
+		return render_to_response("events/event_type_create.html",c,context_instance = RequestContext(request,processors=[login_proc]))
 	else :
 		return HttpResponseRedirect(reverse('places:index'))
 
@@ -133,13 +154,6 @@ def _type_create(request):
 	
 	return HttpResponseRedirect(reverse('index'))
 
-
-def __login_proc(request, lst):
-	if request.user.is_authenticated():
-		lst['authenticated'] = True;
-		lst['username'] = request.user.username
-		return lst
-	return lst
 
 
 def __judge_form(form):

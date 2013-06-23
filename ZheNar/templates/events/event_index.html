@@ -55,6 +55,8 @@ img.media-object{
 			m_event_id = $(this).attr("name");
 			$("a#follow"+m_event_id).hide();
 			$("a#unfollow"+m_event_id).show();
+			
+			$("span#counter"+m_event_id).text(eval($("span#counter"+m_event_id).text()+1));
 			$.ajax({
 				url:"{% url 'events:_follow'%}",
 				type:"POST",
@@ -65,6 +67,7 @@ img.media-object{
 			m_event_id = $(this).attr("name");
 			$("a#follow"+m_event_id).show();
 			$("a#unfollow"+m_event_id).hide();
+			$("span#counter"+m_event_id).text(eval($("span#counter"+m_event_id).text()-1));
 			$.ajax({
 				url:"{% url 'events:_unfollow'%}",
 				type:"POST",
@@ -88,9 +91,9 @@ img.media-object{
 					<img src="/static/map_icon/icons/{{event.place.place_type.icon.name}}">
 				</div>
 				<div class="media pull-right">
-					<a id="info{{event.id}}" name="{{event.id}}" class="btn btn-info btn-mini" style="margin:10px 0 10px 0;" href="#">更多信息</a>
-					<a id="follow{{event.id}}" name="{{event.id}}" class="follow btn btn-info btn-mini" style="margin:10px 0 10px 0;"><i class="icon-white icon-plus"></i></a>
-					<a id="unfollow{{event.id}}" name="{{event.id}}" class="unfollow btn btn-info btn-mini" style="margin:10px 0 10px 0;display:none;"><i class="icon-white icon-minus"></i></a>
+					<a id="info{{event.id}}" name="{{event.id}}" class="btn btn-info btn-small" style="margin:10px 0 10px 0;" href="{% url 'events:detail' event.id %}">更多信息</a>
+					<a id="follow{{event.id}}" name="{{event.id}}" class="follow btn btn-info btn-small" style="margin:10px 0 10px 0;"><i class="icon-white icon-star"></i></a>
+					<a id="unfollow{{event.id}}" name="{{event.id}}" class="unfollow btn btn-info btn-small" style="margin:10px 0 10px 0;display:none;"><i class="icon-white icon-star-empty"></i></a>
 				</div>
 				<table class="table table-hover">
 					<tr style="height:">
@@ -100,6 +103,12 @@ img.media-object{
 						<td><h5 class="media-heading">组织:</h5>{{event.host_organization}}</td>
 						<td><h5 class="media-heading">地点:</h5>{{event.place}}</td>
 						<td><h5 class="media-heading">具体位置:</h5>{{event.address}}</td>
+						<td class="span1">
+							<div class="span1" style="margin-left:0px;">
+								<span><strong>关注度</strong></span>
+								<span id="counter{{event.id}}" class="label label-info">{{event.follower_count}}</span>
+							</div>
+						</td>
 					</tr>
 				</table>
 			</div>
