@@ -2,15 +2,15 @@
 from django.shortcuts import get_object_or_404, render
 from django.template import Context, loader
 from django.http import HttpResponseRedirect, HttpResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
 from django.core.urlresolvers import reverse
 from django.views import generic
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 
 from datetime import datetime
+from profiles.models import Profile
 import time
+import json
 
 from events.models import Event, EventType, Icon
 from places.models import Place
@@ -24,15 +24,11 @@ def index(request):
 	}
 	return render(request, "events/event_index.html", __login_proc(request, context))
 
-@csrf_exempt
-@require_POST
 def _follow(request):
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect(reverse("index"))
 	event_id = request.POST.get("clicked_id")
-	m_event = Event.objects.filter(pk = event_id)
+	m_event = Event.objects.get(pk = event_id)
 
-	m_event.follower.add(request.user)
+	m_event.follower.add(Profile.objects.get(id = request.user.id))
 	return HttpResponse(json.dumps({"id": m_event.id, }))
 
 
