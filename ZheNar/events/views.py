@@ -18,9 +18,18 @@ from places.models import Place
 def index(request):
 	event_list_query = Event.objects.filter(status=2)
 	event_list = [event for event in event_list_query if not event.if_event_was_expired()]
+	user = Profile.objects.get(pk = request.user.id)
+	followed_event = []
+	for event in event_list:
+		follower_list = event.follower.all()
+		for man in follower_list:
+			if man == user:
+				followed_event.append(event)
+
 	context = {
 			'page_title': "浙Nar儿的事件",
 			'event_list': event_list,
+			'followed_event_list': followed_event,
 	}
 	return render(request, "events/event_index.html", __login_proc(request, context))
 
@@ -29,8 +38,14 @@ def _follow(request):
 	m_event = Event.objects.get(pk = event_id)
 
 	m_event.follower.add(Profile.objects.get(id = request.user.id))
-	return HttpResponse(json.dumps({"id": m_event.id, }))
+	return HttpResponse(json.dumps({"status":"succeed", }))
 
+def _unfollow(request):
+	event_id = request.POST.get("clicked_id")
+	m_event = Event.objects.get(pk = event_id)
+	
+	m_event.follower.remove(Profile.objects.get(id = request.user.id))
+	return HttpResponse(json.dumps({"status":"succeed", }))
 
 def create(request):
 	if not request.user.is_authenticated():

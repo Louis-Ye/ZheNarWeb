@@ -12,8 +12,16 @@ img.media-object{
 {% endblock %}
 {% block script %}
 <script>
+	function Setup_follow_button(){
+		{% for event in followed_event_list %}
+			$("a#follow{{event.id}}").hide();
+			$("a#unfollow{{event.id}}").show();
+		{% endfor %}
+	}
+	
 	$(document).ready(function()
 	{
+		Setup_follow_button();
 		function getCookie(name) {
 			var cookieValue = null;
 			if (document.cookie && document.cookie != '') {
@@ -45,13 +53,22 @@ img.media-object{
 		$("a.follow").click(function()
 		{
 			m_event_id = $(this).attr("name");
+			$("a#follow"+m_event_id).hide();
+			$("a#unfollow"+m_event_id).show();
 			$.ajax({
 				url:"{% url 'events:_follow'%}",
 				type:"POST",
 				data:{ clicked_id:m_event_id},
-				success:function(){
-					
-				}
+			})
+		});
+		$("a.unfollow").click(function(){
+			m_event_id = $(this).attr("name");
+			$("a#follow"+m_event_id).show();
+			$("a#unfollow"+m_event_id).hide();
+			$.ajax({
+				url:"{% url 'events:_unfollow'%}",
+				type:"POST",
+				data:{ clicked_id:m_event_id},
 			})
 		});
 	});
@@ -72,12 +89,8 @@ img.media-object{
 				</div>
 				<div class="media pull-right">
 					<a id="info{{event.id}}" name="{{event.id}}" class="btn btn-info btn-mini" style="margin:10px 0 10px 0;" href="#">更多信息</a>
-					{% for man in event.follower %}
-						{% if man.name == username %}
-						<a id="unfollow{{event.id}}" name="{{event.id}}" href="#" class="unfollow btn btn-danger btn-mini" style="margin:10px 0 10px 0;"><i class="icon-white icon-minus"></i></a>
-						{% endif %}
-					{% endfor %}
-					<a id="follow{{event.id}}" name="{{event.id}}" href="#" class="follow btn btn-info btn-mini" style="margin:10px 0 10px 0;"><i class="icon-white icon-plus"></i></a>
+					<a id="follow{{event.id}}" name="{{event.id}}" class="follow btn btn-info btn-mini" style="margin:10px 0 10px 0;"><i class="icon-white icon-plus"></i></a>
+					<a id="unfollow{{event.id}}" name="{{event.id}}" class="unfollow btn btn-info btn-mini" style="margin:10px 0 10px 0;display:none;"><i class="icon-white icon-minus"></i></a>
 				</div>
 				<table class="table table-hover">
 					<tr style="height:">
