@@ -45,6 +45,7 @@ class Event(models.Model):
 	event_type = models.ForeignKey(EventType)
 	follower = models.ManyToManyField(Profile,related_name='event_follower_set')
 	address = models.CharField(max_length = 255,default = 'Not mentioned')
+	pic_name = models.CharField(max_length = 255, default = 'event_default.png')
 	
 	def __unicode__(self):
 		return self.name
