@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% block css %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap-fileupload.min.css' %}" />
 <style>
 	.well{
 		padding:0px;
@@ -12,6 +14,7 @@
 {% endblock %}
 
 {% block script %}
+<script src="{% static 'bootstrap/js/bootstrap-fileupload.js' %}"></script>
 <script>
 	$(function() {
 		$('#datetimepicker1').datetimepicker({
@@ -44,13 +47,10 @@
 
 {% block main %}
 <div class="container" style="padding:40px">
-	<div class="alert alert-block alert-error fade out" data-alert="alert">
-		<button class="close" type="button" onclick="close_alert();">×</button>
-		<strong>错误</strong>
-		请确保表单填写完毕，并且已在地图上设置过位置标记，再次提交
-	</div>
+	
 	<div name="register_form" class="span12">
-		<form action="{% url 'events:_create'  %}" method='post' onsubmit="return check_form();" >  {% csrf_token %}
+		<form action="{% url 'events:_create'  %}" method='post' onsubmit="return check_form();" enctype="multipart/form-data">  
+			{% csrf_token %}
 			<h2>事件创建</h2>
 			<fieldset>
 				<legend>事件信息</legend>
@@ -72,30 +72,50 @@
 						</i>
 						</span>
 					</div>
-					<div class="span3" style="margin-left:0px">
-					事件举办地点
-					<select name="place_id">
-						{% for item in place_list %}
-						<option value="{{ item.id }}" >{{item.name}}</option>
-						{% endfor %}
-					</select>
-				  	</div>
-					<div class="span3" style="margin-left:0px">
-					事件类型
+					<div class="span3" style="margin:12px 0px 0px 0px;">
+						事件类型
 						<select name="event_type_id">
 							{% for item in event_type_list %}
 							<option value="{{ item.id }}" >{{item.name}}</option>
 							{% endfor %}
 						</select>
-				  	</div>
+					</div>
 				</div>
 			  	<div class="span8 pull-right" style="margin-left:0px">
-			  		<textarea name="description" id="description" class="input-block-level" placeholder="具体描述信息" rows="16" cols="40"></textarea> 
+	<div class="fileupload fileupload-new span3" data-provides="fileupload">
+	  <div class="fileupload-preview thumbnail" style="width: 200px; height: 150px;"></div>
+	  <div>
+	    <span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" name="event_pic" id="event_pic"/></span>
+	    <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+	  </div>
+	  <div class="span3">&nbsp</div>
+
+	<div class="span3" style="margin-left:0px">
+		事件举办地点
+		<select name="place_id">
+			{% for item in place_list %}
+			<option value="{{ item.id }}" >{{item.name}}</option>
+			{% endfor %}
+		</select>
+	  	</div>
+		<div class="span3" style="margin-left:0px">
+  	</div>
+	</div>
+
+					
+			  		<textarea name="description" id="description" class="span5" placeholder="具体描述信息" rows="16" cols="40"></textarea> 
 			  	</div>
 			</fieldset>
 	        <button class="btn btn-large btn-primary span2 offset4" type="submit">提交</button>
 	        <button class="btn btn-large btn-primary span2" onclick="location.href='{% url 'events:index' %}'">取消</button>
 		</form>
 	</div>
+
+	
+</div>
+<div class="alert alert-block alert-error fade out" data-alert="alert">
+		<button class="close" type="button" onclick="close_alert();">×</button>
+		<strong>错误</strong>
+		请确保表单填写完毕，再次提交
 </div>
 {% endblock %}

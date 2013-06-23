@@ -8,6 +8,7 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
+
 from datetime import datetime
 import time
 
@@ -72,14 +73,23 @@ def _create(request):
 	except EventType.DoesNotExist:
 		return __goErrorPage(request, ['There is no such event type', ])
 	
-	form={}
+	form = {}
 	if __judge_form(form):
 		event = Event(name=name, description=description, holder_id=holder_id, host_organization=host_organization, start_time=start_time, end_time=end_time, place_id=place_id, event_type_id=event_type_id, address = address)
 		event.save()
+		event_pic = request.FILES.get('event_pic')
+		if event_pic is not None:
+			handle_uploaded_pic(event_pic, event.id)
 	else:
 		return __goErrorPage(request, ['Something wrong with your form', ])
 
 	return HttpResponseRedirect(reverse("events:index"))
+
+
+def handle_uploaded_pic(f, _id):
+    with open('media/event_pic/event_' + str(_id) + '.jpg', 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
 
 
 def type_create(request):
@@ -141,5 +151,6 @@ def insert(request):
 	
 
 	return HttpResponseRedirect(reverse('events:index'))
+
 
 
