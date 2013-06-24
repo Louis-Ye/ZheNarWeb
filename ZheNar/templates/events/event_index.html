@@ -8,14 +8,26 @@ img.media-object{
 .image-list{
 	margin-top: 15px;
 }
+.follow-star{
+	display: inline-block;
+	font-size: 16px;
+	position: relative;
+	width: 1.1em;
+}
+.unfollow-star{
+	display: inline-block;
+	font-size: 16px;
+	position: relative;
+	width: 1.1em;
+}
 </style>
 {% endblock %}
 {% block script %}
 <script>
 	function Setup_follow_button(){
 		{% for event in followed_event_list %}
-			$("a#follow{{event.id}}").hide();
-			$("a#unfollow{{event.id}}").show();
+			$("#follow{{event.id}}").hide();
+			$("#unfollow{{event.id}}").show();
 		{% endfor %}
 	}
 	
@@ -50,36 +62,36 @@ img.media-object{
 				}
 			}
 		});
-		$("a.follow").click(function()
+		$(".follow").click(function()
 		{
 			m_event_id = $(this).attr("name");
-			$("a#follow"+m_event_id).hide();
-			$("a#unfollow"+m_event_id).show();
+			$("#follow"+m_event_id).hide();
+			$("#unfollow"+m_event_id).show();
 			
-			$("span#counter"+m_event_id).text(eval($("span#counter"+m_event_id).text()+1));
+			$("span#counter"+m_event_id).text(parseInt($("span#counter"+m_event_id).text())+1);
 			$.ajax({
 				url:"{% url 'events:_follow'%}",
 				type:"POST",
 				data:{ clicked_id:m_event_id},
 			})
 		});
-		$("a.unfollow").click(function(){
+		$(".unfollow").click(function(){
 			m_event_id = $(this).attr("name");
-			$("a#follow"+m_event_id).show();
-			$("a#unfollow"+m_event_id).hide();
-			$("span#counter"+m_event_id).text(eval($("span#counter"+m_event_id).text()-1));
+			$("#follow"+m_event_id).show();
+			$("#unfollow"+m_event_id).hide();
+			$("span#counter"+m_event_id).text(parseInt($("span#counter"+m_event_id).text())-1);
 			$.ajax({
 				url:"{% url 'events:_unfollow'%}",
 				type:"POST",
 				data:{ clicked_id:m_event_id},
 			})
 		});
-		$("a.unfollow").mouseover(function(){
+		$(".unfollow").mouseover(function(){
 			m_id = $(this).attr("name");
 			if(!$("#unfollow_icon"+m_id).hasClass("icon-spin"))
 				$("#unfollow_icon"+m_id).addClass("icon-spin");
 		});
-		$("a.unfollow").mouseout(function(){
+		$(".unfollow").mouseout(function(){
 			m_id = $(this).attr("name");
 			if($("#unfollow_icon"+m_id).hasClass("icon-spin"))
 				$("#unfollow_icon"+m_id).removeClass("icon-spin");
@@ -102,17 +114,11 @@ img.media-object{
 				</div>
 				<div class="media pull-right">
 					<a id="info{{event.id}}" name="{{event.id}}" class="btn btn-info btn-small" style="margin:10px 0 10px 0;" href="{% url 'events:detail' event.id %}">更多信息</a>
-					<a id="follow{{event.id}}" name="{{event.id}}" class="follow" style="margin:10px 0 10px 0;">
-						<span class="icon-stack">
-						  	<i class="icon-circle icon-stack-base"></i>
-						  	<i class="icon-star icon-light"></i>
-						</span>
+					<a id="follow{{event.id}}" name="{{event.id}}" class="btn btn-info btn-small follow" style="margin:10px 0 10px 0; padding:5px 5px 2px 5px;">
+						<strong class="follow-star">★</strong>
 					</a>
-					<a id="unfollow{{event.id}}" name="{{event.id}}" class="unfollow" style="margin:10px 0 10px 0;display:none;">
-					<span id="unfollow{{event.id}}" name="{{event.id}}" class="unfollow icon-stack">
-						<i class="icon-circle icon-stack-base"></i>
-						<i class="icon-star-empty icon-light"></i>
-					</span>
+					<a id="unfollow{{event.id}}" name="{{event.id}}" class="btn btn-info btn-small unfollow" style="margin:10px 0 10px 0;padding:5px 5px 2px 5px;display:none;">
+						<strong class="unfollow-star">☆</strong>
 					</a>
 				</div>
 				<table class="table table-hover">

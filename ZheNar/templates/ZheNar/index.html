@@ -1,9 +1,24 @@
 {% extends "base.html" %}
 {% block css %}
 	<style type="text/css">
-	  html { height: 100% }
-	  body { height: 100%; margin: 0px; padding: 0 }
-	  #map_canvas { height: 100%;margin-top:40px;}
+	  html { 
+	  	height: 100%;
+	  }
+	  body { 
+	  	height: 100%;
+	  	margin: 0px; 
+	  	padding: 0 
+	  	}
+	  #map_canvas {
+		display:block;
+		position:absolute;
+	  	height:auto;
+	  	bottom:0;
+	  	top:0;
+	  	left:0;
+	  	right:0;
+	  	margin-top:40px;
+	  	}
 	</style>
 {% endblock %}
 {% block script %}
