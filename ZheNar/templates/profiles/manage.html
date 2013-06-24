@@ -48,7 +48,7 @@
 					<td>截止时间</td>
 					<td>组织</td>
 					<td>状态</td>
-					<td>管理</td>
+					<td class="span1">管理</td>
 				</tr>
 				{% for item in event_list %}
 				<tr>
@@ -58,8 +58,8 @@
 					<td>{{ item.host_organization }}</td>
 					<td>{{ item.showStatus }}</td>
 					<td>
-						<a href="#">编辑</a>
-						<a href="{% url 'events:_delete' item.id %}">删除</a>
+						<a class="span1" href="#" style="margin-left:0px">编辑</a>
+						<a class="span1" href="{% url 'events:_delete' item.id %}" style="margin-left:0px">删除</a>
 					</td>
 				</tr>
 				{% endfor %}
