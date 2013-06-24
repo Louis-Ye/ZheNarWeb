@@ -16,9 +16,10 @@ class Icon(models.Model):
 class EventType(models.Model):
 	#name = models.CharField(max_length = 255)
 	STATUS_SET = (
-	(1,"Pending"),
-	(2,"Accepted"),
-	(3,"Rejected"),
+	(1,_("Pending")),
+	(2,_("Accepted")),
+	(3,_("Rejected")),
+	(4,_("Deleted")),
 	)
 	status = models.SmallIntegerField(default = 1,choices = STATUS_SET)
 	name = models.CharField(max_length = 255,blank=False)

@@ -9,6 +9,11 @@ class EventAdmin(admin.ModelAdmin):
 	ordering = ('-end_time',)
 	actions = ['make_accepted','make_rejected']
 	
+	def make_deleted(self, request, queryset):
+		queryset.update(status = '4')
+	
+	make_deleted.short_description = '删除选择的请求'
+	
 	def make_rejected(self, request, queryset):
 		queryset.update(status = '3')
 	
@@ -23,6 +28,11 @@ class EventTypeAdmin(admin.ModelAdmin):
 	list_display = ('name','icon','status',)
 	search_fields = ('name','icon',)
 	actions = ['make_accepted','make_rejected']
+	
+	def make_deleted(self, request, queryset):
+		queryset.update(status = '4')
+	
+	make_deleted.short_description = '删除选择的请求'
 	
 	def make_rejected(self, request, queryset):
 		queryset.update(status = '3')
