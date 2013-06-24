@@ -10,6 +10,8 @@ from django.contrib.auth import login, logout, authenticate
 from datetime import datetime
 
 from profiles.models import Profile
+from places.models import Place
+from events.models import Event
 
 import re, random
 
@@ -156,6 +158,21 @@ def _settings(request):
 	
 	request.session['back_info'] = "保存成功！"
 	return HttpResponseRedirect(reverse('profiles:settings'))
+
+
+def manage(request):
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect(reverse("index"))
+
+	place_list = Place.objects.filter(creater_id = request.user.id)
+	pr = Profile.objects.get(user_id = request.user.id)
+	event_list = Event.objects.filter(holder_id = pr.id)
+	context = {
+			"page_title": "浙哪儿 - 管理你的活动",
+			"place_list": place_list,
+			"event_list": event_list,
+	}
+	return render(request, "profiles/manage.html", __login_proc(request, context))
 
 	
 def syncSuperUser(request):

@@ -57,9 +57,6 @@ class Event(models.Model):
 	def if_event_was_expired(self):
 		return self.end_time < timezone.now()
 
-	def sync_follower_count(self):
-		self.follower_count = self.follower.count()
-
 	if_event_was_expired.boolean = True
 	if_event_was_expired.short_description = "Expired?"
 	
