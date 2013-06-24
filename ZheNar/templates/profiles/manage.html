@@ -18,10 +18,10 @@
 		</tr>
 		{% for item in place_list %}
 		<tr>
-			<td>{{ item.name }}</td>
+			<td><a href="{% url 'places:detail' item.id %}">{{ item.name }}</a></td>
 			<td>{{ item.create_time }}</td>
 			<td>{{ item.showStatus }}</td>
-			<td>编辑 删除</td>
+			<td>编辑 <a href="{% url 'places:_delete' item.id %}">删除</a></td>
 		</tr>
 		{% endfor %}
 	</table>
@@ -37,12 +37,12 @@
 		</tr>
 		{% for item in event_list %}
 		<tr>
-			<td>{{ item.name }}</td>
+			<td><a href="{% url 'events:detail' item.id %}">{{ item.name }}</a></td>
 			<td>{{ item.start_time }}</td>
 			<td>{{ item.end_time }}</td>
 			<td>{{ item.host_organization }}</td>
 			<td>{{ item.showStatus }}</td>
-			<td>编辑 删除</td>
+			<td>编辑 <a href="{% url 'events:_delete' item.id %}">删除</a></td>
 		</tr>
 		{% endfor %}
 	</table>

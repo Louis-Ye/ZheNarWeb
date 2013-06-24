@@ -30,6 +30,7 @@ class Place(models.Model):
 	(1,"Pending"),
 	(2,"Accepted"),
 	(3,"Rejected"),
+	(4,"Deleted"),
 	)
 	ZOOM_SET = (
 	(16,"Large Level"),

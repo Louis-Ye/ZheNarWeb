@@ -164,9 +164,12 @@ def manage(request):
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect(reverse("index"))
 
-	place_list = Place.objects.filter(creater_id = request.user.id)
+	place_list_tmp = Place.objects.filter(creater_id = request.user.id)
+	place_list = [item for item in place_list_tmp if item.status != 4]
 	pr = Profile.objects.get(user_id = request.user.id)
-	event_list = Event.objects.filter(holder_id = pr.id)
+	event_list_tmp = Event.objects.filter(holder_id = pr.id)
+	event_list = [item for item in event_list_tmp if item.status != 4]
+	
 	context = {
 			"page_title": "浙哪儿 - 管理你的活动",
 			"place_list": place_list,
@@ -174,7 +177,7 @@ def manage(request):
 	}
 	return render(request, "profiles/manage.html", __login_proc(request, context))
 
-	
+
 def syncSuperUser(request):
 	superuser_list = User.objects.filter(is_superuser = 1)
 	for item in superuser_list:

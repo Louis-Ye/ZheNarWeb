@@ -111,7 +111,18 @@ def _type_create(request):
 		return HttpResponseRedirect(reverse('places:index'))
 	
 	return HttpResponseRedirect(reverse('index'))
-	
+
+
+def _delete(request, e_id):
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect(reverse('index'))
+	place = Place.objects.get(pk = e_id)
+	if place.creater_id == request.user.id:
+		place.status = 4
+		place.save()
+	return HttpResponseRedirect(reverse('profiles:manage'))
+
+
 #用于插入icon用，已插入则无需再用
 def insert(request):
 	list = []

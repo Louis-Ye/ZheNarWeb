@@ -33,6 +33,7 @@ class Event(models.Model):
 	(1,_("Pending")),
 	(2,_("Accepted")),
 	(3,_("Rejected")),
+	(4,_("Deleted")),
 	)
 	
 	status = models.SmallIntegerField(default = 1,choices = CHOICE_SET)
@@ -44,7 +45,7 @@ class Event(models.Model):
 	end_time = models.DateTimeField('Time that activities ended')
 	place = models.ForeignKey(Place)
 	event_type = models.ForeignKey(EventType)
-	follower = models.ManyToManyField(Profile, related_name='event_follower_set')
+	follower = models.ManyToManyField(Profile, related_name='event_follower_set', null = True)
 	address = models.CharField(max_length = 255,default = 'Not mentioned')
 	pic_name = models.CharField(max_length = 255, default = 'event_default.png')
 	

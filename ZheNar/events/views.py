@@ -182,6 +182,17 @@ def hot(request):
 	return render(request, "events/event_hot.html", __login_proc(request, context))
 
 
+def _delete(request, p_id):
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect(reverse('index'))
+	event = Event.objects.get(pk = p_id)
+	pr = Profile.objects.get(user_id = request.user.id)
+	if event.holder_id == pr.id:
+		event.status = 4
+		event.save()
+	return HttpResponseRedirect(reverse('profiles:manage'))
+
+
 def __judge_form(form):
 	return True
 
