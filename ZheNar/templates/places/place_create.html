@@ -68,7 +68,15 @@
 		var desc = $("#desc").val();
 		if(lng && lat && place_name && place_type && desc)
 		{
-			return true;
+			if(place_name.length >= 8)
+				$("#alert_form").text("地点名称不能超过7个字符，请不要在地点名中包含‘浙江大学’等冗余字样");
+			else if(desc.length >= 255)
+				$("#alert_form").text("地点描述不能超过255个字符");
+			else
+				return true;
+		}
+		else{
+			$("#alert_form").text("请确保表单填写完毕，并且已在地图上设置过位置标记，再次提交");	
 		}
 		$(".alert").removeClass("out");
 		$(".alert").addClass("in");
@@ -85,7 +93,9 @@
 	<div class="alert alert-block alert-error fade out" data-alert="alert">
 		<button class="close" type="button" onclick="close_alert();">×</button>
 		<strong>错误</strong>
-		请确保表单填写完毕，并且已在地图上设置过位置标记，再次提交
+		<div id="alert_form">
+			
+		</div>
 	</div>
 	<div class="container-fluid">
 		<form action="{% url 'places:_create'  %}" method='post' onsubmit='return check_form();'>

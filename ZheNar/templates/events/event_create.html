@@ -27,14 +27,27 @@
 		});
 	});
 	function check_form(){
+		var name = $("#name").val()
 		var org = $("#host_organization").val()
 		var start = $("#start_time").val();
 		var end = $("#end_time").val();
 		var desc = $("#description").val();
 		var addr = $("#address").val();
-		if(org && start && end && desc && addr)
+		if(name && org && start && end && desc && addr)
 		{
-			return true;
+			if(name.length >= 16)
+				$("#alert_form").text("事件名称不能超过15个字符");
+			else if(org.length >= 11)
+				$("#alert_form").text("组织不能超过10个字符");
+			else if(desc.length >= 255)
+				$("#alert_form").text("事件描述不能超过255个字符");
+			else if(addr.length >= 16)
+				$("#alert_form").text("事件具体地址不能超过15个字符");
+			else
+				return true;
+		}
+		else{
+			$("#alert_form").text("请确保表单填写完毕，并且已在地图上设置过位置标记，再次提交");	
 		}
 		$(".alert").removeClass("out");
 		$(".alert").addClass("in");
@@ -50,9 +63,11 @@
 {% block main %}
 <div class="container" style="padding:40px">
 	<div class="alert alert-block alert-error fade out" data-alert="alert">
-			<button class="close" type="button" onclick="close_alert();">×</button>
-			<strong>错误</strong>
-			请确保表单填写完毕，再次提交
+		<button class="close" type="button" onclick="close_alert();">×</button>
+		<strong>错误</strong>
+		<div id="alert_form">
+			
+		</div>
 	</div>
 	<div name="register_form" class="span12">
 		<form action="{% url 'events:_create'  %}" method='post' onsubmit="return check_form();" enctype="multipart/form-data">  
