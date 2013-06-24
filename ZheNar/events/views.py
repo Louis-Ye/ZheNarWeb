@@ -63,9 +63,11 @@ def detail(request,event_id):
 		m_event = Event.objects.get(pk = event_id)
 	except Event.DoesNotExist:
 		return __goErrorPage(request, ['There is no such event', ])
-	
+	m_follower = m_event.follower.all()
+	 
 	c = Context({"page_title": "浙Nar儿的事件详情",
 	"event": m_event,
+	"followers": m_follower,
 	})
 	return render_to_response('events/event_detail.html',c,context_instance = RequestContext(request,processors=[login_proc]))
 

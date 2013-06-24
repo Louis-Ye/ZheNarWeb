@@ -86,16 +86,6 @@ img.media-object{
 				data:{ clicked_id:m_event_id},
 			})
 		});
-		$(".unfollow").mouseover(function(){
-			m_id = $(this).attr("name");
-			if(!$("#unfollow_icon"+m_id).hasClass("icon-spin"))
-				$("#unfollow_icon"+m_id).addClass("icon-spin");
-		});
-		$(".unfollow").mouseout(function(){
-			m_id = $(this).attr("name");
-			if($("#unfollow_icon"+m_id).hasClass("icon-spin"))
-				$("#unfollow_icon"+m_id).removeClass("icon-spin");
-		})
 	});
 </script>
 {% endblock %}
@@ -104,8 +94,8 @@ img.media-object{
 	<div class="container-fluid" style="margin-top:40px">
 		{% for event in event_list %}
 		<div class="row media">
-			<a class="pull-left" href="#">
-				<img class="media-object img-polaroid" src="/static/image/event_pic/{{event.pic_name}}">
+			<a class="pull-left" href="{% url 'events:detail' event.id %}">
+				<img class="media-object img-polaroid" src="/static/image/event_pic/{{event.pic_name}}" >
 			</a>
 			<div class="media-body">
 				<div class="image-list pull-left">
