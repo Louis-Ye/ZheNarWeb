@@ -86,7 +86,8 @@ def detail(request,place_id):
 def type_create(request):
 	if request.user.is_authenticated():
 		type_icon_list = Icon.objects.all()
-		c = Context({"page_title": "ZJU地点-创建地点类型",
+		c = Context({
+				"page_title": "ZJU地点-创建地点类型",
 				"icon_list":type_icon_list,
 		})
 		return render_to_response('places/place_type_create.html',c,context_instance = RequestContext(request,processors=[login_proc]))

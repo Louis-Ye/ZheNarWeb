@@ -20,6 +20,76 @@
 </style>
 {% endblock %}
 {% block script %}
+<script>
+	function Setup_follow_button(){
+		{% for man in followers %}
+		{% if man.id == username.id %}
+			$("#follow").hide();
+			$("#unfollow").show();
+		{% endif %}
+		{% endfor %}
+	}
+
+	$(document).ready(function()
+	{
+		Setup_follow_button();
+		function getCookie(name) {
+			var cookieValue = null;
+			if (document.cookie && document.cookie != '') {
+				var cookies = document.cookie.split(';');
+				for (var i = 0; i < cookies.length; i++) {
+					var cookie = jQuery.trim(cookies[i]);
+					// Does this cookie string begin with the name we want?
+					if (cookie.substring(0, name.length + 1) == (name + '=')) {
+						cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+						break;
+					}
+				}
+			}
+			return cookieValue;
+		}
+		var csrftoken = getCookie('csrftoken');
+		function csrfSafeMethod(method) {
+			// these HTTP methods do not require CSRF protection
+			return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+		}
+		$.ajaxSetup({
+			crossDomain: false, // obviates need for sameOrigin test
+			beforeSend: function(xhr, settings) {
+				if (!csrfSafeMethod(settings.type)) {
+					xhr.setRequestHeader("X-CSRFToken", csrftoken);
+				}
+			}
+		});
+		$("#follow").click(function()
+		{
+			m_event_id = {{event.id}}
+			$("#follow").hide();
+			$("#unfollow").show();
+			$("#follower-table").append( "<tr id='follower"+"{{username.id}}"+"'><td><span class='label label-info'>关注者</span></td><td>{{username}}</td></tr>");
+
+			$("#counter").text(parseInt($("#counter").text())+1);
+			$.ajax({
+				url:"{% url 'events:_follow'%}",
+				type:"POST",
+				data:{ clicked_id:m_event_id},
+			})
+		});
+		$("#unfollow").click(function(){
+			m_event_id = {{event.id}};
+			$("#follow").show();
+			$("#unfollow").hide();
+			$("#counter").text(parseInt($("#counter").text())-1);
+			$("#follower-table").find("#follower{{username.id}}").remove();
+			$.ajax({
+				url:"{% url 'events:_unfollow'%}",
+				type:"POST",
+				data:{ clicked_id:m_event_id},
+			})
+		});
+	});
+</script>
+
 {% endblock %}
 {% block main %}
 <div class="container" style="padding:40px;">
@@ -28,6 +98,14 @@
 			<div class="thumbnail">
 				<img src="/static/image/event_pic/{{event.pic_name}}" style="width:348px;max-height:400px;">
 				<div class="caption">
+					<div class="pull-right">
+						<a id="follow" class="btn btn-info btn-small" style="margin:10px 0 10px 0; padding:5px 5px 2px 5px;">
+							<strong class="follow-star">关注</strong>
+						</a>
+						<a id="unfollow" class="btn btn-info btn-small" style="margin:10px 0 10px 0;padding:5px 5px 2px 5px;display:none;">
+							<strong class="unfollow-star">取消</strong>
+						</a>
+					</div>
 					<h3>{{event.name}}</h3>
 					<table class="table table-hover">
 						<tr>
@@ -65,7 +143,9 @@
 				</a>
 				<div class="media-body">
 					<table class="table table-hover">
-						<caption><h4>事件地点信息</h4></caption>
+						<caption>
+							<h4>事件地点信息</h4>
+						</caption>
 						<tr>
 							<td>举办地点</td>
 							<td>
@@ -88,12 +168,14 @@
 	<div class="row-fluid" style="margin-top:10px;">
 		<div class="span4">
 			<div id="follower-list" class="well">
-				<table class="table table-striped" cellspacing="5" cellpadding="5">
+				<table id="follower-table" class="table table-striped" cellspacing="5" cellpadding="5">
 					<caption><h4>事件关注度</h4></caption>
-					<tr><th><span class="label label-info">热度</span></th><th>{{event.follower_count}}</th></tr>
+					<tr>
+						<th><span class="label label-info">热度</span></th>
+						<th id="counter" class="span3">{{event.follower_count}}</th></tr>
 					{% for man in followers %}
 						
-						<tr><td><span class="label label-info">关注者</span></td><td>{{ man.name }}</td></tr>
+					<tr id="follower{{man.id}}"><td><span class="label label-info">关注者</span></td><td>{{ man.name }}</td></tr>
 						
 					{% endfor %}
 				</table>

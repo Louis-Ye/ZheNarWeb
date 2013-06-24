@@ -86,16 +86,6 @@ img.media-object{
 				data:{ clicked_id:m_event_id},
 			})
 		});
-		$(".unfollow").mouseover(function(){
-			m_id = $(this).attr("name");
-			if(!$("#unfollow_icon"+m_id).hasClass("icon-spin"))
-				$("#unfollow_icon"+m_id).addClass("icon-spin");
-		});
-		$(".unfollow").mouseout(function(){
-			m_id = $(this).attr("name");
-			if($("#unfollow_icon"+m_id).hasClass("icon-spin"))
-				$("#unfollow_icon"+m_id).removeClass("icon-spin");
-		})
 	});
 </script>
 {% endblock %}
