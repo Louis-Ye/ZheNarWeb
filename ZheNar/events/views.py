@@ -29,14 +29,15 @@ def login_proc(request):
 def index(request):
 	event_list_query = Event.objects.filter(status=2)
 	event_list = [event for event in event_list_query if not event.if_event_was_expired()]
-	user = Profile.objects.get(user_id = request.user.id)
-	followed_event = []
+	pr = Profile.objects.get(user_id = request.user.id)
+	followed_event = pr.event_follower_set.filter(status=2)
+	"""
 	for event in event_list:
 		follower_list = event.follower.all()
 		for man in follower_list:
 			if man == user:
 				followed_event.append(event)
-
+	"""
 	c = {
 			'page_title': "浙Nar儿的事件",
 			'event_list': event_list,
@@ -167,13 +168,15 @@ def hot(request):
 	active_events = [event for event in sorted_events if not event.if_event_was_expired() ]
 	hot_event_list = active_events[0:10]
 
-	user = Profile.objects.get(user_id = request.user.id)
-	followed_event = []
+	pr = Profile.objects.get(user_id = request.user.id)
+	followed_event = pr.event_follower_set.filter(status=2)
+	"""
 	for event in hot_event_list:
 		follower_list = event.follower.all()
 		for man in follower_list:
 			if man == user:
 				followed_event.append(event)
+	"""
 	context = {
 			"page_title": "十大热点事件",
 			"hot_event_list": hot_event_list,
