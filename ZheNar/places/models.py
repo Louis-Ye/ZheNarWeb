@@ -50,6 +50,11 @@ class Place(models.Model):
 	def __unicode__(self):
 		return self.name
 
+	def showStatus(self):
+		if self.status == 1: return "Pending"
+		if self.status == 2: return "Accepted"
+		if self.status == 3: return "Rejected"
+
 	class Meta:
 		ordering = ['name']
 		permissions = (

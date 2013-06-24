@@ -57,6 +57,11 @@ class Event(models.Model):
 	def if_event_was_expired(self):
 		return self.end_time < timezone.now()
 
+	def showStatus(self):
+		if self.status == 1: return "Pending"
+		if self.status == 2: return "Accepted"
+		if self.status == 3: return "Rejected"
+
 	if_event_was_expired.boolean = True
 	if_event_was_expired.short_description = "Expired?"
 	

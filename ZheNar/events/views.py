@@ -89,7 +89,7 @@ def _create(request):
 		return HttpResponseRedirect(reverse("index"))
 	name = request.POST.get("name")
 	description = request.POST.get("description")
-	holder_id = request.user.id
+	holder = Profile.objects.get(user_id = request.user.id)
 	host_organization = request.POST.get("host_organization")
 	start_time_string = request.POST.get("start_time")
 	start_time = datetime.strptime(start_time_string,"%m/%d/%Y %H:%M:%S")
@@ -110,7 +110,7 @@ def _create(request):
 	
 	form = {}
 	if __judge_form(form):
-		event = Event(name=name, description=description, holder_id=holder_id, host_organization=host_organization, start_time=start_time, end_time=end_time, place_id=place_id, event_type_id=event_type_id, address = address)
+		event = Event(name=name, description=description, holder=holder, host_organization=host_organization, start_time=start_time, end_time=end_time, place_id=place_id, event_type_id=event_type_id, address = address)
 		event_pic = request.FILES.get('event_pic')
 		event.save()
 		if event_pic is not None:
