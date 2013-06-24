@@ -7,7 +7,9 @@
 			{% if place.status == 2 %}
 				<li class="span3" style="margin:10px">
 					<div class="thumbnail">
-						<img src="http://maps.googleapis.com/maps/api/staticmap?center={{place.latitude}},{{place.longitude}}&zoom=16&size=300x300&sensor=false&markers=icon:http://google-maps-icons.googlecode.com/files/{{place.place_type.icon.name}}%7Clabel:Z%7C{{place.latitude}},{{place.longitude}}">
+					   	<a href="{% url 'places:detail' place.id %}">
+						   	<img src="http://maps.googleapis.com/maps/api/staticmap?center={{place.latitude}},{{place.longitude}}&zoom=16&size=300x300&sensor=false&markers=icon:http://google-maps-icons.googlecode.com/files/{{place.place_type.icon.name}}%7Clabel:Z%7C{{place.latitude}},{{place.longitude}}">
+					   	</a>
 						<h4>{{ place.name}}</h4>
 						<h5>{{place.place_type.name}}</h5>
 						<p style="height:80px;overflow:scroll;">{{place.description}}</p>

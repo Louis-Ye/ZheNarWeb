@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from datetime import datetime
 from places.models import PlaceType,Place,Icon
 from profiles.models import Profile
-
+from events.models import Event
 
 def login_proc(request):
 	if request.user.is_authenticated():
@@ -68,6 +68,19 @@ def _create(request):
 		return HttpResponseRedirect(reverse('places:index'))
 	
 	return HttpResponseRedirect(reverse('index'))
+
+def detail(request,place_id):
+	try:
+		m_place = Place.objects.get(pk = place_id)
+	except Place.DoesNotExist:
+		return __goErrorPage(request, ['There is no such place', ])
+	m_events = Event.objects.filter(place = m_place)
+
+	c = Context({"page_title": "浙Nar儿的地点详情",
+	"place": m_place,
+	"events_in_place": m_events,
+	})
+	return render_to_response('places/place_detail.html',c,context_instance = RequestContext(request,processors=[login_proc]))
 	
 	
 def type_create(request):
