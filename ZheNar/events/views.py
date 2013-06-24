@@ -163,28 +163,6 @@ def _type_create(request):
 	return HttpResponseRedirect(reverse('index'))
 
 
-def hot(request):
-	sorted_events = Event.objects.annotate(num_follower = Count("follower")).order_by("-num_follower").filter(status=2);
-	active_events = [event for event in sorted_events if not event.if_event_was_expired() ]
-	hot_event_list = active_events[0:10]
-
-	pr = Profile.objects.get(user_id = request.user.id)
-	followed_event = pr.event_follower_set.filter(status=2)
-	"""
-	for event in hot_event_list:
-		follower_list = event.follower.all()
-		for man in follower_list:
-			if man == user:
-				followed_event.append(event)
-	"""
-	context = {
-			"page_title": "十大热点事件",
-			"hot_event_list": hot_event_list,
-			'followed_event_list': followed_event,
-	}
-	return render(request, "events/event_hot.html", __login_proc(request, context))
-
-
 def _delete(request, p_id):
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect(reverse('index'))

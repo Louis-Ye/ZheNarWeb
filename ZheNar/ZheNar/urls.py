@@ -6,11 +6,13 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 	url(r'^$', 'ZheNar.views.index',name = 'index'),
+	url(r'^hot/$','ZheNar.views.hot', name = 'hot'),
 	url(r'^admin/', include(admin.site.urls)),
 	url(r'^api/', include('api.urls', namespace="api")),
 	url(r'^profiles/', include('profiles.urls', namespace="profiles")),
 	url(r'^events/', include('events.urls',namespace="events")),
 	url(r'^places/', include('places.urls',namespace="places")),
+	
 	# url(r'^api/', include('api.urls',namespace="api")),
     # Examples:
     # url(r'^$', 'ZheNar.views.home', name='home'),

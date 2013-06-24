@@ -111,6 +111,9 @@ img.media-object{
 	<div class="container-fluid" style="margin-top:40px">
 		<div class="span3 well">
 			<h1>Top 10 Places</h1>
+			{% for item in hot_place_list %}
+			{{item.name}} <br>
+			{% endfor %}
 		</div>
 	 	<div class="span7 well">
 			<h1>Top 10 Events</h1>

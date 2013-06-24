@@ -3,8 +3,9 @@ from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from profiles.models import Profile
 from django.contrib.auth.models import User
-from places.models import Place
 from django.utils import timezone
+
+from places.models import Place
 
 class Icon(models.Model):
 	name = models.CharField(unique=True,max_length=255)
@@ -44,7 +45,7 @@ class Event(models.Model):
 	host_organization = models.CharField(max_length = 255, null = True)
 	start_time = models.DateTimeField('Time that activities started')
 	end_time = models.DateTimeField('Time that activities ended')
-	place = models.ForeignKey(Place)
+	place = models.ForeignKey(Place, related_name='place_events_set')
 	event_type = models.ForeignKey(EventType)
 	follower = models.ManyToManyField(Profile, related_name='event_follower_set', null = True)
 	address = models.CharField(max_length = 255,default = 'Not mentioned')

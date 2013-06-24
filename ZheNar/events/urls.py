@@ -11,7 +11,6 @@ urlpatterns = patterns('',
 	url(r'^detail/(?P<event_id>\d+)/$',views.detail,name='detail'),
 	url(r'^_follow/$',views._follow,name='_follow'),
 	url(r'^_unfollow/$',views._unfollow,name='_unfollow'),
-	url(r'^hot/$',views.hot,name='hot'),
 	url(r'^insert/$',views.insert,name="insert"), #insert the icon
 	url(r'^_delete/(?P<p_id>\d+)/$', views._delete,name='_delete'),
 )

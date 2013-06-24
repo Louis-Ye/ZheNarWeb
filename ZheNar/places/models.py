@@ -1,6 +1,9 @@
 from django.db import models
 from profiles.models import Profile
 from django.contrib.auth.models import User
+from django.db.models import Count
+
+#from events.models import Event
 # Create your models here.
 class Icon(models.Model):
 	name = models.CharField(unique=True,max_length=255)
@@ -48,6 +51,7 @@ class Place(models.Model):
 	longitude = models.FloatField()
 	create_time = models.DateField()
 	zoom_level = models.SmallIntegerField(default = 18,choices = ZOOM_SET)
+	events_followers = models.BigIntegerField(default = 0)
 	
 	def __unicode__(self):
 		return self.name
@@ -56,6 +60,17 @@ class Place(models.Model):
 		if self.status == 1: return "Pending"
 		if self.status == 2: return "Accepted"
 		if self.status == 3: return "Rejected"
+
+	def syncEventsFollowers(self):
+		self.events_followers = 0
+		events = self.place_events_set.filter(status=2)
+		for item in events:
+			self.events_followers += item.follower.count()
+		#self.save()
+	
+	def __lt__(self, other):
+		return self.events_followers >= other.events_followers
+
 
 	class Meta:
 		ordering = ['name']
