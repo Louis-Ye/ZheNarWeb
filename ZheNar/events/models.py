@@ -2,6 +2,7 @@
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from profiles.models import Profile
+from django.contrib.auth.models import User
 from places.models import Place
 from django.utils import timezone
 
@@ -43,7 +44,7 @@ class Event(models.Model):
 	end_time = models.DateTimeField('Time that activities ended')
 	place = models.ForeignKey(Place)
 	event_type = models.ForeignKey(EventType)
-	follower = models.ManyToManyField(Profile,related_name='event_follower_set')
+	follower = models.ManyToManyField(Profile, related_name='event_follower_set')
 	address = models.CharField(max_length = 255,default = 'Not mentioned')
 	pic_name = models.CharField(max_length = 255, default = 'event_default.png')
 	
@@ -55,6 +56,9 @@ class Event(models.Model):
 	
 	def if_event_was_expired(self):
 		return self.end_time < timezone.now()
+
+	def sync_follower_count(self):
+		self.follower_count = self.follower.count()
 
 	if_event_was_expired.boolean = True
 	if_event_was_expired.short_description = "Expired?"

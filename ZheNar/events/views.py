@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render_to_response, render
 from django.template import Context, loader, RequestContext
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views import generic
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
+from django.db.models import Count
 
 from datetime import datetime
 from profiles.models import Profile
@@ -28,7 +29,7 @@ def login_proc(request):
 def index(request):
 	event_list_query = Event.objects.filter(status=2)
 	event_list = [event for event in event_list_query if not event.if_event_was_expired()]
-	user = Profile.objects.get(pk = request.user.id)
+	user = Profile.objects.get(user_id = request.user.id)
 	followed_event = []
 	for event in event_list:
 		follower_list = event.follower.all()
@@ -159,6 +160,25 @@ def _type_create(request):
 	return HttpResponseRedirect(reverse('index'))
 
 
+def hot(request):
+	sorted_events = Event.objects.annotate(num_follower = Count("follower")).order_by("-num_follower").filter(status=2);
+	active_events = [event for event in sorted_events if not event.if_event_was_expired() ]
+	hot_event_list = active_events[0:10]
+
+	user = Profile.objects.get(user_id = request.user.id)
+	followed_event = []
+	for event in hot_event_list:
+		follower_list = event.follower.all()
+		for man in follower_list:
+			if man == user:
+				followed_event.append(event)
+	context = {
+			"page_title": "十大热点事件",
+			"hot_event_list": hot_event_list,
+			'followed_event_list': followed_event,
+	}
+	return render(request, "events/event_hot.html", __login_proc(request, context))
+
 
 def __judge_form(form):
 	return True
@@ -166,6 +186,14 @@ def __judge_form(form):
 
 def __goErrorPage(request, error_list):
 	return render(request, "error/error_popup.html", __login_proc(request, {'error_list': error_list}))
+
+
+def __login_proc(request, lst):
+	if request.user.is_authenticated():
+		lst['authenticated'] = True;
+		lst['username'] = request.user.username
+		return lst
+	return lst
 	
 
 # 用于插入icon&place_type用，已插入则无需再用

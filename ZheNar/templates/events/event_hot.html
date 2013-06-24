@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% block css %}
+<style>
+img.media-object{
+	height:100px;
+	width:100px;
+}
+.image-list{
+	margin-top: 15px;
+}
+.follow-star{
+	display: inline-block;
+	font-size: 16px;
+	position: relative;
+	width: 1.1em;
+}
+.unfollow-star{
+	display: inline-block;
+	font-size: 16px;
+	position: relative;
+	width: 1.1em;
+}
+</style>
+{% endblock %}
+
+{% block script %}
+<script>
+	function Setup_follow_button(){
+		{% for event in followed_event_list %}
+			$("#follow{{event.id}}").hide();
+			$("#unfollow{{event.id}}").show();
+		{% endfor %}
+	}
+	
+	$(document).ready(function()
+	{
+		Setup_follow_button();
+		function getCookie(name) {
+			var cookieValue = null;
+			if (document.cookie && document.cookie != '') {
+				var cookies = document.cookie.split(';');
+				for (var i = 0; i < cookies.length; i++) {
+					var cookie = jQuery.trim(cookies[i]);
+					// Does this cookie string begin with the name we want?
+					if (cookie.substring(0, name.length + 1) == (name + '=')) {
+						cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+						break;
+					}
+				}
+			}
+			return cookieValue;
+		}
+		var csrftoken = getCookie('csrftoken');
+		function csrfSafeMethod(method) {
+			// these HTTP methods do not require CSRF protection
+			return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+		}
+		$.ajaxSetup({
+			crossDomain: false, // obviates need for sameOrigin test
+			beforeSend: function(xhr, settings) {
+				if (!csrfSafeMethod(settings.type)) {
+					xhr.setRequestHeader("X-CSRFToken", csrftoken);
+				}
+			}
+		});
+		$(".follow").click(function()
+		{
+			m_event_id = $(this).attr("name");
+			$("#follow"+m_event_id).hide();
+			$("#unfollow"+m_event_id).show();
+			
+			$("span#counter"+m_event_id).text(parseInt($("span#counter"+m_event_id).text())+1);
+			$.ajax({
+				url:"{% url 'events:_follow'%}",
+				type:"POST",
+				data:{ clicked_id:m_event_id},
+			})
+		});
+		$(".unfollow").click(function(){
+			m_event_id = $(this).attr("name");
+			$("#follow"+m_event_id).show();
+			$("#unfollow"+m_event_id).hide();
+			$("span#counter"+m_event_id).text(parseInt($("span#counter"+m_event_id).text())-1);
+			$.ajax({
+				url:"{% url 'events:_unfollow'%}",
+				type:"POST",
+				data:{ clicked_id:m_event_id},
+			})
+		});
+		$(".unfollow").mouseover(function(){
+			m_id = $(this).attr("name");
+			if(!$("#unfollow_icon"+m_id).hasClass("icon-spin"))
+				$("#unfollow_icon"+m_id).addClass("icon-spin");
+		});
+		$(".unfollow").mouseout(function(){
+			m_id = $(this).attr("name");
+			if($("#unfollow_icon"+m_id).hasClass("icon-spin"))
+				$("#unfollow_icon"+m_id).removeClass("icon-spin");
+		})
+	});
+</script>
+{% endblock %}
+{% block main %}
+<div class="container" style="padding:50px">
+	<div class="container-fluid" style="margin-top:40px">
+		{% for event in hot_event_list %}
+		<div class="row media">
+			<a class="pull-left" href="#">
+				<img class="media-object img-polaroid" src="/static/image/event_pic/{{event.pic_name}}">
+			</a>
+			<div class="media-body">
+				<div class="image-list pull-left">
+					<img src="/static/map_icon/icons/{{event.event_type.icon.name}}">
+					<img src="/static/map_icon/icons/{{event.place.place_type.icon.name}}">
+				</div>
+				<div class="media pull-right">
+					<a id="info{{event.id}}" name="{{event.id}}" class="btn btn-info btn-small" style="margin:10px 0 10px 0;" href="{% url 'events:detail' event.id %}">更多信息</a>
+					<a id="follow{{event.id}}" name="{{event.id}}" class="btn btn-info btn-small follow" style="margin:10px 0 10px 0; padding:5px 5px 2px 5px;">
+						<strong class="follow-star">☆</strong>
+					</a>
+					<a id="unfollow{{event.id}}" name="{{event.id}}" class="btn btn-info btn-small unfollow" style="margin:10px 0 10px 0;padding:5px 5px 2px 5px;display:none;">
+						<strong class="unfollow-star">★</strong>
+					</a>
+				</div>
+				<table class="table table-hover">
+					<tr style="height:">
+						<td><h4 class="media-heading">{{event.name}}</h4></td>
+						<td><h5 class="media-heading">开始时间:</h5>{{event.start_time}}</td>
+						<td><h5 class="media-heading">结束时间:</h5>{{event.end_time}}</td>
+						<td><h5 class="media-heading">组织:</h5>{{event.host_organization}}</td>
+						<td><h5 class="media-heading">地点:</h5>{{event.place}}</td>
+						<td><h5 class="media-heading">具体位置:</h5>{{event.address}}</td>
+						<td class="span1">
+							<div class="span1" style="margin-left:0px;">
+								<span><strong>关注度</strong></span>
+								<span id="counter{{event.id}}" class="label label-info">{{event.follower_count}}</span>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}
+
