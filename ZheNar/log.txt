@@ -223,13 +223,13 @@ commit 5343b76a6d28257226bec7b68fb9f5345e1832d1
 Author: francushu <huhexiang88@gmail.com>
 Date:   Sun Jun 23 22:07:18 2013 +0800
 
-    先push一下
+    Little change
 
 commit e0c09de7874330dcab2908a0ab2613eaa97f676a
 Author: francushu <huhexiang88@gmail.com>
 Date:   Sun Jun 23 11:11:19 2013 +0800
 
-    更改了一下格式
+    Modify the format problem
 
 commit a03fa369deb2567a2af4c1a0eb8facd6964e9cda
 Merge: 601b458 60e85a6
@@ -245,7 +245,7 @@ commit 601b4587cc74fa8d268fbf60dbf06ccc9244bead
 Author: francushu <huhexiang88@gmail.com>
 Date:   Sun Jun 23 10:38:07 2013 +0800
 
-    先sync一下
+    Sync with the evnet page half done
 
 commit 60e85a6ce5ead74816ad668329efad39ec374ff0
 Author: LouisYe <yeluyuptd@163.com>
@@ -263,7 +263,7 @@ commit 1d7559d913c8adc16761a34974f0d8c9aa3f9000
 Author: francushu <huhexiang88@gmail.com>
 Date:   Sat Jun 22 23:04:28 2013 +0800
 
-    给主页添加了一下事件列表
+    add the event list to the event page
 
 commit 5b54f653e0a87fcaffcccccadc390752dafff752
 Author: francushu <huhexiang88@gmail.com>
@@ -287,43 +287,43 @@ commit cc5a771bcc649a209f11ee908077aa23216bd3ee
 Author: francushu <huhexiang88@gmail.com>
 Date:   Sat Jun 22 16:07:29 2013 +0800
 
-    增加Zoom属性，用于控制地点
+   add an attribute to the place model with the zoom level
 
 commit f3157e698bbf7fdbe9f06defb2d402a892216de2
 Author: francushu <huhexiang88@gmail.com>
 Date:   Sat Jun 22 14:55:50 2013 +0800
 
-    完成api
+   complete the api for the  mobile app
 
 commit 9343e46e8de84bea2500ab1ca783483ffa30c660
 Author: francushu <huhexiang88@gmail.com>
 Date:   Sat Jun 22 14:39:33 2013 +0800
 
-    美化
+Do some UI design
 
 commit 9a0f8b8eb9e866ae74e2b0f132dc276f1709ff75
 Author: francushu <huhexiang88@gmail.com>
 Date:   Sat Jun 22 09:23:14 2013 +0800
 
-    更换主题功能（开发者可以更换了，但是还没有实现用户更换）
+    make it able to change the theme of the website(Only for the developer)
 
 commit 870643f1f30b147d241c8e47b9adca2e30acf6a3
 Author: francushu <huhexiang88@gmail.com>
 Date:   Fri Jun 21 23:48:18 2013 +0800
 
-    小改动
+  Some small changes
 
 commit 9769e0c364290c99f7f4b9de4ea163b933364737
 Author: francushu <huhexiang88@gmail.com>
 Date:   Fri Jun 21 22:58:17 2013 +0800
 
-    增加了对于事件是否过期的滤过功能
+  Add a method to the model to filter the expired events
 
 commit 1466ab169832f08004915cef872f7fe01a79e7d3
 Author: francushu <huhexiang88@gmail.com>
 Date:   Fri Jun 21 22:49:23 2013 +0800
 
-    能够支持插入时间了
+  make it able to create event with time(add a timepicker plugin )
 
 commit 4d32ec107999dad4749ff29ae1511e68161d9e10
 Author: francushu <huhexiang88@gmail.com>
@@ -390,7 +390,7 @@ commit 113a2b583c08ca0b93efc0ccfbbfbb9872f23aee
 Author: francushu <huhexiang88@gmail.com>
 Date:   Tue Jun 18 12:09:11 2013 +0800
 
-    新建event
+    improve the create events page
 
 commit 7295b39660cc381701f4b1a0b4b6fc927ade634d
 Merge: c573cd9 84b8f32
@@ -409,13 +409,13 @@ commit 84b8f32600fbebc8497fe815fcf0a1e10ffaed4f
 Author: francushu <huhexiang88@gmail.com>
 Date:   Mon Jun 17 22:47:49 2013 +0800
 
-    删掉没用的
+    Delete the useless staff
 
 commit ef1d6041048a21a8d4a193148e43fabfd84f7714
 Author: francushu <huhexiang88@gmail.com>
 Date:   Mon Jun 17 17:25:57 2013 +0800
 
-    首页与地点的重新排版
+    reformat the index of the websit 
 
 commit 303f695da059b6c7acd566a11782afc85978d312
 Merge: 2202c2a 62f6d2c
@@ -434,7 +434,7 @@ commit 62f6d2cb0ea31f54517125bdef813cebe7473964
 Author: francushu <huhexiang88@gmail.com>
 Date:   Sun Jun 16 23:23:32 2013 +0800
 
-    完成PS
+    complete some Photo shop work
 
 commit 1eb09f4bec1c894145e5ae48a999503fa32fc156
 Author: LouisYe <yeluyuptd@163.com>
@@ -471,7 +471,7 @@ commit fbe37ce8b3998d3f4117c4cf090ce39ce634cba2
 Author: francushu <huhexiang88@gmail.com>
 Date:   Sun Jun 16 15:38:39 2013 +0800
 
-    改了一点index上的东西
+    little improve with the index
 
 commit 8560d4070eaa7ee7e8d46ce2e077003818fb0dc2
 Author: LouisYe <yeluyuptd@163.com>
@@ -483,13 +483,13 @@ commit 5dccace0340518de8831fb51b41a7f1feebc750e
 Author: francushu <huhexiang88@gmail.com>
 Date:   Sun Jun 16 00:23:26 2013 +0800
 
-    搞定了主页的地点的显示功能
+    improve the info window in the home page
 
 commit ec89bb110f4d6e88a2e1dab66f2052d393d007ad
 Author: francushu <huhexiang88@gmail.com>
 Date:   Sat Jun 15 23:54:02 2013 +0800
 
-    解决冲突
+    conflict
 
 commit dc53d6200fd292a5ec0d4bbcdb94706b98446b2f
 Merge: 6e7709f df31107
@@ -508,15 +508,15 @@ commit df31107a0d530dca0c0c574960c7eac3262dbf7f
 Author: francushu <huhexiang88@gmail.com>
 Date:   Sat Jun 15 23:43:55 2013 +0800
 
-    改动（未完成）
+    change（uncomplete）
 
 commit 1340e28d96e2382db10b477742cfcfa7e091fc87
 Author: francushu <huhexiang88@gmail.com>
 Date:   Sat Jun 15 22:21:09 2013 +0800
 
-    对本地js做了一点修改
+    improve some local javascript
     
-    现在可以在添加事件的时候就看到marker的效果了
+    Now we can see some effect in the info window when we click the marker
 
 commit b38e02cb945955356d5088a95b70af42da6c14da
 Author: LouisYe <yeluyuptd@163.com>
@@ -528,13 +528,13 @@ commit e6887f97df2182721bbcb91d615098741f484e90
 Author: francushu <huhexiang88@gmail.com>
 Date:   Sat Jun 15 16:22:10 2013 +0800
 
-    小改动
+   little change
 
 commit 9e9df3cd22fc38a4a469d785f2e9e6abda342448
 Author: francushu <huhexiang88@gmail.com>
 Date:   Sat Jun 15 15:53:27 2013 +0800
 
-    超大改动。。。。
+   lots of changes in UI design
 
 commit 9ba71ed11e7ca1db4079e636d4616dedc4f5fd1f
 Author: LouisYe <yeluyuptd@163.com>
@@ -562,9 +562,9 @@ commit e0fef74db7e13034970624f56dc73a718c5988d3
 Author: francushu <huhexiang88@gmail.com>
 Date:   Sat Jun 15 01:35:24 2013 +0800
 
-    算是取得重大进展了吧
+    Do some great progress
     
-    感觉现在已经做的非常帅了
+    It looks awesome now~
 
 commit 02a6fda2363854b0d322e3c8c499ff5bc74e248a
 Merge: 06fad92 93a3358
@@ -602,19 +602,19 @@ commit fcbe1da8c0ed8d4eef896b0982df5d1e0a241deb
 Author: francushu <huhexiang88@gmail.com>
 Date:   Fri Jun 14 20:53:23 2013 +0800
 
-    设置admin页面
+    Customize the admin page for the webadmin
 
 commit 348faa44d00faa01504ce6aa7dcffcefc4c82f75
 Author: francushu <huhexiang88@gmail.com>
 Date:   Fri Jun 14 19:52:02 2013 +0800
 
-    db设置文件
+   database setting file
 
 commit f216b001968e6418046996b45cf4ce3e2a1a4537
 Author: francushu <huhexiang88@gmail.com>
 Date:   Fri Jun 14 19:19:24 2013 +0800
 
-    界面改白色系
+  modify the page color  
 
 commit 4e222fccc3542aa787457701b6f171bdddad25b0
 Author: LouisYe <yeluyuptd@163.com>
@@ -626,31 +626,29 @@ commit 04e4b4ec68a2056f0323f6b70a4e5b7c906ff029
 Author: francushu <huhexiang88@gmail.com>
 Date:   Fri Jun 14 19:02:25 2013 +0800
 
-    一些改动，
+   some change about the UI color
 
 commit 4c1615bbc8b432e918352b178fceec251e62acce
 Author: francushu <huhexiang88@gmail.com>
 Date:   Fri Jun 14 16:53:04 2013 +0800
 
-    重新处理了一下bootstrap库的文件
+    Re process the bootstrap lib file
     
-    删除了没有用的东西
+    delete some useless part
 
 commit e4363cf20f8e881224d3021c493cec0ee7851f11
 Author: francushu <huhexiang88@gmail.com>
 Date:   Fri Jun 14 16:21:59 2013 +0800
 
-    错误已修复
+    Fix some file links
     
-    文件链接重复了
+    relink the file 
 
 commit fcefe72e9a71f0c87c54ef9c1a7c30ae58e24821
 Author: francushu <huhexiang88@gmail.com>
 Date:   Fri Jun 14 16:16:42 2013 +0800
 
-    出现了一个严重的bug
-    
-    把登录之后的navbar给做出来了，但是发现出了严重的错误
+   Fixed some severe bug
 
 commit 88690b54c51ad7e84125b51bf826ca1f85d5729b
 Author: francushu <huhexiang88@gmail.com>
@@ -743,12 +741,6 @@ Author: LouisYe <yeluyuptd@163.com>
 Date:   Sun Jun 9 08:57:12 2013 +0800
 
     delete and ignore .DS_Store
-
-commit 579a9b7d1ccc00601238dea7db7e92c4b7191293
-Author: francushu <huhexiang88@gmail.com>
-Date:   Sat Jun 8 00:21:18 2013 +0800
-
-    在static文件夹下临时加一个map的demo，不要动他，我用来测试map效果用的
 
 commit b62e2b4cde0aed8d45836b386361cf5be42f0900
 Author: francushu <huhexiang88@gmail.com>
