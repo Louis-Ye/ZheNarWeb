@@ -3,6 +3,7 @@ from django.template import Template, Context, loader, RequestContext
 from django.shortcuts import render_to_response, render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.db.models import Count
+from django.core.urlresolvers import reverse
 #from django.contrib.gis.maps.google.gmap import GoogleMap
 #from django.contrib.gis.maps.google.overlays import GMarker, GEvent
 from places.models import Place
@@ -31,7 +32,7 @@ def index(request):
 
     
 def hot(request):
-	if not request.user.is_authenticated:
+	if not request.user.is_authenticated():
 		return HttpResponseRedirect(reverse('index'))
 
 	sorted_events = Event.objects.annotate(num_follower = Count("follower")).order_by("-num_follower").filter(status=2);

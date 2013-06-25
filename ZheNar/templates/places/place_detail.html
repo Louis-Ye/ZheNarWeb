@@ -45,13 +45,13 @@
 						<th>关注度</th>
 					</tr>
 					{% for event in events_in_place %}
-						<tr>
-							<td>{{event.name}}</td>
-							<td>{{event.address}}</td>
-							<td>{{event.start_time}}</td>
-							<td>{{event.end_time}}</td>
-							<td><span id="counter{{event.id}}" class="label label-info">{{event.follower_count}}</span></td>
-						</tr>
+					<tr>
+						<td><a href="{% url 'events:detail' event.id %}">{{event.name}}</a></td>
+						<td>{{event.address}}</td>
+						<td>{{event.start_time}}</td>
+						<td>{{event.end_time}}</td>
+						<td><span id="counter{{event.id}}" class="label label-info">{{event.follower_count}}</span></td>
+					</tr>
 					{% endfor %}
 				</table>
 			</div>
