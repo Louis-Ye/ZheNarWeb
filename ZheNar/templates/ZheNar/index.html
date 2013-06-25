@@ -56,11 +56,11 @@
 			 	lat[count] = {{place.latitude}};
 			 	lng[count] = {{place.longitude}};
 			 	myicon[count] = '{{place.place_type.icon.name}}';
-			 	content[count] = "<h4>{{place.name}}</h4><div style='overflow:scroll;max-height:300px;'><ul>";
+			 	content[count] = "<a href='"+"{% url 'places:detail' place.id%}"+"'><h4>{{place.name}}</h4></a><div style='overflow:scroll;max-height:300px;'><ul>";
 			 	{% for event in events %}
 			 		{% if event.place.name == place.name %}
 			 			empty_flag = false;
-			 			content[count] += "<li><a src='#'><strong>{{event.name}}</strong><ul><li>开始时间:{{event.start_time}}</li><li>结束时间:{{event.end_time}}</li><li>具体地点:{{event.address}}</li></ul></a></li>"
+			 			content[count] += "<li><a href='"+"{% url 'events:detail' event.id%}"+"'><strong>{{event.name}}</strong><ul><li>开始时间:{{event.start_time}}</li><li>结束时间:{{event.end_time}}</li><li>具体地点:{{event.address}}</li></ul></a></li>"
 			 		{% endif %}
 			 	{% endfor %}
 			 	if(empty_flag == false)
