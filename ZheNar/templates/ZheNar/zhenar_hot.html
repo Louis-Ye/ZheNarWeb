@@ -138,14 +138,12 @@ img.media-object{
 					</div>
 					<div class="media pull-right">
 						<a id="info{{event.id}}" name="{{event.id}}" class="btn btn-info btn-small" style="margin:10px 0 10px 0;" href="{% url 'events:detail' event.id %}">更多信息</a>
-						{% if authenticated %}
 						<a id="follow{{event.id}}" name="{{event.id}}" class="btn btn-info btn-small follow" style="margin:10px 0 10px 0; padding:5px 5px 2px 5px;">
 							<strong class="follow-star">☆</strong>
 						</a>
 						<a id="unfollow{{event.id}}" name="{{event.id}}" class="btn btn-info btn-small unfollow" style="margin:10px 0 10px 0;padding:5px 5px 2px 5px;display:none;">
 							<strong class="unfollow-star">★</strong>
 						</a>
-						{% endif %}
 					</div>
 					<table class="table">
 						<tr style="height:">

@@ -31,7 +31,10 @@ def index(request):
 	return render_to_response('ZheNar/index.html',c,context_instance = RequestContext(request,processors=[login_proc]))
 
     
-def hot(request):	
+def hot(request):
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect(reverse('index'))
+
 	sorted_events = Event.objects.annotate(num_follower = Count("follower")).order_by("-num_follower").filter(status=2);
 	active_events = [event for event in sorted_events if not event.if_event_was_expired() ]
 	hot_event_list = active_events[0:10]
