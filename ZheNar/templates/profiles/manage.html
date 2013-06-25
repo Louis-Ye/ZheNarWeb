@@ -29,7 +29,7 @@
 						<td>{{ item.create_time }}</td>
 						<td>{{ item.showStatus }}</td>
 						<td>
-							<a href="#">编辑</a>
+							<a href="{% url 'places:edit' item.id %}">编辑</a>
 						</td>
 					</tr>
 					{% endfor %}

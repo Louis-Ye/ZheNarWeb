@@ -36,8 +36,9 @@ def index(request):
 def create(request):
 	if request.user.is_authenticated():
 		m_place_type = PlaceType.objects.all()
-		c = Context({"page_title": "ZJU地点",
-					"place_options":m_place_type,
+		c = Context({
+		"page_title": "ZJU地点",
+		"place_options":m_place_type,
 					})
 		return render_to_response('places/place_create.html',c,context_instance = RequestContext(request,processors=[login_proc]))
 	else:
@@ -126,17 +127,21 @@ def _delete(request, place_id):
 def edit(request,place_id):
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect(reverse('index'))
+		
 	m_place = Place.objects.get(pk = place_id)
+	m_place_type = PlaceType.objects.all()
 	
 	c = Context({
-		"title":"ZheNar修改地点“，
-		"place":m_place,
+		"title":"ZheNar修改地点",
+		"place_options":m_place_type,
+		"place": m_place,
 	})
 	
 	return render_to_response('places/place_edit.html',c,context_instance = RequestContext(request,processors=[login_proc]))
 	
 def _edit(request):
 	if request.POST:
+		m_place_id = request.POST.get('place_id')
 		m_place_name = request.POST.get('place_name')
 		m_place_type_name = request.POST.get('place_type')
 		m_latitude = request.POST.get('latitude')
@@ -147,20 +152,29 @@ def _edit(request):
 		return HttpResponseRedirect(reverse('index'))
 		
 	try:
-		place = Place.objects.get(name = m_place_name,latitude = m_latitude, longitude = m_longitude,description = m_description)
+		m_place = Place.objects.get(pk = m_place_id)
 	except Place.DoesNotExist:
-		try:
-			m_creater = User.objects.get(pk=m_creater_id)
-		except User.DoesNotExist:
-			return HttpResponseRedirect(reverse('index'))
+		return HttpResponseRedirect(reverse('index'))
+		
+	try:
+		m_creater = User.objects.get(pk=m_creater_id)
+	except User.DoesNotExist:
+		return HttpResponseRedirect(reverse('index'))
+
+	m_place_type = PlaceType.objects.get(name = m_place_type_name)
+	m_place.creater = m_creater
+	m_place.name = m_place_name
+	m_place.description = m_description
+	m_place.place_type = m_place_type
+	m_place.latitude = m_latitude
+	m_place.longitude = m_longitude
+	m_place.create_time = datetime.now()
+	m_place.status = 1
+	if request.user.is_superuser: 
+		m_place.status = 2
+	m_place.save()
+	return HttpResponseRedirect(reverse('places:index'))
 	
-		m_place_type = PlaceType.objects.get(name = m_place_type_name)
-		place = Place(creater = m_creater, name = m_place_name,description = m_description, place_type = m_place_type,latitude = m_latitude, longitude = m_longitude,create_time = datetime.now())
-		if request.user.is_superuser: place.status = 2
-		place.save()
-		return HttpResponseRedirect(reverse('places:index'))
-	
-	return HttpResponseRedirect(reverse('index'))
 
 #用于插入icon用，已插入则无需再用
 def insert(request):
