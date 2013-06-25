@@ -111,18 +111,19 @@ img.media-object{
 	<div class="container-fluid" style="margin-top:40px">
 		<div class="span3 well">
 			<h1>Top 10 Places</h1>
-			{% for place in hot_place_list %}
-			<div class="media">
-				<div class="pull-left">
-					<strong class="ranking">No.{{forloop.counter}}</strong>
-				</div>
-				<div class="media-body pull-right">
-					<a href="{% url 'places:detail' place.id %}"><strong style="font-size:18px;">{{place.name}}</strong></a>
-					<img src="/static/map_icon/icons/{{place.place_type.icon.name}}">
-				</div>
-			</div>
-			<hr />
-			{% endfor %}
+			<table class="table table-hover">
+				{% for place in hot_place_list %}
+				<tr class="media">
+					<td>
+						<strong class="ranking">No.{{forloop.counter}}</strong>
+					</td>
+					<td>
+						<a href="{% url 'places:detail' place.id %}"><strong style="font-size:18px;">{{place.name}}</strong></a>
+						<img src="/static/map_icon/icons/{{place.place_type.icon.name}}">
+					</td>
+				</tr>
+				{% endfor %}
+			</table>
 		</div>
 	 	<div class="span7 well">
 			<h1>Top 10 Events</h1>
