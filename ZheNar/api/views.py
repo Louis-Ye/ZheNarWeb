@@ -82,6 +82,7 @@ def user_login_username(request):
 		return HttpResponse(json.dumps({"error": "账户已被注销",}))
 
 	user_info = __get_user_info(upr)
+	login(request, upr)
 	return HttpResponse(json.dumps(user_info), mimetype='application/json')
 
 
@@ -101,6 +102,7 @@ def user_login_email(request):
 		return HttpResponse(json.dumps({"error": "账户已被注销",}))
 
 	user_info = __get_user_info(upr)
+	login(request, upr)
 	return HttpResponse(json.dumps(user_info), mimetype='application/json')
 
 
