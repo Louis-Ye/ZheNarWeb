@@ -41,15 +41,10 @@ def hot(request):
 
 	pr = Profile.objects.get(user_id = request.user.id)
 	followed_event = pr.event_follower_set.filter(status=2)
-	"""
-	for event in hot_event_list:
-		follower_list = event.follower.all()
-		for man in follower_list:
-			if man == user:
-				followed_event.append(event)
-	"""
+
 	places = Place.objects.filter(status=2)
-	for item in places: item.syncEventsFollowers()
+	for item in places: 
+		item.syncEventsFollowers()
 	pls = list(places)
 	pls.sort()
 	hot_place_list = pls[0:10]

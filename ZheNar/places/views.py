@@ -114,15 +114,53 @@ def _type_create(request):
 	return HttpResponseRedirect(reverse('index'))
 
 
-def _delete(request, e_id):
+def _delete(request, place_id):
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect(reverse('index'))
-	place = Place.objects.get(pk = e_id)
+	place = Place.objects.get(pk = place_id)
 	if place.creater_id == request.user.id:
 		place.status = 4
 		place.save()
 	return HttpResponseRedirect(reverse('profiles:manage'))
-
+	
+def edit(request,place_id):
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect(reverse('index'))
+	m_place = Place.objects.get(pk = place_id)
+	
+	c = Context({
+		"title":"ZheNar修改地点“，
+		"place":m_place,
+	})
+	
+	return render_to_response('places/place_edit.html',c,context_instance = RequestContext(request,processors=[login_proc]))
+	
+def _edit(request):
+	if request.POST:
+		m_place_name = request.POST.get('place_name')
+		m_place_type_name = request.POST.get('place_type')
+		m_latitude = request.POST.get('latitude')
+		m_longitude = request.POST.get('longitude') 
+		m_description = request.POST.get('description')
+		m_creater_id = request.user.id
+	else:
+		return HttpResponseRedirect(reverse('index'))
+		
+	try:
+		place = Place.objects.get(name = m_place_name,latitude = m_latitude, longitude = m_longitude,description = m_description)
+	except Place.DoesNotExist:
+		try:
+			m_creater = User.objects.get(pk=m_creater_id)
+		except User.DoesNotExist:
+			return HttpResponseRedirect(reverse('index'))
+	
+		m_place_type = PlaceType.objects.get(name = m_place_type_name)
+		place = Place(creater = m_creater, name = m_place_name,description = m_description, place_type = m_place_type,latitude = m_latitude, longitude = m_longitude,create_time = datetime.now())
+		if request.user.is_superuser: place.status = 2
+		place.save()
+		return HttpResponseRedirect(reverse('places:index'))
+	
+	return HttpResponseRedirect(reverse('index'))
 
 #用于插入icon用，已插入则无需再用
 def insert(request):
