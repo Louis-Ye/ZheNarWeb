@@ -155,7 +155,10 @@ def _edit(request):
 		m_place = Place.objects.get(pk = m_place_id)
 	except Place.DoesNotExist:
 		return HttpResponseRedirect(reverse('index'))
-		
+	
+	if m_place.creater.user_id != request.user.id:
+		return HttpResponseRedirect(reverse('index'))
+	
 	try:
 		m_creater = User.objects.get(pk=m_creater_id)
 	except User.DoesNotExist:
