@@ -1,0 +1,1071 @@
+commit d8cae9f2959b63840400c477cf9db1c113168f3a
+Author: francushu <huhexiang88@gmail.com>
+Date:   Tue Jun 25 13:17:55 2013 +0800
+
+    fix some bugs with the follow button
+
+commit 982919ff60ade958c8538e339b9275e4c03ce856
+Author: francushu <huhexiang88@gmail.com>
+Date:   Tue Jun 25 13:10:43 2013 +0800
+
+    fix some bugs
+
+commit 1cb32b99e7a637360354e71da96f448742594fab
+Merge: 2bfce49 b777774
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Tue Jun 25 13:06:38 2013 +0800
+
+    Merge branch 'master' of https://github.com/Louis-Ye/ZheNarWeb
+
+commit 2bfce49d6f31ffdb863d8b8f462e743b5cbd3664
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Tue Jun 25 13:06:11 2013 +0800
+
+    superuser create and login with email
+
+commit b7777742cf4295b8a41111835dbe225dbd9d3fcd
+Author: francushu <huhexiang88@gmail.com>
+Date:   Tue Jun 25 12:54:41 2013 +0800
+
+    change the hot spot style
+
+commit 9dbbf78d5ebabb42cb0adbdcf08e1357d418a631
+Author: francushu <huhexiang88@gmail.com>
+Date:   Tue Jun 25 12:39:18 2013 +0800
+
+    debug: make the id to be user_id
+
+commit eed14dd550163f2c9de2f9a745ba7f9c38f0c871
+Author: francushu <huhexiang88@gmail.com>
+Date:   Tue Jun 25 09:38:51 2013 +0800
+
+    imporve the hot page places list
+
+commit 607c322d9e3743f617a7791381ae7b7164dfb1af
+Author: francushu <huhexiang88@gmail.com>
+Date:   Tue Jun 25 09:23:55 2013 +0800
+
+    make the increment to the index page
+
+commit 928bea126ab105119c79048dbaa592c6c4c9dff7
+Merge: 9bf0b59 fd1afad
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Tue Jun 25 00:24:21 2013 +0800
+
+    Merge branch 'master' of https://github.com/Louis-Ye/ZheNarWeb
+
+commit 9bf0b5931963b56a5ef82120bb11572ae1f540a6
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Tue Jun 25 00:23:27 2013 +0800
+
+    top 10 hot places (server side)
+
+commit fd1afad0c3ec45b210f4303fc4268986d33592e9
+Author: francushu <huhexiang88@gmail.com>
+Date:   Mon Jun 24 23:29:42 2013 +0800
+
+    add same form check for the event creation and place creation
+
+commit a8635031945f4a4a41436c876705a79eefea91c3
+Author: francushu <huhexiang88@gmail.com>
+Date:   Mon Jun 24 23:03:49 2013 +0800
+
+    change the width of the paragragh
+
+commit bd87562d7639e7293755f7704b215d74c01d1d8a
+Merge: bc2388f bdeef8e
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Mon Jun 24 22:25:42 2013 +0800
+
+    Merge branch 'master' of https://github.com/Louis-Ye/ZheNarWeb
+
+commit bc2388fb5c9d8875f401b180e68159ef8f072be4
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Mon Jun 24 22:24:44 2013 +0800
+
+    optimize selecting events being followed
+
+commit bdeef8ec58266f260378a811f71d176b555bcf17
+Author: francushu <huhexiang88@gmail.com>
+Date:   Mon Jun 24 22:18:06 2013 +0800
+
+    Adjust the margin
+
+commit 597d43298ee0a4e755ccbd8ca89393aff07bc5c5
+Author: francushu <huhexiang88@gmail.com>
+Date:   Mon Jun 24 21:27:13 2013 +0800
+
+    modify the place index layout
+
+commit a17b2d911a8df4f34cd56f7c015ae3f5272cf6cc
+Author: francushu <huhexiang88@gmail.com>
+Date:   Mon Jun 24 21:17:52 2013 +0800
+
+    modify the manage page of the web site
+
+commit 919d3291333a11b8631a0a67b74529c0dc03a460
+Author: francushu <huhexiang88@gmail.com>
+Date:   Mon Jun 24 20:36:50 2013 +0800
+
+    modify the hot spot of the web page
+
+commit ec45ad34803352974db1d61f40b8268a141ff451
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Mon Jun 24 20:31:07 2013 +0800
+
+    user manage finish
+
+commit fa2b019a2e03e8168929f36f1680ff606e2cdac5
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Mon Jun 24 19:44:01 2013 +0800
+
+    user manage 2
+
+commit b0b32086c092db58a9d3e1147d9c6e8eaa253166
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Mon Jun 24 19:38:25 2013 +0800
+
+    de some bugs of user manage
+
+commit 27505f9b561bcc2de0189b7f37c2e2e346de3049
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Mon Jun 24 19:17:01 2013 +0800
+
+    user manage events and place (unfinished)
+
+commit e62d33feb9c89c190f92fb5161a661b8024ddf5d
+Merge: 7919940 f6c7666
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Mon Jun 24 19:16:51 2013 +0800
+
+    Merge branch 'master' of https://github.com/Louis-Ye/ZheNarWeb
+
+commit f6c76665834b80bff944917907fee6a9a178936f
+Author: francushu <huhexiang88@gmail.com>
+Date:   Mon Jun 24 18:51:17 2013 +0800
+
+    make the detailed events page and places page
+
+commit 7919940a1e9e73418863f1a4b36fd05e3e1bfe48
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Mon Jun 24 17:07:14 2013 +0800
+
+    hot events
+
+commit 3ec5997a560442d7733e8f18228d23df92216e2b
+Author: francushu <huhexiang88@gmail.com>
+Date:   Mon Jun 24 16:26:56 2013 +0800
+
+    add place detail page
+
+commit 0473ad4b8eaf8c7a278942640fe1dd73245fc789
+Author: francushu <huhexiang88@gmail.com>
+Date:   Mon Jun 24 15:55:45 2013 +0800
+
+    More detailed design about the profiles
+
+commit ca23b604ce76baff47d0208adc8b5d6679abe191
+Author: francushu <huhexiang88@gmail.com>
+Date:   Mon Jun 24 13:39:04 2013 +0800
+
+    Design Modification
+
+commit d2ca413e30561633c48d343446fd83aa5ad0de6d
+Author: francushu <huhexiang88@gmail.com>
+Date:   Mon Jun 24 13:31:06 2013 +0800
+
+    create the event_datail.html
+
+commit 232997d3e5223fcb51baaa8233b7e4243f9ad410
+Author: francushu <huhexiang88@gmail.com>
+Date:   Mon Jun 24 10:51:49 2013 +0800
+
+    some adjust for the map canvas position and follow button
+
+commit 5fe9a3aeeedee151c91881099d10ed1599710775
+Author: francushu <huhexiang88@gmail.com>
+Date:   Mon Jun 24 09:45:06 2013 +0800
+
+    make merge
+
+commit 73a2c273ab8c274b302756f256ef90d59f318fd6
+Merge: 8d685e3 516dcfa
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Mon Jun 24 01:51:26 2013 +0800
+
+    Merge branch 'master' of https://github.com/Louis-Ye/ZheNarWeb
+
+commit 8d685e3fa85635bdd67858ede41ea7345bdff0b4
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Mon Jun 24 01:50:45 2013 +0800
+
+    event picture display
+
+commit 516dcfaa50175c6936d5ddbea1bf25dfed6f6e12
+Author: francushu <huhexiang88@gmail.com>
+Date:   Mon Jun 24 01:49:45 2013 +0800
+
+    pure pull
+
+commit d1841eab9ab16096be9f0b44c5e4f4a44e52c246
+Author: francushu <huhexiang88@gmail.com>
+Date:   Mon Jun 24 01:16:31 2013 +0800
+
+    complete the follow function and make the UI
+
+commit ed905f27f1ab24783224730e3c919bfe8f24fe11
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sun Jun 23 23:21:11 2013 +0800
+
+    handle the ajax of the function: following events
+
+commit 5343b76a6d28257226bec7b68fb9f5345e1832d1
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sun Jun 23 22:07:18 2013 +0800
+
+    先push一下
+
+commit e0c09de7874330dcab2908a0ab2613eaa97f676a
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sun Jun 23 11:11:19 2013 +0800
+
+    更改了一下格式
+
+commit a03fa369deb2567a2af4c1a0eb8facd6964e9cda
+Merge: 601b458 60e85a6
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sun Jun 23 10:40:55 2013 +0800
+
+    Merge branch 'master' of https://github.com/Louis-Ye/ZheNarWeb
+    
+    Conflicts:
+    	ZheNar/events/views.py
+
+commit 601b4587cc74fa8d268fbf60dbf06ccc9244bead
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sun Jun 23 10:38:07 2013 +0800
+
+    先sync一下
+
+commit 60e85a6ce5ead74816ad668329efad39ec374ff0
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Sun Jun 23 01:36:31 2013 +0800
+
+    rearrange the create event page
+
+commit c7c8a3a9a8edb85b1d609bf5e454dd887f903c64
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Sun Jun 23 01:03:29 2013 +0800
+
+    event pic upload
+
+commit 1d7559d913c8adc16761a34974f0d8c9aa3f9000
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sat Jun 22 23:04:28 2013 +0800
+
+    给主页添加了一下事件列表
+
+commit 5b54f653e0a87fcaffcccccadc390752dafff752
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sat Jun 22 17:22:59 2013 +0800
+
+    modify admin model
+
+commit 978ecb2b04c523bed6a2d1c6826d9071c2444d5f
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sat Jun 22 17:13:16 2013 +0800
+
+    modify api
+
+commit 71d4242e3837b68dc88d2b23da3af184e7ad25d1
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sat Jun 22 17:00:09 2013 +0800
+
+    repair
+
+commit cc5a771bcc649a209f11ee908077aa23216bd3ee
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sat Jun 22 16:07:29 2013 +0800
+
+    增加Zoom属性，用于控制地点
+
+commit f3157e698bbf7fdbe9f06defb2d402a892216de2
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sat Jun 22 14:55:50 2013 +0800
+
+    完成api
+
+commit 9343e46e8de84bea2500ab1ca783483ffa30c660
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sat Jun 22 14:39:33 2013 +0800
+
+    美化
+
+commit 9a0f8b8eb9e866ae74e2b0f132dc276f1709ff75
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sat Jun 22 09:23:14 2013 +0800
+
+    更换主题功能（开发者可以更换了，但是还没有实现用户更换）
+
+commit 870643f1f30b147d241c8e47b9adca2e30acf6a3
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri Jun 21 23:48:18 2013 +0800
+
+    小改动
+
+commit 9769e0c364290c99f7f4b9de4ea163b933364737
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri Jun 21 22:58:17 2013 +0800
+
+    增加了对于事件是否过期的滤过功能
+
+commit 1466ab169832f08004915cef872f7fe01a79e7d3
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri Jun 21 22:49:23 2013 +0800
+
+    能够支持插入时间了
+
+commit 4d32ec107999dad4749ff29ae1511e68161d9e10
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri Jun 21 19:20:02 2013 +0800
+
+    some little change
+
+commit f5d23ee6b4f9800514fbe6b59ab17e0b9299d3bf
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Thu Jun 20 16:37:22 2013 +0800
+
+    event lst
+
+commit 1d63fc3fb59f5ad6af9b1ca60927fb5f7c1438c8
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Thu Jun 20 14:26:27 2013 +0800
+
+    correct the bug of creating place
+
+commit ff9c321561ec5d204035adf64a1a4794eba52f07
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Thu Jun 20 00:50:08 2013 +0800
+
+    events
+
+commit 4c4da9edde81f4267c9039894fbc48ed6de9b94c
+Author: csvenja <c.svenjax@gmail.com>
+Date:   Wed Jun 19 21:05:26 2013 +0800
+
+    modify API
+
+commit 17efbc5d4c35dedcbc9506d60128b323fd151eec
+Merge: 3e48452 fc96bca
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Tue Jun 18 15:23:35 2013 +0800
+
+    Merge branch 'master' of https://github.com/Louis-Ye/ZheNarWeb
+
+commit 3e484527c783fd243e8cf2f2857dfaa962d65ee0
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Tue Jun 18 15:23:19 2013 +0800
+
+    events type create
+
+commit 99f3c6896e43f5a125727d3ffeb1827883ef38dc
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Tue Jun 18 15:11:13 2013 +0800
+
+    events create
+
+commit fc96bca735f562fea5f08d4e11b2d31803c1ab59
+Author: francushu <huhexiang88@gmail.com>
+Date:   Tue Jun 18 13:52:26 2013 +0800
+
+    demo
+
+commit 24dd93a5a2048c9bc957162825f0131575e40f97
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Tue Jun 18 12:37:11 2013 +0800
+
+    events
+
+commit 113a2b583c08ca0b93efc0ccfbbfbb9872f23aee
+Author: francushu <huhexiang88@gmail.com>
+Date:   Tue Jun 18 12:09:11 2013 +0800
+
+    新建event
+
+commit 7295b39660cc381701f4b1a0b4b6fc927ade634d
+Merge: c573cd9 84b8f32
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Tue Jun 18 11:26:00 2013 +0800
+
+    Merge branch 'master' of https://github.com/Louis-Ye/ZheNarWeb
+
+commit c573cd9a8396b814a8dde83aed3d7629343c31e1
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Tue Jun 18 11:25:48 2013 +0800
+
+    login debug
+
+commit 84b8f32600fbebc8497fe815fcf0a1e10ffaed4f
+Author: francushu <huhexiang88@gmail.com>
+Date:   Mon Jun 17 22:47:49 2013 +0800
+
+    删掉没用的
+
+commit ef1d6041048a21a8d4a193148e43fabfd84f7714
+Author: francushu <huhexiang88@gmail.com>
+Date:   Mon Jun 17 17:25:57 2013 +0800
+
+    首页与地点的重新排版
+
+commit 303f695da059b6c7acd566a11782afc85978d312
+Merge: 2202c2a 62f6d2c
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Sun Jun 16 23:28:24 2013 +0800
+
+    Merge redH
+
+commit 2202c2aa65256f6bfb031542e01ebbfd9b068739
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Sun Jun 16 23:24:38 2013 +0800
+
+    red hot
+
+commit 62f6d2cb0ea31f54517125bdef813cebe7473964
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sun Jun 16 23:23:32 2013 +0800
+
+    完成PS
+
+commit 1eb09f4bec1c894145e5ae48a999503fa32fc156
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Sun Jun 16 23:18:47 2013 +0800
+
+    media event
+
+commit b78993a8d26f19a70f33dba1df3db980b78ce278
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Sun Jun 16 22:15:48 2013 +0800
+
+    settings finished
+
+commit 486d3d6958faa7b54f06b9a0508783251f23fc4e
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Sun Jun 16 21:47:33 2013 +0800
+
+    settings2
+
+commit 56d1d9e4c48e30bfad6551e22ee2b3b109cce5e3
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Sun Jun 16 16:32:18 2013 +0800
+
+    settings
+
+commit e448d1a8e541943a890d22a3c308ec9da4552ecb
+Merge: 8560d40 fbe37ce
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Sun Jun 16 15:39:47 2013 +0800
+
+    Merge branch 'master' of https://github.com/Louis-Ye/ZheNarWeb
+
+commit fbe37ce8b3998d3f4117c4cf090ce39ce634cba2
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sun Jun 16 15:38:39 2013 +0800
+
+    改了一点index上的东西
+
+commit 8560d4070eaa7ee7e8d46ce2e077003818fb0dc2
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Sun Jun 16 15:38:37 2013 +0800
+
+    de some bugs
+
+commit 5dccace0340518de8831fb51b41a7f1feebc750e
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sun Jun 16 00:23:26 2013 +0800
+
+    搞定了主页的地点的显示功能
+
+commit ec89bb110f4d6e88a2e1dab66f2052d393d007ad
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sat Jun 15 23:54:02 2013 +0800
+
+    解决冲突
+
+commit dc53d6200fd292a5ec0d4bbcdb94706b98446b2f
+Merge: 6e7709f df31107
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Sat Jun 15 23:48:17 2013 +0800
+
+    merge zhenar views
+
+commit 6e7709f6a1e3bd9759d34440abbe4505ff3bf3ab
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Sat Jun 15 23:44:40 2013 +0800
+
+    get cordination
+
+commit df31107a0d530dca0c0c574960c7eac3262dbf7f
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sat Jun 15 23:43:55 2013 +0800
+
+    改动（未完成）
+
+commit 1340e28d96e2382db10b477742cfcfa7e091fc87
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sat Jun 15 22:21:09 2013 +0800
+
+    对本地js做了一点修改
+    
+    现在可以在添加事件的时候就看到marker的效果了
+
+commit b38e02cb945955356d5088a95b70af42da6c14da
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Sat Jun 15 17:27:21 2013 +0800
+
+    error display
+
+commit e6887f97df2182721bbcb91d615098741f484e90
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sat Jun 15 16:22:10 2013 +0800
+
+    小改动
+
+commit 9e9df3cd22fc38a4a469d785f2e9e6abda342448
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sat Jun 15 15:53:27 2013 +0800
+
+    超大改动。。。。
+
+commit 9ba71ed11e7ca1db4079e636d4616dedc4f5fd1f
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Sat Jun 15 15:33:20 2013 +0800
+
+    check form before register
+
+commit 4fa87137b323b3212d8958e492c7ed50f0137e17
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Sat Jun 15 13:27:10 2013 +0800
+
+    recover register again
+
+commit 2eee272a229f4e16cd4a83dc3d5519c442022597
+Merge: e0fef74 02a6fda
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sat Jun 15 01:36:11 2013 +0800
+
+    Merge branch 'master' of https://github.com/Louis-Ye/ZheNarWeb
+    
+    Conflicts:
+    	ZheNar/templates/profiles/register.html
+
+commit e0fef74db7e13034970624f56dc73a718c5988d3
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sat Jun 15 01:35:24 2013 +0800
+
+    算是取得重大进展了吧
+    
+    感觉现在已经做的非常帅了
+
+commit 02a6fda2363854b0d322e3c8c499ff5bc74e248a
+Merge: 06fad92 93a3358
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri Jun 14 23:15:13 2013 +0800
+
+    Merge branch 'master' of https://github.com/Louis-Ye/ZheNarWeb
+
+commit 06fad92e20363b497ed31f061fecde76f9d7a557
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri Jun 14 23:14:25 2013 +0800
+
+    reverse index
+
+commit 93a3358fb34a839cdbce7160758e7de67628405e
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri Jun 14 20:59:02 2013 +0800
+
+    asdf
+
+commit 4b2b58221befa950eb074c1457c429bbc9c6fde3
+Merge: 982472a fcbe1da
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri Jun 14 20:57:23 2013 +0800
+
+    Merge branch 'master' of https://github.com/Louis-Ye/ZheNarWeb
+
+commit 982472a1a8332c11ed2b577458adb442a188c87e
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri Jun 14 20:54:39 2013 +0800
+
+    register debugging
+
+commit fcbe1da8c0ed8d4eef896b0982df5d1e0a241deb
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri Jun 14 20:53:23 2013 +0800
+
+    设置admin页面
+
+commit 348faa44d00faa01504ce6aa7dcffcefc4c82f75
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri Jun 14 19:52:02 2013 +0800
+
+    db设置文件
+
+commit f216b001968e6418046996b45cf4ce3e2a1a4537
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri Jun 14 19:19:24 2013 +0800
+
+    界面改白色系
+
+commit 4e222fccc3542aa787457701b6f171bdddad25b0
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri Jun 14 19:11:50 2013 +0800
+
+    recover register
+
+commit 04e4b4ec68a2056f0323f6b70a4e5b7c906ff029
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri Jun 14 19:02:25 2013 +0800
+
+    一些改动，
+
+commit 4c1615bbc8b432e918352b178fceec251e62acce
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri Jun 14 16:53:04 2013 +0800
+
+    重新处理了一下bootstrap库的文件
+    
+    删除了没有用的东西
+
+commit e4363cf20f8e881224d3021c493cec0ee7851f11
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri Jun 14 16:21:59 2013 +0800
+
+    错误已修复
+    
+    文件链接重复了
+
+commit fcefe72e9a71f0c87c54ef9c1a7c30ae58e24821
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri Jun 14 16:16:42 2013 +0800
+
+    出现了一个严重的bug
+    
+    把登录之后的navbar给做出来了，但是发现出了严重的错误
+
+commit 88690b54c51ad7e84125b51bf826ca1f85d5729b
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri Jun 14 11:22:09 2013 +0800
+
+    little change
+
+commit 87c8923b0370e9d2ba9a0e44b36eca8a90ea938b
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Thu Jun 13 19:19:16 2013 +0800
+
+    api/user/    edit and deactive
+
+commit fd49c5e081c46cfe6266b57db674ff6480802eeb
+Merge: 55426ca c1e0568
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Thu Jun 13 14:32:50 2013 +0800
+
+    Merge branch 'master' of https://github.com/Louis-Ye/ZheNarWeb
+
+commit 55426ca114ad99c86c4b5515d266f0e5c2a76fec
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Thu Jun 13 14:32:07 2013 +0800
+
+    api post csrf_exempt
+
+commit 4a71d80ca9ebfd1bd4c348264a34d903918bdc1e
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Wed Jun 12 15:14:32 2013 +0800
+
+    mobile api
+
+commit c1e05681f4b0aac1e7bc2bb3378f099ec925a723
+Author: francushu <huhexiang88@gmail.com>
+Date:   Wed Jun 12 13:44:09 2013 +0800
+
+    modify the profiles and authenticated
+
+commit 91e2aa4d7c7f378be313bbc1c371df621a50f356
+Merge: f810aa5 5565213
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Wed Jun 12 13:10:13 2013 +0800
+
+    Merge branch 'master' of https://github.com/Louis-Ye/ZheNarWeb
+
+commit f810aa52a460a3398ad6a71fe1e70387dd071f40
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Wed Jun 12 13:09:50 2013 +0800
+
+    register extends base.html
+
+commit 5565213e873fb51bb8ffca70d0182ff467dcda59
+Author: francushu <huhexiang88@gmail.com>
+Date:   Wed Jun 12 12:28:56 2013 +0800
+
+    index
+
+commit c0a600d14f33e5f36d1a44708a6dab7e9916cb01
+Author: francushu <huhexiang88@gmail.com>
+Date:   Wed Jun 12 12:16:26 2013 +0800
+
+    make the index
+
+commit 0ca6002be261aa7845236302b8201b1ed9a6bf85
+Author: francushu <huhexiang88@gmail.com>
+Date:   Wed Jun 12 11:57:47 2013 +0800
+
+    comment the api interface
+
+commit 550294cf080256d02af1b3013078854364cf2b0f
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Wed Jun 12 11:56:58 2013 +0800
+
+    api app
+
+commit 06b0c72ace2e5ca6f92927b05ffab43a6581d13a
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Wed Jun 12 11:27:41 2013 +0800
+
+    api app
+
+commit 7c83f6e31a7986bd1bab214e1c0f0e5ed07c9a93
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Wed Jun 12 10:25:25 2013 +0800
+
+    index
+
+commit 5f24874284e9f246e3634f7336edb85740d837ac
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Sun Jun 9 08:57:12 2013 +0800
+
+    delete and ignore .DS_Store
+
+commit 579a9b7d1ccc00601238dea7db7e92c4b7191293
+Author: francushu <huhexiang88@gmail.com>
+Date:   Sat Jun 8 00:21:18 2013 +0800
+
+    在static文件夹下临时加一个map的demo，不要动他，我用来测试map效果用的
+
+commit b62e2b4cde0aed8d45836b386361cf5be42f0900
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri Jun 7 21:59:23 2013 +0800
+
+    little change of the composing
+
+commit 3a0bf5423f250b87fbe28ae531a6aa405c383048
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri Jun 7 18:59:11 2013 +0800
+
+    set up login
+
+commit cfab8aa1f578e5d26d772fd77d3dee9ed76c961e
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri Jun 7 18:44:09 2013 +0800
+
+    main index
+
+commit e0211a1862f5701dfeb20abedcadcc05e2ea9f7d
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri Jun 7 16:43:41 2013 +0800
+
+    registers
+
+commit a230c1fe451771ac6a89b2a75bdf90683d7747ce
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri Jun 7 12:36:36 2013 +0800
+
+    profiles register and login
+
+commit e3452f3dd5b5ba91f93012152c5637875fc9554f
+Merge: 1cfdc5f ae7ea4c
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri Jun 7 09:42:59 2013 +0800
+
+    Merge branch 'master' of https://github.com/Louis-Ye/ZheNarWeb
+
+commit 1cfdc5f4c7303e5f4834d8984d41a5c1eecdd7a9
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri Jun 7 09:41:51 2013 +0800
+
+    some changes in profiles and relative url
+
+commit ae7ea4cc4acf9cfb4f5afa6f52f000ad2a8b84ee
+Author: francushu <huhexiang88@gmail.com>
+Date:   Wed Jun 5 22:04:11 2013 +0800
+
+    some  changes about the demo page
+
+commit 3aca771d84afceaf2dd1fa70d48a961f2c914b13
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Wed Jun 5 22:00:51 2013 +0800
+
+    change some details of the models
+
+commit b6d98ee8b3440e5afb969ddb635312050dd9ca80
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri May 31 22:55:10 2013 +0800
+
+    adding the permissions for events and places
+
+commit 1a9231cbb03e897df4fa48629086a3c696685e76
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri May 31 21:50:15 2013 +0800
+
+    demo
+
+commit 55a3b1f35d72047478c5a55bb3ee681aa6c84f99
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri May 31 21:47:33 2013 +0800
+
+    demo
+
+commit e76b5858506336506b478664f750ffc5d24d24a7
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri May 31 21:25:27 2013 +0800
+
+    demoIndex
+
+commit 3be7be3a1d4206a790d354307051bd9f65345262
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri May 31 21:22:25 2013 +0800
+
+    add the staticfiles and relative apps
+
+commit a1193f9bae1c0c5890abeda11b7ad4520c82c8c7
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri May 31 21:10:44 2013 +0800
+
+    arrange some details
+
+commit dff6bda10113db99cfb1a459da0f941e49d6c8bf
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri May 31 18:32:58 2013 +0800
+
+    debug with the funcion that has no commas
+
+commit 10f6c4d0da201d09f26c6a5590b43bf1c1647bae
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri May 31 18:15:44 2013 +0800
+
+    add views
+
+commit a85548ada0829283d8724b54d7b7c161d27c67d7
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri May 31 17:44:06 2013 +0800
+
+    modify the migration of the events
+
+commit 5e696e4f91d292ccbda77e741e9e84a7914ec096
+Merge: 785f011 8797e05
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri May 31 16:50:06 2013 +0800
+
+    Merge branch 'master' of https://github.com/Louis-Ye/ZheNarWeb
+    
+    Conflicts:
+    	ZheNar/ZheNar/base.pyc
+    	ZheNar/events/models.pyc
+    	ZheNar/profiles/models.pyc
+
+commit 785f01193127edb4a1576a52e967d93dd8e8a0cc
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri May 31 16:49:18 2013 +0800
+
+    make some migration to the database and install the bootstrap lib
+
+commit 8797e05c700d0c57bd44e0edf12c62e00020aee2
+Merge: c71e2ac 01fd5e0
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri May 31 16:33:09 2013 +0800
+
+    Merge branch 'master' of https://github.com/Louis-Ye/ZheNarWeb
+
+commit c71e2ac80a2fa924b5b9576bb3205485a70f47fc
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri May 31 16:32:34 2013 +0800
+
+    delete   *.pyc
+
+commit 01fd5e02e3da0e43dee3c892bfcc0e1267af36a7
+Author: Xhacker Liu <liu.dongyuan@gmail.com>
+Date:   Fri May 31 16:27:18 2013 +0800
+
+    API Doc: Added description to place.
+
+commit 7336ce156d633ecb64038e93c8187823a54452ad
+Author: Xhacker Liu <liu.dongyuan@gmail.com>
+Date:   Fri May 31 16:24:37 2013 +0800
+
+    API document.
+
+commit 08d13e6af6cee265f3fa01582f4f2fd314ea40b8
+Merge: 9b55bcf 13bc57b
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri May 31 16:21:29 2013 +0800
+
+    asd
+
+commit 9b55bcf85769843611fe0c99db2b74877ca4e66e
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri May 31 16:00:26 2013 +0800
+
+    my commit
+
+commit 13bc57bae20e19712724d568c801c47c577abe75
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri May 31 15:59:31 2013 +0800
+
+    profiles models
+
+commit d6725f76bfc6f46da8c98be3928d1875aa91ed11
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri May 31 15:13:30 2013 +0800
+
+    add contenttpes to  the base.py
+
+commit d6bbbd62d5254548ce2b7ad0c749e2f3fe643a69
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri May 31 15:04:49 2013 +0800
+
+    modify the typing error
+
+commit 2fe9fab00c1da9b33032035e35bd63eeabbdb028
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri May 31 14:36:23 2013 +0800
+
+    change the name of the installed apps
+    
+    place -> places
+    event -> events
+
+commit f0811081e25badf18662f4748027704af519a085
+Merge: 31bc389 3da9db8
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri May 31 14:31:03 2013 +0800
+
+    Merge branch 'master' of https://github.com/Louis-Ye/ZheNarWeb
+
+commit 31bc389e86dfe9e699d39c27c5259132ffb332c5
+Merge: 4844af1 2001020
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri May 31 14:28:41 2013 +0800
+
+    Merge branch 'master' of https://github.com/Louis-Ye/ZheNarWeb
+
+commit 3da9db899bf6527f906ea3cb6eeb982e5a852344
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri May 31 14:28:22 2013 +0800
+
+    make the model of the apps
+
+commit 4844af1fdf2bfa22041439bd3aa3a797e9c03c12
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri May 31 14:26:28 2013 +0800
+
+    profiles and add apps to base.py
+
+commit 2001020ba688c8c36621beac67825353e837782f
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri May 31 11:59:59 2013 +0800
+
+    rebuild the path
+
+commit 6958b03f34f85947e0b433d0ecc211188024874b
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri May 31 11:47:59 2013 +0800
+
+    add templates and static directory to base.py
+
+commit b2324818bba598d18e21bc830e9642e7165d4ca7
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri May 31 11:43:26 2013 +0800
+
+    fill the path with some demo
+
+commit a9ef174e32c4743f3068addb1cdc6e4054c8c928
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri May 31 10:23:57 2013 +0800
+
+    zheNar.urls
+
+commit 58188a4217cca9624c4a346bdb4e45147a028e8f
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri May 31 10:10:39 2013 +0800
+
+    create two new apps
+
+commit 5aa9c153dda053a1c1f8cf2d616bf367db4e8e13
+Author: francushu <huhexiang88@gmail.com>
+Date:   Thu May 30 20:31:07 2013 +0800
+
+    build the app for the project
+
+commit 72f88b7eae4ebce2c3e1ca8ae7be6cc73eafa69e
+Author: francushu <huhexiang88@gmail.com>
+Date:   Thu May 30 18:06:55 2013 +0800
+
+    set the under construction page to the root
+
+commit a704fdb1fe23f90962b9dc4d3fd73313a204dbb5
+Author: francushu <huhexiang88@gmail.com>
+Date:   Thu May 30 17:52:51 2013 +0800
+
+    do a little change to the views.py
+
+commit 1c476e55c316b4edc6de24e4b2e9f7b229d80590
+Author: francushu <huhexiang88@gmail.com>
+Date:   Thu May 30 16:32:36 2013 +0800
+
+    modify the settings and change the dir
+
+commit e8d9c8f6e57445b4925d7806b554536e7058ed0d
+Author: francushu <huhexiang88@gmail.com>
+Date:   Thu May 30 16:23:12 2013 +0800
+
+    settings
+
+commit b65e93f4ba0c1843557b6763f346a742f452bdfd
+Author: francushu <huhexiang88@gmail.com>
+Date:   Thu May 30 15:04:34 2013 +0800
+
+    rebuild the website
+
+commit 6f81e902c5145a988042de283ac85fd986dbb810
+Author: francushu <huhexiang88@gmail.com>
+Date:   Wed May 29 11:50:20 2013 +0800
+
+    Modify the Project Layout
+
+commit 81096c19cecc0d98c45f3e684b1a10afae9a380b
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri May 24 23:13:28 2013 +0800
+
+    Do some cleaning job
+
+commit c7a328195ff0c2cdc0359428d28b5c356473445e
+Author: LouisYe <yeluyuptd@163.com>
+Date:   Fri May 24 15:19:32 2013 +0800
+
+    modify apps
+
+commit 40048a9059bc51290488fdb97c58c29cea100f97
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri May 24 14:43:03 2013 +0800
+
+    push znmap
+
+commit 02ac41a87798b544aaca1daf868a62f525fecdca
+Author: francushu <huhexiang88@gmail.com>
+Date:   Fri May 24 14:35:16 2013 +0800
+
+    build the project
+
+commit 8edcbc8fc9112713e385d92189375097d06ee432
+Author: Louis_Ye <yeluyuptd@163.com>
+Date:   Mon May 13 20:01:32 2013 -0700
+
+    Initial commit
