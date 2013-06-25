@@ -108,7 +108,7 @@
 	<div class="container-fluid">
 		<form action="{% url 'places:_edit'  %}" method='post' onsubmit='return check_form();'>
 		{% csrf_token %}
-			<h2>创建地点</h2>
+			<h2>修改地点信息</h2>
 			<div class="row-fluid">
 				<fieldset class="span8">
 					<legend>地理信息:</legend>
@@ -136,7 +136,7 @@
 					{% endfor %}
 					<textarea id="desc" name="description" class="input-block-level" placeholder="具体描述信息" rows="14" cols="40">{{place.description}}</textarea> 
 				</fieldset>
-				<button class="btn btn-large btn-primary span2" type="submit">创建</button>
+				<button class="btn btn-large btn-primary span2" type="submit">保存</button>
 				<button class="btn btn-large btn-primary span2" onclick="location.href='{% url 'places:index' %}'">取消</button>
 
 		</form>

@@ -12,5 +12,7 @@ urlpatterns = patterns('',
 	url(r'^_follow/$',views._follow,name='_follow'),
 	url(r'^_unfollow/$',views._unfollow,name='_unfollow'),
 	url(r'^insert/$',views.insert,name="insert"), #insert the icon
-	url(r'^_delete/(?P<p_id>\d+)/$', views._delete,name='_delete'),
+	url(r'^_delete/(?P<e_id>\d+)/$', views._delete,name='_delete'),
+	url(r'^edit/(?P<event_id>\d+)/$',views.edit,name='edit'),
+	url(r'^_edit/(?P<event_id>\d+)/$',views._edit,name='_edit'),
 )

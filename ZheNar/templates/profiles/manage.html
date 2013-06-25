@@ -58,7 +58,7 @@
 					<td>{{ item.host_organization }}</td>
 					<td>{{ item.showStatus }}</td>
 					<td>
-						<a class="span1" href="#" style="margin-left:0px">编辑</a>
+						<a class="span1" href="{% url 'events:edit' item.id %}" style="margin-left:0px">编辑</a>
 						<a class="span1" href="{% url 'events:_delete' item.id %}" style="margin-left:0px">删除</a>
 					</td>
 				</tr>

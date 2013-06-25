@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block css %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap-fileupload.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'DatePicker/css/bootstrap-datetimepicker.min.css' %}" />
+<style>
+	.well{
+		padding:0px;
+	}
+	.input-append{
+		margin:10px 0px 10px 0px;
+	}
+</style>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" charset="utf-8" src="{% static 'DatePicker/js/bootstrap-datetimepicker.min.js' %}"></script>
+<script src="{% static 'bootstrap/js/bootstrap-fileupload.js' %}"></script>
+<script>
+	$(function() {
+		$('#datetimepicker1').datetimepicker({
+			language: 'pt-BR',
+		});
+		$('#datetimepicker2').datetimepicker({
+			language: 'pt-BR',
+		});
+	});
+	function check_form(){
+		var name = $("#name").val()
+		var org = $("#host_organization").val()
+		var start = $("#start_time").val();
+		var end = $("#end_time").val();
+		var desc = $("#description").val();
+		var addr = $("#address").val();
+		if(name && org && start && end && desc && addr)
+		{
+			if(name.length >= 16)
+				$("#alert_form").text("事件名称不能超过15个字符");
+			else if(org.length >= 11)
+				$("#alert_form").text("组织不能超过10个字符");
+			else if(desc.length >= 255)
+				$("#alert_form").text("事件描述不能超过255个字符");
+			else if(addr.length >= 16)
+				$("#alert_form").text("事件具体地址不能超过15个字符");
+			else
+				return true;
+		}
+		else{
+			$("#alert_form").text("请确保表单填写完毕，并且已在地图上设置过位置标记，再次提交");	
+		}
+		$(".alert").removeClass("out");
+		$(".alert").addClass("in");
+		return false;
+	}
+	function close_alert(){
+		$(".alert").removeClass("in");
+		$(".alert").addClass("out");
+	}
+</script>
+{% endblock %}
+
+{% block main %}
+<div class="container" style="padding:40px">
+	<div class="alert alert-block alert-error fade out" data-alert="alert">
+		<button class="close" type="button" onclick="close_alert();">×</button>
+		<strong>错误</strong>
+		<div id="alert_form">
+			
+		</div>
+	</div>
+	<div name="register_form" class="span12">
+		<form action="{% url 'events:_edit' event.id %}" method='post' onsubmit="return check_form();" enctype="multipart/form-data">  
+			{% csrf_token %}
+			<h2>事件修改</h2>
+			<fieldset>
+				<legend>事件信息</legend>
+				<div class="span4 pull-left">
+					<input type="text" name="name" id="name" style="width:280px;" value="{{event.name}}" placeholder="事件名" />
+					<input type="text" name="host_organization" id="host_organization" value="{{event.host_organization}}" style="width:280px;" placeholder="举办组织" />
+					<input type="text" name="address" id="address" style="width:280px;" value="{{event.address}}" placeholder="具体地点" />
+					<div id="datetimepicker1" class="span3 input-append">
+						<input id="start_time" name="start_time" placeholder="开始时间" data-format="MM/dd/yyyy hh:mm:ss" type="text" value="{{event_start_time}}"></input>
+						<span class="add-on">
+						<i data-time-icon="icon-time" data-date-icon="icon-calendar">
+						</i>
+						</span>
+					</div>
+					<div id="datetimepicker2" class="span3 input-append">
+						<input id="end_time" name="end_time" placeholder="结束时间" data-format="MM/dd/yyyy hh:mm:ss" type="text" value="{{event_end_time}}"></input>
+						<span class="add-on">
+						<i data-time-icon="icon-time" data-date-icon="icon-calendar">
+						</i>
+						</span>
+					</div>
+					<div class="span3" style="margin:12px 0px 0px 0px;">
+						事件类型
+						<select name="event_type_id" value="{{event.event_type_id}}">
+							{% for item in event_type_list %}
+							<option value="{{ item.id }}" >{{item.name}}</option>
+							{% endfor %}
+						</select>
+					</div>
+				</div>
+			  	<div class="span8 pull-right" style="margin-left:0px">
+	<div class="fileupload fileupload-new span3" data-provides="fileupload">
+	  <div class="fileupload-preview thumbnail" style="width: 200px; height: 150px;"></div>
+	  <div>
+	    <span class="btn btn-file"><span class="fileupload-new">事件图片</span><span class="fileupload-exists">更改</span><input type="file" name="event_pic" id="event_pic"/></span>
+	    <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+	  </div>
+	  <div class="span3">&nbsp</div>
+
+	<div class="span3" style="margin-left:0px">
+		事件举办地点
+		<select name="place_id">
+			{% for item in place_list %}
+			<option value="{{ item.id }}" >{{item.name}}</option>
+			{% endfor %}
+		</select>
+	  	</div>
+		<div class="span3" style="margin-left:0px">
+  	</div>
+	</div>
+
+					
+	<textarea name="description" id="description" class="span5" placeholder="具体描述信息" rows="16" cols="40" >{{event.description}}</textarea> 
+			  	</div>
+			</fieldset>
+	        <button class="btn btn-large btn-primary span2 offset4" type="submit">保存</button>
+	        <button class="btn btn-large btn-primary span2" onclick="location.href='{% url 'events:index' %}'">取消</button>
+		</form>
+	</div>
+
+	
+</div>
+{% endblock %}
+
