@@ -98,6 +98,7 @@
 			<div class="thumbnail">
 				<img src="/static/image/event_pic/{{event.pic_name}}" style="width:348px;max-height:400px;">
 				<div class="caption">
+					{% if authenticated %}
 					<div class="pull-right">
 						<a id="follow" class="btn btn-info btn-small" style="margin:10px 0 10px 0; padding:5px 5px 2px 5px;">
 							<strong class="follow-star">关注</strong>
@@ -106,6 +107,7 @@
 							<strong class="unfollow-star">取消</strong>
 						</a>
 					</div>
+					{% endif %}
 					<h3>{{event.name}}</h3>
 					<table class="table table-hover">
 						<tr>
@@ -149,9 +151,9 @@
 						<tr>
 							<td>举办地点</td>
 							<td>
-								<strong>{{ event.place.name}}</strong>
+								<strong><a href="{% url 'places:detail' event.place.id %}">{{ event.place.name}}</a></strong>
 								<span class="badge badge-info">{{ event.place.place_type.name}}</span>
-								</td>
+							</td>
 						</tr>
 						<tr>
 							<td>具体地点</td>
