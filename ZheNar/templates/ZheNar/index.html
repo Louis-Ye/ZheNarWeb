@@ -56,7 +56,7 @@
 			 	lat[count] = {{place.latitude}};
 			 	lng[count] = {{place.longitude}};
 			 	myicon[count] = '{{place.place_type.icon.name}}';
-			 	content[count] = "<a href='"+"{% url 'places:detail' place.id%}"+"'><h4>{{place.name}}</h4></a><div style='overflow:scroll;max-height:300px;'><ul>";
+			 	content[count] = "<a href='"+"{% url 'places:detail' place.id%}"+"'><h4>{{place.name}}</h4></a><div style='overflow:scroll;height:300px;'><ul>";
 			 	{% for event in events %}
 			 		{% if event.place.name == place.name %}
 			 			empty_flag = false;
