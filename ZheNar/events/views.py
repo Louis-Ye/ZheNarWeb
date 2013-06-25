@@ -49,14 +49,14 @@ def _follow(request):
 	event_id = request.POST.get("clicked_id")
 	m_event = Event.objects.get(pk = event_id)
 
-	m_event.follower.add(Profile.objects.get(id = request.user.id))
+	m_event.follower.add(Profile.objects.get(user_id = request.user.id))
 	return HttpResponse(json.dumps({"status":"succeed", }))
 
 def _unfollow(request):
 	event_id = request.POST.get("clicked_id")
 	m_event = Event.objects.get(pk = event_id)
 	
-	m_event.follower.remove(Profile.objects.get(id = request.user.id))
+	m_event.follower.remove(Profile.objects.get(user_id = request.user.id))
 	return HttpResponse(json.dumps({"status":"succeed", }))
 
 def detail(request,event_id):
