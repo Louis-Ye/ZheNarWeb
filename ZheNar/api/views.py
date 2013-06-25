@@ -90,11 +90,14 @@ def user_login_username(request):
 def user_login_email(request):
 	email = request.POST['email']
 	password = request.POST['password']
-
-	upr = authenticate(email=email, password=password)
+	try :
+		user = User.objects.get(email=email)
+	except User.DoesNotExist:
+		return HttpResponse(json.dumps({"error": "Email或密码错误",}))
+	upr = authenticate(username=user.username, password=password)
 	if upr is None:
 		return HttpResponse(json.dumps({"error": "Email或密码错误",}))
-	if upr.is_active == 0 or upr.is_superuser == 1:
+	if upr.is_active == 0:
 		return HttpResponse(json.dumps({"error": "账户已被注销",}))
 
 	user_info = __get_user_info(upr)
