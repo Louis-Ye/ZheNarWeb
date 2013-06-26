@@ -49,7 +49,7 @@ def hot(request):
 	pls.sort()
 	hot_place_list = pls[0:10]
 	context = {
-			"page_title": "十大热点事件",
+			"page_title": "十大热点",
 			"hot_event_list": hot_event_list,
 			"followed_event_list": followed_event,
 			"hot_place_list": hot_place_list,
