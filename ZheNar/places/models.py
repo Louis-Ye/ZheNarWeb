@@ -66,7 +66,7 @@ class Place(models.Model):
 		events = self.place_events_set.filter(status=2)
 		for item in events:
 			if item.if_event_was_expired():
-				events_followers += item.follower.count()
+				self.events_followers += item.follower.count()
 		#self.save()
 	
 	def __lt__(self, other):

@@ -23,7 +23,7 @@
 <script>
 	function Setup_follow_button(){
 		{% for man in followers %}
-		{% if man.id == username.id %}
+		{% if man.user_id == username.id %}
 			$("#follow").hide();
 			$("#unfollow").show();
 		{% endif %}
@@ -177,7 +177,7 @@
 						<th id="counter" class="span3">{{event.follower_count}}</th></tr>
 					{% for man in followers %}
 						
-					<tr id="follower{{man.id}}"><td><span class="label label-info">关注者</span></td><td>{{ man.name }}</td></tr>
+					<tr id="follower{{man.user_id}}"><td><span class="label label-info">关注者</span></td><td>{{ man.name }}</td></tr>
 						
 					{% endfor %}
 				</table>
