@@ -2,7 +2,7 @@
 from django.template import Template, Context, loader, RequestContext
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, render
 from django.contrib.auth.models import User
 from datetime import datetime
 from places.models import PlaceType,Place,Icon
@@ -127,10 +127,13 @@ def _delete(request, place_id):
 def edit(request,place_id):
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect(reverse('index'))
-		
+
 	m_place = Place.objects.get(pk = place_id)
 	m_place_type = PlaceType.objects.all()
 	
+	if m_place.creater.id != request.user.id:
+		return __goErrorPage(request,["Oops, this place is not created by you, you can't modify it"])
+		
 	c = Context({
 		"title":"ZheNar修改地点",
 		"place_options":m_place_type,
@@ -156,8 +159,8 @@ def _edit(request):
 	except Place.DoesNotExist:
 		return HttpResponseRedirect(reverse('index'))
 	
-	if m_place.creater.user_id != request.user.id:
-		return HttpResponseRedirect(reverse('index'))
+	if m_place.creater.id != request.user.id:
+		return __goErrorPage(request,["Oops, this place is not created by you, you can't modify it"])
 	
 	try:
 		m_creater = User.objects.get(pk=m_creater_id)
@@ -178,7 +181,9 @@ def _edit(request):
 	m_place.save()
 	return HttpResponseRedirect(reverse('places:index'))
 	
-
+def __goErrorPage(request, error_list):
+	return render(request, "error/error_popup.html", __login_proc(request, {'error_list': error_list}))
+	
 #用于插入icon用，已插入则无需再用
 def insert(request):
 	list = []
