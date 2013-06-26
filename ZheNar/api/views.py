@@ -197,6 +197,45 @@ def __get_place_type_info(item):
 	}
 	return place_type_info
 	
+@csrf_exempt
+@require_POST
+def place_create(request):
+	check_flag = True
+	if 'name' in request.POST:
+		m_place_name = request.POST.get("name")
+	else:
+		check_flag = False
+		
+	if 'description' in request.POST:
+		m_place_description  = request.POST.get("description")
+	else:
+		check_flag = False
+		
+	if 'longitude' in request.POST:
+		m_place_longitude = request.POST.get("longitude")
+	else:
+		check_flag = False
+		
+	if 'latitude' in request.POST:
+		m_place_latitude = request.POST.get("latitude")
+	else:
+		check_flag = False
+		
+	if 'type' in request.POST:
+		m_place_type_id = request.POST.get("type")
+		m_place_type = PlaceType.objects.get(pk = m_place_type_id)
+	else:
+		check_flag = False	
+	
+	if check_flag is False:
+		return HttpResponse(json.dumps({"error":"格式不正确"}),mimetype='application/json')
+	
+	try:
+		Place(name = m_place_name,description = m_place_description,longitude= m_place_longitude,latitude = m_place_latitude,place_type = m_place_type)
+	except:
+		return HttpResponse(json.dumps({"error":"数据库错误"}),mimetype='application/json')
+	return HttpResponse("0")
+
 #-------------------------------------------------------------------------------------##------------------------------ Events
 
 @csrf_exempt
@@ -229,6 +268,9 @@ def __get_event_info(item):
 		"type"			:	item.event_type.name,
 	}
 	return event_info
+
+def event_create(request):
+	return True
 
 @csrf_exempt
 @require_GET			
