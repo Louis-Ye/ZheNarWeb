@@ -235,7 +235,6 @@ td:last-child {
   "id": 65536,
   "username": "Ye Lyuyu",
   "email": "ye@lyu.yu.edu.cn",
-  "gender": "female",
   "student_name": "Ye Lyuyu"
 }</pre>
     <pre title="403" class="error">{"error": "Email或密码错误。"}</pre>
@@ -398,6 +397,25 @@ td:last-child {
   <td align="left">返回 <code>id</code> 地点的详细信息。</td>
 </tr> -->
 
+<tr>
+  <td align="left">/create/</td>
+  <td align="left"><code>POST</code></td>
+  <td align="left">
+    <ul>
+      <li><code class="required">str</code> name</li>
+      <li><code class="required">str</code> description</li>
+      <li><code class="required">str</code> latitude</li>
+      <li><code class="required">str</code> longitude</li>
+      <li><code class="required">str</code> type</li>
+    </ul>
+  </td>
+  <td align="left">
+    <pre>0</pre>
+    <pre title="400" class="error">{"error": "格式不正确。"}</pre>
+  </td>
+  <td align="left">创建地点。</td>
+</tr>
+
 </tbody>
 </table>
 
@@ -469,6 +487,29 @@ td:last-child {
   }
 ]</pre></td>
   <td align="left">返回事件类别列表。</td>
+</tr>
+
+<tr>
+  <td align="left">/create/</td>
+  <td align="left"><code>POST</code></td>
+  <td align="left">
+    <ul>
+      <li><code class="required">str</code> name</li>
+      <li><code class="required">str</code> description</li>
+      <li><code class="optional">str</code> host</li>
+      <li><code class="optional">str</code> organization</li>
+      <li><code class="optional">str</code> start_time</li>
+      <li><code class="optional">str</code> end_time</li>
+      <li><code class="required">str</code> place_id</li>
+      <li><code class="optional">str</code> address</li>
+      <li><code class="required">str</code> type</li>
+    </ul>
+  </td>
+  <td align="left">
+    <pre>0</pre>
+    <pre title="400" class="error">{"error": "格式不正确。"}</pre>
+  </td>
+  <td align="left">创建事件。时间格式：<code>2013-05-30T13:00Z</code>。</td>
 </tr>
 
 <br />
