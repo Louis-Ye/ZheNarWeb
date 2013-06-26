@@ -234,16 +234,18 @@ def _edit(request, event_id):
 		event.holder=holder
 		event.host_organization=host_organization
 		event.start_time=start_time
-		event.end_time=end_time
-		event.place_id=place_id
-		event.event_type_id=event_type_id
+		event.end_time = end_time
+		m_place = Place.objects.get(pk = place_id)
+		event.place = m_place
+		m_event_type = EventType.objects.get(pk = event_type_id)
+		event.event_type = m_event_type
 		event.address = address
 		if request.user.is_superuser: 
 			event.status = 2
 		event_pic = request.FILES.get('event_pic')
 		if event_pic is not None:
 			event.pic_name = handle_uploaded_pic(event_pic, event.id)
-			event.save()
+		event.save()
 	else:
 		return __goErrorPage(request, ['Something wrong with your form', ])
 
