@@ -65,7 +65,8 @@ def _create(request):
 
 		m_place_type = PlaceType.objects.get(name = m_place_type_name)
 		place = Place(creater = m_creater, name = m_place_name,description = m_description, place_type = m_place_type,latitude = m_latitude, longitude = m_longitude,create_time = datetime.now())
-		if request.user.is_superuser: place.status = 2
+		if request.user.is_superuser: 
+			place.status = 2
 		place.save()
 		return HttpResponseRedirect(reverse('places:index'))
 	
@@ -109,6 +110,8 @@ def _type_create(request):
 	except PlaceType.DoesNotExist:
 		m_icon = Icon.objects.get(name = m_type_icon)
 		m_place_type = PlaceType(name = m_type_name, icon = m_icon)
+		if request.user.is_superuser: 
+			m_place_type.status = 2
 		m_place_type.save()
 		return HttpResponseRedirect(reverse('places:index'))
 	

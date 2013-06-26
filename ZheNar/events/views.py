@@ -113,7 +113,8 @@ def _create(request):
 	if __judge_form(form):
 		event = Event(name=name, description=description, holder=holder, host_organization=host_organization, start_time=start_time, end_time=end_time, place_id=place_id, event_type_id=event_type_id, address = address)
 		event_pic = request.FILES.get('event_pic')
-		if request.user.is_superuser: event.status = 2
+		if request.user.is_superuser: 
+			event.status = 2
 		event.save()
 		if event_pic is not None:
 			event.pic_name = handle_uploaded_pic(event_pic, event.id)
@@ -158,6 +159,8 @@ def _type_create(request):
 	except EventType.DoesNotExist:
 		m_icon = Icon.objects.get(name = m_type_icon)
 		m_type = EventType(name = m_type_name, icon = m_icon)
+		if request.user.is_superuser: 
+			m_type.status = 2
 		m_type.save()
 		return HttpResponseRedirect(reverse('events:index'))
 	
