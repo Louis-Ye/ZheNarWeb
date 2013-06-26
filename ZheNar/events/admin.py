@@ -3,12 +3,13 @@ from django.contrib import admin
 from events.models import EventType, Event, Icon
 
 class EventAdmin(admin.ModelAdmin):
-	list_display = ('name','description','status','end_time','holder','host_organization','if_event_was_expired','follower_count')
+	list_display = ('name','description','status','end_time','holder','host_organization','if_event_was_expired','follower_count','admin_image')
 	search_fields = ('name','host_organization')
 	list_filter = ('end_time',)
 	ordering = ('-end_time',)
 	actions = ['make_accepted','make_rejected']
-	
+	#fileds = ('name','description','status','start_time','end_time','holder','host_organization','if_event_was_expired','follower_count','place','follower','event_type','address','pic_name','admin_image')
+		
 	def make_deleted(self, request, queryset):
 		queryset.update(status = '4')
 	
