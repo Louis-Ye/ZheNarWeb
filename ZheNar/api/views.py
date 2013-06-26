@@ -269,11 +269,50 @@ def __get_event_info(item):
 	}
 	return event_info
 
-def event_create(request):
-	return True
 
 @csrf_exempt
-@require_GET			
+@require_POST
+def event_create(request):
+	if not request.user.is_authenticated():
+		return HttpResponse(json.dumps({"error_code ":"NotLoggedIn"}),mimetype='application/json')
+	name = request.POST.get("name")
+	description = request.POST.get("description")
+	start_time = request.POST.get("start_time")
+	holder = Profile.objects.get(user_id = request.user.id)
+	host_organization = request.POST.get("organization")
+	end_time = request.POST.get("end_time")
+	place_id = request.POST.get("place_id")
+	event_type_id = request.POST.get("event_type_id")
+	address = request.POST.get("address")
+	pic_name = "event_default.png"
+
+	try:
+		obj_place = Place.objects.get(pk=place_id, status = 2)
+	except Place.DoesNotExist:
+		return HttpResponse(json.dumps({"error_code":"没有这个地方 place_id"}),mimetype='application/json')
+	try:
+		obj_place = EventType.objects.get(pk=event_type_id, status = 2)
+	except EventType.DoesNotExist:
+		return HttpResponse(json.dumps({"error_code ":"没有这个事件类型"}),mimetype='application/json')
+	
+	#form = {}
+	if True:#__judge_event_form(form):
+		event = Event(	name=name, description=description, holder=holder, host_organization=host_organization,
+				start_time=start_time, end_time=end_time, 
+				place_id=place_id, event_type_id=event_type_id, address = address)
+		event_pic = request.FILES.get('event_pic')
+		if request.user.is_superuser: 
+			event.status = 2
+		event.save()
+		if event_pic is not None:
+			event.pic_name = handle_uploaded_pic(event_pic, event.id)
+			event.save()
+
+	return HttpResponse("0")
+
+
+@csrf_exempt
+@require_GET
 def event_type(request):
 	try:
 		event_type_list = EventType.objects.filter(status = 2)
