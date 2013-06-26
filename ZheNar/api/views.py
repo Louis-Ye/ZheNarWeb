@@ -144,7 +144,6 @@ def __get_user_info(upr):
 			"id"		: upr.id, 
 			"username"	: upr.username,
 			"email"		: upr.email,
-			"gender"	: pr.gender,
 			"student_name"	: pr.name,
 	}
 	return user_info
