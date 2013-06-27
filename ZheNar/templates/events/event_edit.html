@@ -103,28 +103,32 @@
 					</div>
 				</div>
 			  	<div class="span8 pull-right" style="margin-left:0px">
-	<div class="fileupload fileupload-new span3" data-provides="fileupload">
-	  <div class="fileupload-preview thumbnail" style="width: 200px; height: 150px;"></div>
-	  <div>
-	    <span class="btn btn-file"><span class="fileupload-new">事件图片</span><span class="fileupload-exists">更改</span><input type="file" name="event_pic" id="event_pic"/></span>
-	    <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
-	  </div>
-	  <div class="span3">&nbsp</div>
+			  	<div class="fileupload fileupload-new span3" data-provides="fileupload">
+			  		<div class="fileupload-preview thumbnail" style="width: 200px; height: 150px;"></div>
+	  				<div>
+	    					<span class="btn btn-file">
+	    						<span class="fileupload-new">事件图片</span>
+	    						<span class="fileupload-exists">更改</span>
+	    						<input type="file" name="event_pic" id="event_pic"/>	
+	    					</span>
+	    				<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+	  				</div>
+	  				<div class="span3">&nbsp</div>
 
-	<div class="span3" style="margin-left:0px">
-		事件举办地点
-		<select name="place_id">
-			{% for item in place_list %}
-			<option value="{{ item.id }}" >{{item.name}}</option>
-			{% endfor %}
-		</select>
-	  	</div>
-		<div class="span3" style="margin-left:0px">
-  	</div>
-	</div>
+					<div class="span3" style="margin-left:0px">
+					事件举办地点
+						<select name="place_id" value='{{event.place.id}}'>
+							{% for item in place_list %}
+							<option value="{{ item.id }}" >{{item.name}}</option>
+							{% endfor %}
+						</select>
+	  				</div>
+					<div class="span3" style="margin-left:0px">
+  					</div>
+				</div>
 
 					
-	<textarea name="description" id="description" class="span5" placeholder="具体描述信息" rows="16" cols="40" >{{event.description}}</textarea> 
+				<textarea name="description" id="description" class="span5" placeholder="具体描述信息" rows="16" cols="40" >{{event.description}}</textarea> 
 			  	</div>
 			</fieldset>
 	        <button class="btn btn-large btn-primary span2 offset4" type="submit">保存</button>
