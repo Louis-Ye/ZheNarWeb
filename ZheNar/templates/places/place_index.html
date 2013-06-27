@@ -11,8 +11,8 @@
 						   	<img src="http://maps.googleapis.com/maps/api/staticmap?center={{place.latitude}},{{place.longitude}}&zoom=16&size=300x300&sensor=false&markers=icon:http://google-maps-icons.googlecode.com/files/{{place.place_type.icon.name}}%7Clabel:Z%7C{{place.latitude}},{{place.longitude}}">
 					   	</a>
 						<div class="caption">
-							<h4 class="pull-left">{{ place.name}}</h4>
-							<h5 class="pull-right">{{place.place_type.name}}</h5>
+							<h4 style="width:240px;overflow:hidden;text-align:left;">{{ place.name}}</h4>
+							<h5 style="width:240px;overflow:hidden;text-align:right;">{{place.place_type.name}}</h5>
 							<p style="height:100px;width:240px;overflow:scroll;">
 							{{place.description}}
 							</p>
