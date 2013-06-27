@@ -257,14 +257,14 @@ def __get_event_info(item):
 	event_info = {
 		"id"			:	item.id,
 		"name"			:	item.name,
-		"description" 	:	item.description,
+		"description" 		:	item.description,
 		"host"			:	item.holder.name,
-		"organization"	:	item.host_organization,
-		"start_time"	:	item.start_time.isoformat(),
+		"organization"		:	item.host_organization,
+		"start_time"		:	item.start_time.isoformat(),
 		"end_time"		:	item.end_time.isoformat(),
 		"place_id"		:	item.place.id,
 		"address"		:	item.address,
-		"follower_count":	100,	#暂时木有，等待添加#item.count_follower()
+		"follower_count"	:	item.follower.count(),
 		"type"			:	item.event_type.name,
 	}
 	return event_info
@@ -280,9 +280,9 @@ def event_create(request):
 	holder = Profile.objects.get(user_id = request.user.id)
 	host_organization = request.POST.get("organization")
 	ss = request.POST.get("start_time")
-	start_time = datetime.strptime(ss,"%m/%d/%Y %H:%M:%S+00:00")
+	start_time = datetime.strptime(ss,"%Y-%m-%dT%H:%M:%S+0800")
 	ss = request.POST.get("end_time")
-	end_time = datetime.strptime(ss, "%m/%d/%Y %H:%M:%S+00:00")
+	end_time = datetime.strptime(ss, "%Y-%m-%dT%H:%M:%S+0800")
 	place_id = request.POST.get("place_id")
 	event_type_id = request.POST.get("event_type_id")
 	address = request.POST.get("address")
@@ -293,7 +293,7 @@ def event_create(request):
 	except Place.DoesNotExist:
 		return HttpResponse(json.dumps({"error_code":"There is no such place_id"}),mimetype='application/json')
 	try:
-		obj_place = EventType.objects.get(pk=event_type_id, status = 2)
+		obj_event_type = EventType.objects.get(pk=event_type_id, status = 2)
 	except EventType.DoesNotExist:
 		return HttpResponse(json.dumps({"error_code ":"There is no such Event type"}),mimetype='application/json')
 	
