@@ -279,8 +279,10 @@ def event_create(request):
 	description = request.POST.get("description")
 	holder = Profile.objects.get(user_id = request.user.id)
 	host_organization = request.POST.get("organization")
-	start_time = request.POST.get("start_time")
-	end_time = request.POST.get("end_time")
+	ss = request.POST.get("start_time")
+	start_time = datetime.strptime(ss,"%m/%d/%Y %H:%M:%S+00:00")
+	ss = request.POST.get("end_time")
+	end_time = datetime.strptime(ss, "%m/%d/%Y %H:%M:%S+00:00")
 	place_id = request.POST.get("place_id")
 	event_type_id = request.POST.get("event_type_id")
 	address = request.POST.get("address")
@@ -289,11 +291,11 @@ def event_create(request):
 	try:
 		obj_place = Place.objects.get(pk=place_id, status = 2)
 	except Place.DoesNotExist:
-		return HttpResponse(json.dumps({"error_code":"没有这个地方 place_id"}),mimetype='application/json')
+		return HttpResponse(json.dumps({"error_code":"There is no such place_id"}),mimetype='application/json')
 	try:
 		obj_place = EventType.objects.get(pk=event_type_id, status = 2)
 	except EventType.DoesNotExist:
-		return HttpResponse(json.dumps({"error_code ":"没有这个事件类型"}),mimetype='application/json')
+		return HttpResponse(json.dumps({"error_code ":"There is no such Event type"}),mimetype='application/json')
 	
 	#form = {}
 	if True:#__judge_event_form(form):
