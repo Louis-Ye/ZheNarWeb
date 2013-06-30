@@ -19,6 +19,24 @@
 	  	right:0;
 	  	margin-top:40px;
 	  	}
+	  #func_bar{
+		  position: fixed;
+		  height:200px;
+		  width:100px;
+		  bottom:20px;
+		  top:auto;
+		  left:20px;
+		  right:auto;
+	  }
+	  #func_search{
+		  position: fixed;
+		  bottom:20px;
+		  right:20px;
+	  } 
+	  .map-btn{
+		  width: 60px;
+		  margin: 5px;
+	  }
 	</style>
 {% endblock %}
 {% block script %}
@@ -103,4 +121,15 @@
 {% endblock %}
 {% block main %}
 	<div id="map_canvas"></div>
+	<div id="func_search" class="nav-search pull-right">
+		<input name="search_form" class="search-query" placeholder="Search" type="text">
+	</div>
+	<div id="func_bar" class="well span1" style="">
+		<h4> Preserved Function Bar</h4>
+		<button id="" class="map-btn btn btn-info">Func1</button>
+		<button id="" class="map-btn btn btn-info">Func2</button>
+		<button id="" class="map-btn btn btn-info">Func3</button>
+	</div>
+
+
 {% endblock %}
