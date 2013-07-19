@@ -8,6 +8,7 @@ from django.views import generic
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from datetime import datetime
+from django.views.decorators.http import require_POST, require_GET
 
 from profiles.models import Profile
 from places.models import Place

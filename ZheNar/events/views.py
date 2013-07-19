@@ -7,6 +7,7 @@ from django.views import generic
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db.models import Count
+from django.views.decorators.http import require_POST, require_GET
 
 from datetime import datetime
 from profiles.models import Profile
@@ -26,6 +27,7 @@ def login_proc(request):
 		return {}
 
 
+@require_POST
 def index(request):
 	event_list_query = Event.objects.filter(status=2)
 	event_list = [event for event in event_list_query if not event.if_event_was_expired()]
@@ -146,6 +148,7 @@ def type_create(request):
 		return HttpResponseRedirect(reverse('places:index'))
 
 
+@require_POST
 def _type_create(request):
 	error_list = []
 	if request.POST:
