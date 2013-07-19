@@ -24,6 +24,7 @@ def debug(request, info):
 	return HttpResponse("debug information: " + info)
 
 
+@require_POST
 def _login(request):
 	if request.POST:
 		account = request.POST['account']
@@ -61,6 +62,7 @@ def register(request):
 	return render(request, 'profiles/register.html', __login_proc(request, context))
 
 
+@require_POST
 def _register(request):
 	if request.POST:
 		username = request.POST.get('username')
@@ -125,6 +127,7 @@ def settings(request):
 		return render(request, "profiles/settings.html", __login_proc(request, context))
 	else :
 		return HttpResponseRedirect(reverse('index'))
+
 
 def _settings(request):
 	if request.user.is_authenticated() and request.POST:
