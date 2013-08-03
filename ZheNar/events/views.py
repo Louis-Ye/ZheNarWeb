@@ -27,7 +27,6 @@ def login_proc(request):
 		return {}
 
 
-@require_POST
 def index(request):
 	event_list_query = Event.objects.filter(status=2)
 	event_list = [event for event in event_list_query if not event.if_event_was_expired()]
