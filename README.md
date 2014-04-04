@@ -1,9 +1,10 @@
-ZheNarWeb
+ZheNar
 =========
 Introduction
 --------
-* ZheNarWeb is a campus navigation app. Users can checkout the events (such as lectures, parties, activities and so on) and places (such as libraries, dining halls, gyms and so on) in campus or around campus on Google maps. What's more, users can also post events and places so that other users can see it.
-* iOS App is available: https://github.com/csvenja/ZheNar 
+* ZheNar is a campus navigation app. Users can checkout the events (such as lectures, parties, activities, etc. ) and places (such as libraries, dining halls, gyms, etc. ) in campus or around campus on Google maps (Apple maps on iOS). What's more, users can also post events and places, which are visible by others on maps.
+* This repository is for ZheNar Web server.
+* iOS App is available at: https://github.com/csvenja/ZheNar 
 
 How to setup
 --------
